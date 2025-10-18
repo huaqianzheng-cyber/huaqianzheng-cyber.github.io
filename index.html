@@ -233,22 +233,34 @@
 
     <!-- Hero Section --><section id="home" class="hero-section text-slate-800">
         <div class="absolute inset-0 z-0">
-            <!-- Background orange and green curved shapes --><div class="absolute top-0 left-0 w-60 h-full bg-gradient-to-br from-yellow-400 to-orange-500 rounded-r-full blur-xl opacity-60 transform -translate-x-1.2"></div>
-            <div class="absolute bottom-0 right-0 w-80 h-full bg-gradient-to-tl from-green-500 to-green-700 rounded-l-full blur-xl opacity-60 transform translate-x-1/2"></div>
-             <!-- Stars as per image --><img src="assets/star.gif" alt="Star" class="star star-1">
-            <img src="assets/star.gif" alt="Star" class="star star-2">
-            <img src="assets/star.gif" class="star star-3" style="bottom: 10%; right: 30%;">
+            <!-- Background orange and green curved shapes --><div class="absolute top-0 right-0 w-96 h-full bg-gradient-to-br from-orange-400/20 to-orange-500/20 rounded-l-full blur-xl opacity-60 transform translate-x-1/3 rotate-180"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-full bg-gradient-to-br from-green-500/20 to-green-700/20 rounded-r-full blur-xl opacity-60 transform -translate-x-1/3"></div>
         </div>
 
-
-        <div class="hero-content relative z-10">
-            <div class="hero-text">
-                <p class="welcome-text">WELCOME TO</p>
-                <h1 class="text-7xl md:text-8xl font-extrabold tracking-tighter">
-                    <span class="tenup-green">TEN</span><span class="tenup-orange">UP!</span>
-                </h1>
+        <div class="hero-content relative z-10 max-w-7xl mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+                <div class="flex-1 text-left space-y-6">
+                    <h1 class="text-6xl lg:text-7xl font-extrabold tracking-tight">
+                        WELCOME TO<br/>
+                        <span style="color: var(--primary-green-dark)">TEN</span><span style="color: var(--accent-orange)">UP!</span>
+                    </h1>
+                    <p class="text-lg lg:text-xl max-w-2xl">
+                        A <span class="text-orange-500 font-semibold">fun</span> and <span class="text-orange-500 font-semibold">interactive</span> application is designed 
+                        to make <span class="text-emerald-700 font-semibold">mathematics</span> exciting for <span class="text-emerald-700 font-semibold">2nd-grade</span>
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-6 py-2 bg-gray-100 rounded-full text-sm font-medium">Education</span>
+                        <span class="px-6 py-2 bg-gray-100 rounded-full text-sm font-medium">Mobile</span>
+                        <img src="assets/figma.png" alt="Figma" class="h-8 w-8">
+                        <img src="assets/ai.png" alt="Adobe Illustrator" class="h-8 w-8">
+                    </div>
+                </div>
+                <div class="relative flex-1 flex justify-center">
+                    <img src="assets/panda.png" alt="Tenup Mascot" class="w-[400px] h-[400px] lg:w-[500px] lg:h-[500px] object-contain">
+                    <img src="assets/star.gif" alt="Star" class="absolute -top-4 -right-4 w-12 h-12 opacity-80">
+                    <img src="assets/star.gif" alt="Star" class="absolute -bottom-4 -left-4 w-16 h-16 opacity-80">
+                </div>
             </div>
-            <!-- Mascot Image --><img src="assets/panda.png" alt="Tenup Mascot" class="w-48 h-48 md:w-64 md:h-64 object-contain">
         </div>
     </section>
 
@@ -341,25 +353,108 @@ It aligns with Grade Two Mathematics standards and aims to encourage students to
         <!-- Persona Section --><section id="personas" class="max-w-7xl mx-auto">
             <h2 class="section-title">User Personas</h2>
             <div class="grid md:grid-cols-2 gap-8 items-start">
+                <!-- Jack's Persona -->
                 <div class="bg-white p-8 rounded-xl shadow-lg">
-                    <div class="flex items-center gap-6 mb-6">
-                        <img src="https://placehold.co/100x100/daedbf/007042?text=Jack" alt="Jack" class="rounded-full w-24 h-24">
-                        <div>
-                            <h3 class="text-3xl font-bold">JACK</h3>
-                            <p class="text-slate-500">1st-grade Student, 7 years old</p>
+                    <div class="flex flex-col items-center text-center mb-6">
+                        <h3 class="text-4xl font-bold mb-2">★ Persona 1</h3>
+                        <img src="https://placehold.co/200x200/daedbf/007042?text=Jack" alt="Jack" class="rounded-full w-48 h-48 mb-4">
+                        <div class="text-center">
+                            <h3 class="text-5xl font-bold mb-2">JACK</h3>
+                            <p class="text-slate-500">1st-grade Student</p>
+                        </div>
+                        <blockquote class="text-lg italic p-4 rounded-lg my-4 w-full" style="color: var(--primary-green-dark); background-color: var(--primary-green-light);">
+                            "I want to learn math by myself, I believe I can do it!"
+                        </blockquote>
+                        <div class="text-sm text-slate-500">
+                            <p>Los Angeles, CA., USA</p>
+                            <p>7 years old</p>
                         </div>
                     </div>
-                    <blockquote class="text-lg italic p-4 rounded-lg mb-6" style="color: var(--primary-green-dark); background-color: var(--primary-green-light);">"I want to learn math by myself, I believe I can do it!"</blockquote>
+                    
+                    <!-- About Section -->
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-3xl font-bold mb-3">ABOUT</h4>
+                            <ul class="space-y-2 text-slate-700">
+                                <li>Jack is a 1st-grade student and will be a new 2nd-grade student in soon who wants to achieve excellent mathematics grades by learning mathematics himself.</li>
+                                <li>However, he has found that he is having trouble dealing with 2nd-grade mathematics problems.</li>
+                                <li>He wants to achieve excellent grades like before and surpass his classmate Tom using some methods.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Need Section -->
+                        <div>
+                            <h4 class="text-3xl font-bold mb-3">NEED</h4>
+                            <ul class="space-y-2 text-slate-700">
+                                <li>• Easy to learn the 2nd-grade math</li>
+                                <li>• Can learn math by himself</li>
+                                <li>• Funny</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Favorite Brand Section -->
+                        <div>
+                            <h4 class="text-3xl font-bold mb-3">FAVORITE BRAND</h4>
+                            <div class="flex items-center gap-4">
+                                <img src="https://placehold.co/50x50/000000/FFFFFF?text=R" alt="Roblox" class="w-12 h-12">
+                                <img src="https://placehold.co/50x50/FF0000/FFFFFF?text=YT" alt="YouTube" class="w-12 h-12">
+                                <img src="https://placehold.co/50x50/0066CC/FFFFFF?text=O" alt="Oreo" class="w-12 h-12">
+                                <img src="https://placehold.co/50x50/FFC72C/DA291C?text=M" alt="McDonald's" class="w-12 h-12">
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Mary's Persona -->
                 <div class="bg-white p-8 rounded-xl shadow-lg">
-                    <div class="flex items-center gap-6 mb-6">
-                        <img src="https://placehold.co/100x100/ff9900/ffffff?text=Mary" alt="Mary" class="rounded-full w-24 h-24">
-                        <div>
-                            <h3 class="text-3xl font-bold">MARY</h3>
-                            <p class="text-slate-500">2nd-grade Student, 8 years old</p>
+                    <div class="flex flex-col items-center text-center mb-6">
+                        <h3 class="text-4xl font-bold mb-2">★ Persona 2</h3>
+                        <img src="https://placehold.co/200x200/ff9900/ffffff?text=Mary" alt="Mary" class="rounded-full w-48 h-48 mb-4">
+                        <div class="text-center">
+                            <h3 class="text-5xl font-bold mb-2">MARY</h3>
+                            <p class="text-slate-500">2nd-grade Student</p>
+                        </div>
+                        <blockquote class="text-lg italic p-4 rounded-lg my-4 w-full" style="background-color: #FFF5E6; color: var(--accent-orange);">
+                            "Math is tricky sometimes, I wish it was more like a game."
+                        </blockquote>
+                        <div class="text-sm text-slate-500">
+                            <p>San Francisco, CA., USA</p>
+                            <p>8 years old</p>
                         </div>
                     </div>
-                    <blockquote class="text-lg italic p-4 rounded-lg mb-6" style="background-color: #FFF5E6; color: var(--accent-orange);">"Math is tricky sometimes, I wish it was more like a game."</blockquote>
+                    
+                    <!-- About Section -->
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-3xl font-bold mb-3">ABOUT</h4>
+                            <ul class="space-y-2 text-slate-700">
+                                <li>Mary is a 2nd-grade student who finds mathematics challenging but wants to improve.</li>
+                                <li>She enjoys playing educational games and learns better through interactive experiences.</li>
+                                <li>She wants to make mathematics learning more enjoyable and less intimidating.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Need Section -->
+                        <div>
+                            <h4 class="text-3xl font-bold mb-3">NEED</h4>
+                            <ul class="space-y-2 text-slate-700">
+                                <li>• Interactive learning experiences</li>
+                                <li>• Game-based mathematics practice</li>
+                                <li>• Visual learning aids</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Favorite Brand Section -->
+                        <div>
+                            <h4 class="text-3xl font-bold mb-3">FAVORITE BRAND</h4>
+                            <div class="flex items-center gap-4">
+                                <img src="https://placehold.co/50x50/FF69B4/FFFFFF?text=B" alt="Barbie" class="w-12 h-12">
+                                <img src="https://placehold.co/50x50/FF0000/FFFFFF?text=N" alt="Netflix" class="w-12 h-12">
+                                <img src="https://placehold.co/50x50/FF1493/FFFFFF?text=L" alt="LOL" class="w-12 h-12">
+                                <img src="https://placehold.co/50x50/40E0D0/FFFFFF?text=D" alt="Disney" class="w-12 h-12">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
