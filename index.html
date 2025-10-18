@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary-green-dark: #007042;
@@ -16,16 +18,20 @@
             --background: #ffffff;
             --neutral-dark: #4A4A4A;
         }
+
         html {
             scroll-behavior: smooth;
         }
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--background);
             color: var(--neutral-dark);
         }
+
         .hero-section {
-            background-color: var(--background); /* Changed to white */
+            background-color: var(--background);
+            /* Changed to white */
             position: relative;
             overflow: hidden;
             display: flex;
@@ -33,15 +39,17 @@
             justify-content: center;
             min-height: 100vh;
         }
-        
+
         .section-title {
             font-weight: 800;
             font-size: 2.5rem;
             text-align: center;
             margin-bottom: 3rem;
             color: var(--neutral-dark);
-            padding-top: 5rem; /* Add padding for nav anchor */
+            padding-top: 5rem;
+            /* Add padding for nav anchor */
         }
+
         .phone-mockup {
             width: 250px;
             height: 500px;
@@ -56,6 +64,7 @@
             align-items: center;
             position: relative;
         }
+
         .phone-mockup::before {
             content: '';
             position: absolute;
@@ -68,6 +77,7 @@
             border-bottom-left-radius: 10px;
             border-bottom-right-radius: 10px;
         }
+
         .phone-screen {
             width: 100%;
             height: 100%;
@@ -78,6 +88,7 @@
             flex-direction: column;
             justify-content: space-between;
         }
+
         .flow-step {
             min-width: 120px;
             padding: 0.75rem 1.25rem;
@@ -101,11 +112,13 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             position: relative;
         }
+
         .flow-diamond-text {
             transform: rotate(-45deg);
             text-align: center;
             font-weight: bold;
         }
+
         .flow-diamond-label {
             position: absolute;
             transform: rotate(-45deg);
@@ -115,26 +128,30 @@
             background-color: white;
             padding: 0 4px;
         }
+
         .label-yes {
             bottom: -20px;
             left: 50%;
             transform: translateX(-50%) rotate(-45deg);
         }
-       
+
         /* Navigation Styles */
         .nav-link {
             position: relative;
             transition: color 0.2s ease-in-out;
             font-weight: 500;
         }
+
         .nav-link.active {
             color: var(--primary-green-dark);
             font-weight: 600;
         }
+
         .nav-link.active::after {
             content: '';
             position: absolute;
-            bottom: -8px; /* Position dot below the text */
+            bottom: -8px;
+            /* Position dot below the text */
             left: 50%;
             transform: translateX(-50%);
             width: 6px;
@@ -148,28 +165,35 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 2rem; /* Space between text and mascot */
+            gap: 2rem;
+            /* Space between text and mascot */
             position: relative;
-            z-index: 2; /* Ensure content is above any background elements */
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            z-index: 2;
+            /* Ensure content is above any background elements */
+            flex-wrap: wrap;
+            /* Allow wrapping on smaller screens */
         }
 
         .hero-text {
             text-align: right;
-            line-height: 1; /* Adjust line height for the title */
+            line-height: 1;
+            /* Adjust line height for the title */
         }
 
         .hero-text h1 {
-            font-size: 3rem; /* Adjust as needed */
+            font-size: 3rem;
+            /* Adjust as needed */
             font-weight: 800;
             color: var(--neutral-dark);
         }
 
         .hero-text .welcome-text {
-            font-size: 2rem; /* Adjust as needed */
+            font-size: 2rem;
+            /* Adjust as needed */
             font-weight: 800;
             color: var(--neutral-dark);
-            margin-bottom: 0.5rem; /* Space between "WELCOME TO" and "TENUP!" */
+            margin-bottom: 0.5rem;
+            /* Space between "WELCOME TO" and "TENUP!" */
         }
 
         .hero-text .tenup-green {
@@ -186,77 +210,159 @@
             z-index: 1;
         }
 
-        .star-1 { top: 20%; left: 10%; width: 60px; height: 60px; }
-        .star-2 { top: 15%; right: 25%; width: 40px; height: 40px; }
-        .star-3 { bottom: 20%; right: 10%; width: 30px; height: 30px; }
-        
+        .star-1 {
+            top: 20%;
+            left: 10%;
+            width: 60px;
+            height: 60px;
+        }
+
+        .star-2 {
+            top: 15%;
+            right: 25%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .star-3 {
+            bottom: 20%;
+            right: 10%;
+            width: 30px;
+            height: 30px;
+        }
+
         /* Hide scrollbar for horizontal scrolling container */
         .horizontal-scroll-container {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
         }
+
         .horizontal-scroll-container::-webkit-scrollbar {
-            display: none; /* Chrome, Safari and Opera */
+            display: none;
+            /* Chrome, Safari and Opera */
         }
     </style>
 </head>
+
 <body class="antialiased">
 
-     <!-- Header/Nav --><header class="fixed top-0 left-0 right-0 z-50 p-4">
+    <!-- Global Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
         <div class="container mx-auto max-w-7xl px-4">
-            <nav class="flex justify-between items-center bg-white/70 backdrop-blur-md rounded-full py-2 px-6 shadow-md border border-gray-200/80">
-                <a href="#home" class="text-xl font-bold" style="color: var(--primary-green-dark);">TENUP</a>
+            <nav class="flex justify-between items-center py-4">
+                <a href="/" class="text-2xl font-bold tracking-tight text-gray-900">9thDesign</a>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#project-details" class="nav-link text-gray-600 hover:text-black">Overview</a>
-                    <a href="#problem" class="nav-link text-gray-600 hover:text-black">Problem</a>
-                    <a href="#personas" class="nav-link text-gray-600 hover:text-black">Personas</a>
-                    <a href="#user-flow" class="nav-link text-gray-600 hover:text-black">User Flow</a>
-                    <a href="#wireframes" class="nav-link text-gray-600 hover:text-black">Wireframes</a>
-                    <a href="#design-system" class="nav-link text-gray-600 hover:text-black">Design</a>
+                    <a href="/spirits" class="text-gray-600 hover:text-gray-900 font-medium">Spirits</a>
+                    <a href="/tenup" class="text-emerald-600 font-semibold">Tenup</a>
+                    <a href="/roblox" class="text-gray-600 hover:text-gray-900 font-medium">Roblox</a>
+                    <a href="/walmart" class="text-gray-600 hover:text-gray-900 font-medium">Walmart</a>
+                    <a href="/about"
+                        class="ml-8 px-4 py-2 rounded-full bg-gray-900 text-white hover:bg-gray-700 transition-colors font-medium">About
+                        Me</a>
                 </div>
-                <button id="menu-btn" class="md:hidden p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                <button id="global-menu-btn" class="md:hidden p-2 rounded-full hover:bg-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7" />
                     </svg>
                 </button>
             </nav>
         </div>
-        <!-- Mobile Menu --><div id="mobile-menu" class="hidden md:hidden mt-2 bg-white/95 backdrop-blur-md rounded-lg border border-gray-200 p-4 max-w-sm mx-auto shadow-xl">
-            <a href="#project-details" class="nav-link block text-gray-600 hover:text-black text-center py-2">Overview</a>
-            <a href="#problem" class="nav-link block text-gray-600 hover:text-black text-center py-2">Problem</a>
-            <a href="#personas" class="nav-link block text-gray-600 hover:text-black text-center py-2">Personas</a>
-            <a href="#user-flow" class="nav-link block text-gray-600 hover:text-black text-center py-2">User Flow</a>
-            <a href="#wireframes" class="nav-link block text-gray-600 hover:text-black text-center py-2">Wireframes</a>
-            <a href="#design-system" class="nav-link block text-gray-600 hover:text-black text-center py-2">Design</a>
+        <!-- Global Mobile Menu -->
+        <div id="global-mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="container mx-auto px-4 py-2 space-y-1">
+                <a href="/spirits"
+                    class="block px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg">Spirits</a>
+                <a href="/tenup"
+                    class="block px-4 py-2 text-emerald-600 font-semibold hover:bg-gray-50 rounded-lg">Tenup</a>
+                <a href="/roblox"
+                    class="block px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg">Roblox</a>
+                <a href="/walmart"
+                    class="block px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg">Walmart</a>
+                <a href="/about"
+                    class="block px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg">About Me</a>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section --><section id="home" class="hero-section text-slate-800">
+    <!-- Project Navigation -->
+    <nav class="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+        <div class="bg-white/90 backdrop-blur-md rounded-full py-3 px-6 shadow-lg border border-gray-200/80">
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#project-details" class="nav-link text-gray-600 hover:text-black">Overview</a>
+                <a href="#problem" class="nav-link text-gray-600 hover:text-black">Problem</a>
+                <a href="#personas" class="nav-link text-gray-600 hover:text-black">Personas</a>
+                <a href="#user-flow" class="nav-link text-gray-600 hover:text-black">User Flow</a>
+                <a href="#wireframes" class="nav-link text-gray-600 hover:text-black">Wireframes</a>
+                <a href="#design-system" class="nav-link text-gray-600 hover:text-black">Design</a>
+            </div>
+            <button id="project-menu-btn"
+                class="md:hidden p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+        <!-- Project Mobile Menu -->
+        <div id="project-mobile-menu"
+            class="hidden md:hidden fixed bottom-28 left-4 right-4 bg-white/95 backdrop-blur-md rounded-2xl border border-gray-200 p-4 shadow-xl">
+            <div class="space-y-1">
+                <a href="#project-details"
+                    class="nav-link block text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg px-4 py-2">Overview</a>
+                <a href="#problem"
+                    class="nav-link block text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg px-4 py-2">Problem</a>
+                <a href="#personas"
+                    class="nav-link block text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg px-4 py-2">Personas</a>
+                <a href="#user-flow"
+                    class="nav-link block text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg px-4 py-2">User
+                    Flow</a>
+                <a href="#wireframes"
+                    class="nav-link block text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg px-4 py-2">Wireframes</a>
+                <a href="#design-system"
+                    class="nav-link block text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg px-4 py-2">Design</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section text-slate-800">
         <div class="absolute inset-0 z-0">
-            <!-- Background orange and green curved shapes --><div class="absolute top-0 left-0 w-60 h-full bg-gradient-to-br from-yellow-400 to-orange-500 rounded-r-full blur-xl opacity-60 transform -translate-x-1.2"></div>
-            <div class="absolute bottom-0 right-0 w-80 h-full bg-gradient-to-tl from-green-500 to-green-700 rounded-l-full blur-xl opacity-60 transform translate-x-1/2"></div>
-            
+            <!-- Background orange and green curved shapes -->
+            <div
+                class="absolute top-0 left-0 w-60 h-full bg-gradient-to-br from-yellow-400 to-orange-500 rounded-r-full blur-xl opacity-60 transform -translate-x-1.2">
+            </div>
+            <div
+                class="absolute bottom-0 right-0 w-80 h-full bg-gradient-to-tl from-green-500 to-green-700 rounded-l-full blur-xl opacity-60 transform translate-x-1/2">
+            </div>
+
         </div>
 
         <div class="hero-content relative z-10 max-w-7xl mx-auto px-4">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
                 <div class="flex-1 text-left space-y-6 relative">
-                    <img src="assets/star.gif" alt="Star" class="absolute -left-60 top-1/2 w-32 h-32 opacity-80 transform -rotate-12 animate-pulse">
+                    <img src="assets/star.gif" alt="Star"
+                        class="absolute -left-60 top-1/2 w-32 h-32 opacity-80 transform -rotate-12 animate-pulse">
                     <h1 class="text-6xl lg:text-7xl font-extrabold tracking-tight">
-                        WELCOME TO<br/>
-                        <span style="color: var(--primary-green-dark)">TEN</span><span style="color: var(--accent-orange)">UP!</span>
+                        WELCOME TO<br />
+                        <span style="color: var(--primary-green-dark)">TEN</span><span
+                            style="color: var(--accent-orange)">UP!</span>
                     </h1>
                     <p class="text-lg lg:text-xl max-w-2xl">
-                        A <span class="text-orange-500 font-semibold">fun</span> and <span class="text-orange-500 font-semibold">interactive</span> application is designed 
-                        to make <span class="text-emerald-700 font-semibold">mathematics</span> exciting for <span class="text-emerald-700 font-semibold">2nd-grade</span>
+                        A <span class="text-orange-500 font-semibold">fun</span> and <span
+                            class="text-orange-500 font-semibold">interactive</span> application is designed
+                        to make <span class="text-emerald-700 font-semibold">mathematics</span> exciting for <span
+                            class="text-emerald-700 font-semibold">2nd-grade</span>
                     </p>
                     <div class="flex flex-wrap gap-3 items-center">
                         <span class="px-6 py-2 bg-gray-100 rounded-full text-sm font-medium">Education</span>
                         <span class="px-6 py-2 bg-gray-100 rounded-full text-sm font-medium">Mobile</span>
-                        <a href="https://www.figma.com/design/f9RVn9DyCdL2tXN01tRCKw/Portfolio-2025?node-id=5053-589&m=dev" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200 rounded-full text-sm font-medium">
+                        <a href="https://www.figma.com/design/f9RVn9DyCdL2tXN01tRCKw/Portfolio-2025?node-id=5053-589&m=dev"
+                            target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200 rounded-full text-sm font-medium">
                             <img src="/assets/icon-figma.png" alt="Figma" class="h-6 w-6">
                             <span>Figma</span>
                         </a>
@@ -264,17 +370,22 @@
                     </div>
                 </div>
                 <div class="relative flex-1 flex justify-center">
-                    <img src="assets/panda.png" alt="Tenup Mascot" class="w-[400px] h-[400px] lg:w-[500px] lg:h-[500px] object-contain">
-                    <img src="assets/star.gif" alt="Star" class="absolute bottom-80 right-80 w-74 h-74 opacity-80 transform rotate-12 animate-pulse">
-                    <img src="assets/star.gif" alt="Star" class="absolute -bottom-8 -right-8 w-48 h-48 opacity-80 transform rotate-45 animate-pulse">
+                    <img src="assets/panda.png" alt="Tenup Mascot"
+                        class="w-[400px] h-[400px] lg:w-[500px] lg:h-[500px] object-contain">
+                    <img src="assets/star.gif" alt="Star"
+                        class="absolute bottom-80 right-80 w-74 h-74 opacity-80 transform rotate-12 animate-pulse">
+                    <img src="assets/star.gif" alt="Star"
+                        class="absolute -bottom-8 -right-8 w-48 h-48 opacity-80 transform rotate-45 animate-pulse">
                 </div>
             </div>
         </div>
     </section>
 
     <main class="py-16 md:py-24 px-4 sm:px-6 lg:px-8 space-y-24">
-        
-        <!-- Project Details Section --><section id="project-details" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 items-start">
+
+        <!-- Project Details Section -->
+        <section id="project-details"
+            class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 items-start">
             <div class="space-y-4">
                 <div>
                     <h3 class="font-bold text-lg text-gray-600">Project Type</h3>
@@ -294,54 +405,81 @@
                 </div>
             </div>
             <div class="md:col-span-2">
-                <h2 class="text-5xl font-extrabold mb-4" style="color: var(--primary-green-dark);">TEN<span style="color: var(--accent-orange);">UP</span></h2>
+                <h2 class="text-5xl font-extrabold mb-4" style="color: var(--primary-green-dark);">TEN<span
+                        style="color: var(--accent-orange);">UP</span></h2>
                 <div class="text-lg text-slate-700 leading-relaxed space-y-4">
                     <p>
-                        Mathematics can be a challenging subject for young students, often leading to frustration and disengagement.
+                        Mathematics can be a challenging subject for young students, often leading to frustration and
+                        disengagement.
                     </p>
                     <p>
-                        The TENUP project aims to transform this experience by creating an interactive and enjoyable mobile application tailored for 2nd-grade students. Our goal is to foster a love for math through engaging activities that reinforce core concepts like place value, addition, and subtraction, ensuring that learning is both effective and fun.
+                        The TENUP project aims to transform this experience by creating an interactive and enjoyable
+                        mobile application tailored for 2nd-grade students. Our goal is to foster a love for math
+                        through engaging activities that reinforce core concepts like place value, addition, and
+                        subtraction, ensuring that learning is both effective and fun.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- Problem Section --><section id="problem" class="max-w-7xl mx-auto">
+        <!-- Problem Section -->
+        <section id="problem" class="max-w-7xl mx-auto">
             <h2 class="section-title">The Problem</h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-                    <div class="mx-auto w-20 h-20 rounded-full flex items-center justify-center mb-4" style="background-color: var(--primary-green-light);">
-                        <svg class="w-10 h-10" style="color: var(--primary-green-dark);" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path></svg>
+                    <div class="mx-auto w-20 h-20 rounded-full flex items-center justify-center mb-4"
+                        style="background-color: var(--primary-green-light);">
+                        <svg class="w-10 h-10" style="color: var(--primary-green-dark);" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z">
+                            </path>
+                        </svg>
                     </div>
                     <h3 class="text-xl font-bold mb-2">Place Value</h3>
-                    <p class="text-slate-600">Struggling to grasp tens and ones, and difficulty comparing and ordering numbers.</p>
+                    <p class="text-slate-600">Struggling to grasp tens and ones, and difficulty comparing and ordering
+                        numbers.</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-                    <div class="mx-auto w-20 h-20 rounded-full flex items-center justify-center mb-4" style="background-color: #FFF5E6;">
-                        <svg class="w-10 h-10" style="color: var(--accent-orange);" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <div class="mx-auto w-20 h-20 rounded-full flex items-center justify-center mb-4"
+                        style="background-color: #FFF5E6;">
+                        <svg class="w-10 h-10" style="color: var(--accent-orange);" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
                     </div>
                     <h3 class="text-xl font-bold mb-2">Addition & Subtraction</h3>
-                    <p class="text-slate-600">Finding it hard to carry over or borrow, and misplacing digits in problems.</p>
+                    <p class="text-slate-600">Finding it hard to carry over or borrow, and misplacing digits in
+                        problems.</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-                    <div class="mx-auto w-20 h-20 rounded-full flex items-center justify-center mb-4" style="background-color: var(--primary-green-light);">
-                        <svg class="w-10 h-10" style="color: var(--primary-green-dark);" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <div class="mx-auto w-20 h-20 rounded-full flex items-center justify-center mb-4"
+                        style="background-color: var(--primary-green-light);">
+                        <svg class="w-10 h-10" style="color: var(--primary-green-dark);" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                            </path>
+                        </svg>
                     </div>
                     <h3 class="text-xl font-bold mb-2">Word Problems</h3>
-                    <p class="text-slate-600">Struggling to read and comprehend problems or translate words into operations.</p>
+                    <p class="text-slate-600">Struggling to read and comprehend problems or translate words into
+                        operations.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Overview Section --><section id="overview" class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+        <!-- Overview Section -->
+        <section id="overview" class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
             <h2 class="section-title">Overview</h2>
             <div class="space-y-6">
-                 <div>
+                <div>
                     <h3 class="text-2xl font-bold mb-2" style="color: var(--accent-orange);">★ Background</h3>
                     <div class="text-slate-700 leading-relaxed space-y-2">
                         <p>
-                            Tenup focuses on Grade Two Mathematics education. 
-It aligns with Grade Two Mathematics standards and aims to encourage students to:
+                            Tenup focuses on Grade Two Mathematics education.
+                            It aligns with Grade Two Mathematics standards and aims to encourage students to:
                         </p>
                         <p class="pl-8">(1) develop conceptual understanding</p>
                         <p class="pl-8">(2) use drawings instead of writing equations</p>
@@ -357,20 +495,23 @@ It aligns with Grade Two Mathematics standards and aims to encourage students to
                 </div>
             </div>
         </section>
-        
-        <!-- Persona Section --><section id="personas" class="max-w-7xl mx-auto">
+
+        <!-- Persona Section -->
+        <section id="personas" class="max-w-7xl mx-auto">
             <h2 class="section-title">User Personas</h2>
-            <div class="grid md:grid-cols-2 gap-8 items-start">
+            <div class="grid md:grid-cols-2 gap-8">
                 <!-- Jack's Persona -->
-                <div class="bg-white p-8 rounded-xl shadow-lg">
-                    <div class="flex flex-col items-center text-center mb-6">
+                <div class="bg-white p-8 rounded-xl shadow-lg flex flex-col h-full">
+                    <!-- Header Section: Fixed height -->
+                    <div class="flex flex-col items-center text-center mb-8 h-[500px]">
                         <h3 class="text-4xl font-bold mb-2">★ Persona 1</h3>
-                        <img src="https://placehold.co/200x200/daedbf/007042?text=Jack" alt="Jack" class="rounded-full w-48 h-48 mb-4">
-                        <div class="text-center">
+                        <img src="/assets/avatar-jack.png" alt="Jack" class="rounded-full w-48 h-48 mb-4">
+                        <div class="text-center mb-4">
                             <h3 class="text-5xl font-bold mb-2">JACK</h3>
                             <p class="text-slate-500">1st-grade Student</p>
                         </div>
-                        <blockquote class="text-lg italic p-4 rounded-lg my-4 w-full" style="color: var(--primary-green-dark); background-color: var(--primary-green-light);">
+                        <blockquote class="text-lg italic p-4 rounded-lg mb-4 w-full"
+                            style="color: var(--primary-green-dark); background-color: var(--primary-green-light);">
                             "I want to learn math by myself, I believe I can do it!"
                         </blockquote>
                         <div class="text-sm text-slate-500">
@@ -378,88 +519,100 @@ It aligns with Grade Two Mathematics standards and aims to encourage students to
                             <p>7 years old</p>
                         </div>
                     </div>
-                    
-                    <!-- About Section -->
-                    <div class="space-y-6">
-                        <div>
-                            <h4 class="text-3xl font-bold mb-3">ABOUT</h4>
+
+                    <!-- Content Sections: Equal height for both cards -->
+                    <div class="space-y-8 flex-grow">
+                        <!-- About Section: Fixed height -->
+                        <div class="h-[280px] top">
+                            <h4 class="text-3xl font-bold mb-4">ABOUT</h4>
                             <ul class="space-y-2 text-slate-700">
-                                <li>Jack is a 1st-grade student and will be a new 2nd-grade student in soon who wants to achieve excellent mathematics grades by learning mathematics himself.</li>
-                                <li>However, he has found that he is having trouble dealing with 2nd-grade mathematics problems.</li>
-                                <li>He wants to achieve excellent grades like before and surpass his classmate Tom using some methods.</li>
+                                <li>Jack is a 1st-grade student and will be a new 2nd-grade student in soon who wants to
+                                    achieve excellent mathematics grades by learning mathematics himself.</li>
+                                <li>However, he has found that he is having trouble dealing with 2nd-grade mathematics
+                                    problems.</li>
+                                <li>He wants to achieve excellent grades like before and surpass his classmate Tom using
+                                    some methods.</li>
                             </ul>
                         </div>
-                        
-                        <!-- Need Section -->
-                        <div>
-                            <h4 class="text-3xl font-bold mb-3">NEED</h4>
+
+                        <!-- Need Section: Fixed height -->
+                        <div class="h-[120px]">
+                            <h4 class="text-3xl font-bold mb-4">NEED</h4>
                             <ul class="space-y-2 text-slate-700">
                                 <li>• Easy to learn the 2nd-grade math</li>
                                 <li>• Can learn math by himself</li>
                                 <li>• Funny</li>
                             </ul>
                         </div>
-                        
-                        <!-- Favorite Brand Section -->
-                        <div>
-                            <h4 class="text-3xl font-bold mb-3">FAVORITE BRAND</h4>
+
+                        <!-- Favorite Brand Section: Fixed height -->
+                        <div class="h-[100px]">
+                            <h4 class="text-3xl font-bold mb-4">FAVORITE BRAND</h4>
                             <div class="flex items-center gap-4">
-                                <img src="https://placehold.co/50x50/000000/FFFFFF?text=R" alt="Roblox" class="w-12 h-12">
-                                <img src="https://placehold.co/50x50/FF0000/FFFFFF?text=YT" alt="YouTube" class="w-12 h-12">
-                                <img src="https://placehold.co/50x50/0066CC/FFFFFF?text=O" alt="Oreo" class="w-12 h-12">
-                                <img src="https://placehold.co/50x50/FFC72C/DA291C?text=M" alt="McDonald's" class="w-12 h-12">
+                                <img src="/assets/icon-roblox.png" alt="Roblox" class="w-12 h-12">
+                                <img src="/assets/icon-youtube.png" alt="YouTube" class="w-12 h-12">
+                                <img src="/assets/icon-oreo.png" alt="Oreo" class="w-12 h-12">
+                                <img src="/assets/icon-mcdonald.png" alt="McDonald's" class="w-12 h-12">
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Mary's Persona -->
-                <div class="bg-white p-8 rounded-xl shadow-lg">
-                    <div class="flex flex-col items-center text-center mb-6">
+                <div class="bg-white p-8 rounded-xl shadow-lg flex flex-col h-full">
+                    <!-- Header Section: Fixed height -->
+                    <div class="flex flex-col items-center text-center mb-8 h-[500px]">
                         <h3 class="text-4xl font-bold mb-2">★ Persona 2</h3>
-                        <img src="https://placehold.co/200x200/ff9900/ffffff?text=Mary" alt="Mary" class="rounded-full w-48 h-48 mb-4">
-                        <div class="text-center">
+                        <img src="/assets/avatar-mary.png" alt="Mary" class="rounded-full w-48 h-48 mb-4">
+                        <div class="text-center mb-4">
                             <h3 class="text-5xl font-bold mb-2">MARY</h3>
-                            <p class="text-slate-500">2nd-grade Student</p>
+                            <p class="text-slate-500">Account Executive</p>
                         </div>
-                        <blockquote class="text-lg italic p-4 rounded-lg my-4 w-full" style="background-color: #FFF5E6; color: var(--accent-orange);">
-                            "Math is tricky sometimes, I wish it was more like a game."
+                        <blockquote class="text-lg italic p-4 rounded-lg mb-4 w-full"
+                            style="background-color: #FFF5E6; color: var(--accent-orange);">
+                            "“ I'm worried about my son Sam's math performance, and I want to help him!”"
                         </blockquote>
                         <div class="text-sm text-slate-500">
-                            <p>San Francisco, CA., USA</p>
-                            <p>8 years old</p>
+                            <p>Austin, TX, USA</p>
+                            <p>35 years old</p>
                         </div>
                     </div>
-                    
-                    <!-- About Section -->
-                    <div class="space-y-6">
-                        <div>
-                            <h4 class="text-3xl font-bold mb-3">ABOUT</h4>
+
+                    <!-- Content Sections: Equal height for both cards -->
+                    <div class="space-y-8 flex-grow">
+                        <!-- About Section: Fixed height -->
+                        <div class="h-[280px] top">
+                            <h4 class="text-3xl font-bold mb-4">ABOUT</h4>
                             <ul class="space-y-2 text-slate-700">
-                                <li>Mary is a 2nd-grade student who finds mathematics challenging but wants to improve.</li>
-                                <li>She enjoys playing educational games and learns better through interactive experiences.</li>
-                                <li>She wants to make mathematics learning more enjoyable and less intimidating.</li>
+                                <li>Mary is Sam's mom, who is worried about how to explain the concepts of 2nd-grade
+                                    mathematics to help him improve his grades.</li>
+                                <li>Sam's teacher has reminded her to assist with his mathematics out of the class.
+                                </li>
+                                <li>While she knows about place value and conceptual understanding, she realizes that it
+                                    is difficult to explain these concepts to her son.</li>
+                                <li>Since Mary heard this information from her son's teacher, she speculates that Sam
+                                    may not be truly interested in mathematics, or he may not care about his grades in
+                                    the subject.</li>
                             </ul>
                         </div>
-                        
-                        <!-- Need Section -->
-                        <div>
-                            <h4 class="text-3xl font-bold mb-3">NEED</h4>
+
+                        <!-- Need Section: Fixed height -->
+                        <div class="h-[120px]">
+                            <h4 class="text-3xl font-bold mb-4">NEED</h4>
                             <ul class="space-y-2 text-slate-700">
-                                <li>• Interactive learning experiences</li>
-                                <li>• Game-based mathematics practice</li>
-                                <li>• Visual learning aids</li>
+                                <li>• Improve her son's math performance </li>
+                                <li>• Help her to explain the 2nd-grade math concepts to her son</li>
                             </ul>
                         </div>
-                        
-                        <!-- Favorite Brand Section -->
-                        <div>
-                            <h4 class="text-3xl font-bold mb-3">FAVORITE BRAND</h4>
+
+                        <!-- Favorite Brand Section: Fixed height -->
+                        <div class="h-[100px]">
+                            <h4 class="text-3xl font-bold mb-4">FAVORITE BRAND</h4>
                             <div class="flex items-center gap-4">
-                                <img src="https://placehold.co/50x50/FF69B4/FFFFFF?text=B" alt="Barbie" class="w-12 h-12">
-                                <img src="https://placehold.co/50x50/FF0000/FFFFFF?text=N" alt="Netflix" class="w-12 h-12">
-                                <img src="https://placehold.co/50x50/FF1493/FFFFFF?text=L" alt="LOL" class="w-12 h-12">
-                                <img src="https://placehold.co/50x50/40E0D0/FFFFFF?text=D" alt="Disney" class="w-12 h-12">
+                                <img src="/assets/icon-youtube.png" alt="YouTube" class="w-12 h-12">
+                                <img src="/assets/icon-instagram.png" alt="Instagram" class="w-12 h-12">
+                                <img src="/assets/icon-facebook.png" alt="Facebook" class="w-12 h-12">
+                                <img src="/assets/icon-amazon.png" alt="Amazon" class="w-12 h-12">
                             </div>
                         </div>
                     </div>
@@ -467,35 +620,47 @@ It aligns with Grade Two Mathematics standards and aims to encourage students to
             </div>
         </section>
 
-        <!-- User Flow Section --><section id="user-flow" class="max-w-7xl mx-auto">
+        <!-- User Flow Section -->
+        <section id="user-flow" class="max-w-7xl mx-auto">
             <h2 class="section-title">User Flow</h2>
             <p class="text-center text-slate-600 -mt-10 mb-12 text-xl font-semibold">The First Time Users:</p>
 
             <div class="grid md:grid-cols-2 gap-x-16 relative">
                 <!-- Parent Flow -->
                 <div>
-                    <h3 class="text-2xl font-bold text-center mb-8" style="color: var(--primary-green-dark);">User: Parent</h3>
+                    <h3 class="text-2xl font-bold text-center mb-8" style="color: var(--primary-green-dark);">User:
+                        Parent</h3>
                     <div class="relative flex flex-col items-center">
                         <div class="flow-step w-64">
                             <h4 class="font-bold">Register a New Account</h4>
                         </div>
-                        <div class="h-8"><div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div></div>
+                        <div class="h-8">
+                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                        </div>
                         <div class="flow-step w-64">
                             <h4 class="font-bold">Features Introduction</h4>
                         </div>
-                        <div class="h-8"><div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div></div>
+                        <div class="h-8">
+                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                        </div>
                         <div class="flow-step w-64">
                             <h4 class="font-bold">Create an Account for Child</h4>
                         </div>
-                        <div class="h-8"><div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div></div>
+                        <div class="h-8">
+                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                        </div>
                         <div class="flow-step w-64">
                             <h4 class="font-bold">Link with a Parent's Account</h4>
                         </div>
-                        <div class="h-8"><div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div></div>
+                        <div class="h-8">
+                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                        </div>
                         <div class="flow-step w-64">
                             <h4 class="font-bold">Parent's Account Introduction</h4>
                         </div>
-                        <div class="h-8"><div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div></div>
+                        <div class="h-8">
+                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                        </div>
                         <div class="flow-step w-64">
                             <h4 class="font-bold">Create a Child Profile</h4>
                         </div>
@@ -504,44 +669,57 @@ It aligns with Grade Two Mathematics standards and aims to encourage students to
 
                 <!-- Child Flow -->
                 <div>
-                    <h3 class="text-2xl font-bold text-center mb-8" style="color: var(--accent-orange);">User: Child</h3>
+                    <h3 class="text-2xl font-bold text-center mb-8" style="color: var(--accent-orange);">User: Child
+                    </h3>
                     <div class="relative flex flex-col items-center">
                         <div class="flow-step w-64" style="border-color: var(--accent-orange);">
                             <h4 class="font-bold">Learning Partner (Mascot) Introduction</h4>
                         </div>
-                        <div class="h-8"><div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div></div>
+                        <div class="h-8">
+                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                        </div>
                         <div class="flow-step w-64" style="border-color: var(--accent-orange);">
                             <h4 class="font-bold">Practice Small Mathematics' Game</h4>
                             <p class="text-xs text-slate-500 mt-1">Note: Knowing the user's level of knowledge</p>
                         </div>
-                        <div class="h-8"><div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div></div>
+                        <div class="h-8">
+                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                        </div>
                         <div class="flow-step w-64" style="border-color: var(--accent-orange);">
                             <h4 class="font-bold">Recommendation for the Next Step</h4>
                         </div>
-                        <div class="h-8"><div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div></div>
-                        <div class="flow-step w-64 font-bold p-4 text-white" style="background-color: var(--accent-orange); border-color: var(--accent-orange);">
+                        <div class="h-8">
+                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                        </div>
+                        <div class="flow-step w-64 font-bold p-4 text-white"
+                            style="background-color: var(--accent-orange); border-color: var(--accent-orange);">
                             <h4>Homepage</h4>
-                             <p class="text-xs font-normal text-white/80 mt-1">Note: Using "Modal Panel" to introduce functionalities</p>
+                            <p class="text-xs font-normal text-white/80 mt-1">Note: Using "Modal Panel" to introduce
+                                functionalities</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- SVG Connector -->
-                <svg class="absolute top-0 left-0 w-full h-full pointer-events-none hidden md:block" aria-hidden="true" style="z-index: -1;">
+                <svg class="absolute top-0 left-0 w-full h-full pointer-events-none hidden md:block" aria-hidden="true"
+                    style="z-index: -1;">
                     <defs>
                         <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
                             <polygon points="0 0, 8 3, 0 6" fill="#9ca3af" />
                         </marker>
                     </defs>
-                    <path d="M 48% 96% C 55% 96%, 55% 8%, 52% 8%" stroke="#9ca3af" stroke-width="2" fill="none" stroke-dasharray="8 4" marker-end="url(#arrowhead)"/>
+                    <path d="M 48% 96% C 55% 96%, 55% 8%, 52% 8%" stroke="#9ca3af" stroke-width="2" fill="none"
+                        stroke-dasharray="8 4" marker-end="url(#arrowhead)" />
                 </svg>
             </div>
 
             <!-- New Section for Return Users -->
             <div class="mt-24">
-                <p class="text-center text-slate-600 mb-12 text-xl font-semibold">User task flow for Return Users (Child)</p>
+                <p class="text-center text-slate-600 mb-12 text-xl font-semibold">User task flow for Return Users
+                    (Child)</p>
                 <div class="flex flex-col items-center">
-                    <div class="flow-step w-64 font-bold p-4 text-white" style="background-color: var(--primary-green-dark);">Homepage</div>
+                    <div class="flow-step w-64 font-bold p-4 text-white"
+                        style="background-color: var(--primary-green-dark);">Homepage</div>
                     <div class="h-12 w-px bg-gray-300"></div>
 
                     <div class="w-full relative">
@@ -558,68 +736,96 @@ It aligns with Grade Two Mathematics standards and aims to encourage students to
                         <div class="flex flex-col items-center">
                             <div class="relative flex flex-col items-center">
                                 <div class="flow-step w-56">Start Class</div>
-                                <div class="h-8"><div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div></div>
+                                <div class="h-8">
+                                    <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                                </div>
                                 <div class="flow-step w-56">Video</div>
-                                <div class="h-8"><div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div></div>
+                                <div class="h-8">
+                                    <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                                </div>
                                 <div class="flow-step w-56">Instructive Animation Video</div>
-                                <div class="h-8"><div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div></div>
+                                <div class="h-8">
+                                    <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                                </div>
                                 <div class="flow-diamond">
                                     <div class="flow-diamond-text">Practice?</div>
                                     <div class="flow-diamond-label label-yes">YES</div>
                                 </div>
-                                <div class="h-8 mt-4"><div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div></div>
+                                <div class="h-8 mt-4">
+                                    <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                                </div>
                                 <div class="flow-step w-56">Practice</div>
-                                <div class="h-8"><div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div></div>
+                                <div class="h-8">
+                                    <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                                </div>
                                 <div class="flow-diamond">
                                     <div class="flow-diamond-text">Review Video?</div>
                                     <div class="flow-diamond-label label-yes">YES</div>
                                 </div>
-                                <div class="h-8 mt-4"><div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div></div>
+                                <div class="h-8 mt-4">
+                                    <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                                </div>
                                 <div class="flow-step w-56">Summary</div>
                             </div>
                         </div>
-                
+
                         <!-- Path 2: Today's Challenge -->
                         <div class="flex flex-col items-center">
-                             <div class="relative flex flex-col items-center">
-                                <div class="flow-step w-56" style="border-color: var(--accent-orange);">Today's Challenge</div>
-                                <div class="h-8"><div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div></div>
+                            <div class="relative flex flex-col items-center">
+                                <div class="flow-step w-56" style="border-color: var(--accent-orange);">Today's
+                                    Challenge</div>
+                                <div class="h-8">
+                                    <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                                </div>
                                 <!-- Branching for categories -->
                                 <div class="flex space-x-4">
                                     <div class="flex flex-col items-center">
-                                        <div class="flow-step" style="min-width: 100px; border-color: var(--accent-orange);">Category 1</div>
-                                        <div class="h-4"><div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div></div>
-                                        <div class="flow-step" style="min-width: 100px; border-color: var(--accent-orange);">Practice</div>
+                                        <div class="flow-step"
+                                            style="min-width: 100px; border-color: var(--accent-orange);">Category 1
+                                        </div>
+                                        <div class="h-4">
+                                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;">
+                                            </div>
+                                        </div>
+                                        <div class="flow-step"
+                                            style="min-width: 100px; border-color: var(--accent-orange);">Practice</div>
                                     </div>
                                     <div class="flex flex-col items-center">
-                                        <div class="flow-step" style="min-width: 100px; border-color: var(--accent-orange);">Category 2</div>
-                                        <div class="h-4"><div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div></div>
-                                        <div class="flow-step" style="min-width: 100px; border-color: var(--accent-orange);">Practice</div>
+                                        <div class="flow-step"
+                                            style="min-width: 100px; border-color: var(--accent-orange);">Category 2
+                                        </div>
+                                        <div class="h-4">
+                                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;">
+                                            </div>
+                                        </div>
+                                        <div class="flow-step"
+                                            style="min-width: 100px; border-color: var(--accent-orange);">Practice</div>
                                     </div>
                                 </div>
-                                 <div class="h-8 relative">
+                                <div class="h-8 relative">
                                     <!-- Converging lines -->
                                     <div class="absolute bottom-0 left-[-58px] w-[58px] h-px bg-gray-300"></div>
                                     <div class="absolute bottom-0 right-[-58px] w-[58px] h-px bg-gray-300"></div>
                                     <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
-                                 </div>
+                                </div>
                                 <div class="flow-step w-56" style="border-color: var(--accent-orange);">Summary</div>
                             </div>
                         </div>
-                
+
                         <!-- Path 3: Mascot -->
                         <div class="flex flex-col items-center">
-                             <div class="relative flex flex-col items-center">
+                            <div class="relative flex flex-col items-center">
                                 <div class="flow-step w-56" style="border-color: #a78bfa;">Mascot</div>
-                             </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
         </section>
-        
-        <!-- Wireframes Section --><section id="wireframes" class="max-w-full mx-auto">
+
+        <!-- Wireframes Section -->
+        <section id="wireframes" class="max-w-full mx-auto">
             <h2 class="section-title">Wireframes</h2>
             <div class="flex overflow-x-auto space-x-8 pb-4 px-8 horizontal-scroll-container">
                 <!-- Wireframe 1: Homepage -->
@@ -641,7 +847,7 @@ It aligns with Grade Two Mathematics standards and aims to encourage students to
                 <div class="text-center flex-shrink-0">
                     <div class="phone-mockup">
                         <div class="phone-screen bg-gray-50 p-3 justify-start">
-                             <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center justify-between mb-4">
                                 <div class="w-6 h-6 bg-gray-300 rounded-sm"></div>
                                 <div class="h-4 w-20 bg-gray-300 rounded"></div>
                                 <div class="w-4 h-4"></div>
@@ -654,7 +860,7 @@ It aligns with Grade Two Mathematics standards and aims to encourage students to
                                     </div>
                                 </div>
                                 <div class="h-20 w-full bg-gray-200 rounded-lg p-2">
-                                     <div class="flex justify-between items-center h-full">
+                                    <div class="flex justify-between items-center h-full">
                                         <div class="w-1/2 h-4 bg-gray-300 rounded"></div>
                                         <div class="w-1/3 h-8 bg-gray-300 rounded-md"></div>
                                     </div>
@@ -667,31 +873,31 @@ It aligns with Grade Two Mathematics standards and aims to encourage students to
                 <!-- Wireframe 3: Question -->
                 <div class="text-center flex-shrink-0">
                     <div class="phone-mockup">
-                       <div class="phone-screen bg-gray-50 p-3">
+                        <div class="phone-screen bg-gray-50 p-3">
                             <div class="flex items-center justify-between mb-4">
                                 <div class="w-6 h-6 bg-gray-300 rounded-sm"></div>
                                 <div class="h-4 w-24 bg-gray-300 rounded"></div>
                                 <div class="w-4 h-4"></div>
                             </div>
                             <div class="flex-grow flex flex-col justify-start">
-                               <div class="w-full h-10 bg-gray-200 rounded-md mb-6"></div>
-                               <div class="space-y-3 flex-grow">
-                                   <div class="h-10 w-full bg-gray-200 rounded-lg"></div>
-                                   <div class="h-10 w-full bg-gray-200 rounded-lg"></div>
-                                   <div class="h-10 w-full bg-gray-200 rounded-lg"></div>
-                                   <div class="h-10 w-full bg-gray-200 rounded-lg"></div>
-                               </div>
+                                <div class="w-full h-10 bg-gray-200 rounded-md mb-6"></div>
+                                <div class="space-y-3 flex-grow">
+                                    <div class="h-10 w-full bg-gray-200 rounded-lg"></div>
+                                    <div class="h-10 w-full bg-gray-200 rounded-lg"></div>
+                                    <div class="h-10 w-full bg-gray-200 rounded-lg"></div>
+                                    <div class="h-10 w-full bg-gray-200 rounded-lg"></div>
+                                </div>
                             </div>
                             <div class="h-12 w-full bg-gray-300 rounded-lg"></div>
                         </div>
                     </div>
                     <p class="mt-2 font-semibold">Question</p>
                 </div>
-                 <!-- Wireframe 4: Class -->
+                <!-- Wireframe 4: Class -->
                 <div class="text-center flex-shrink-0">
                     <div class="phone-mockup">
                         <div class="phone-screen bg-gray-50 p-3">
-                             <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center justify-between mb-4">
                                 <div class="w-6 h-6 bg-gray-300 rounded-sm"></div>
                                 <div class="h-4 w-20 bg-gray-300 rounded"></div>
                                 <div class="w-4 h-4"></div>
@@ -702,12 +908,12 @@ It aligns with Grade Two Mathematics standards and aims to encourage students to
                                 <div class="h-8 w-16 bg-gray-200 rounded-t-lg"></div>
                             </div>
                             <div class="flex-grow bg-gray-200 rounded-lg"></div>
-                             <div class="h-12 w-full bg-gray-300 rounded-lg mt-4"></div>
+                            <div class="h-12 w-full bg-gray-300 rounded-lg mt-4"></div>
                         </div>
                     </div>
                     <p class="mt-2 font-semibold">Class Page</p>
                 </div>
-                 <!-- Wireframe 5: Video -->
+                <!-- Wireframe 5: Video -->
                 <div class="text-center flex-shrink-0">
                     <div class="phone-mockup">
                         <div class="phone-screen bg-gray-50 p-3">
@@ -719,7 +925,7 @@ It aligns with Grade Two Mathematics standards and aims to encourage students to
                             <div class="w-full h-32 bg-gray-300 rounded-lg mb-4"></div>
                             <div class="w-full h-4 bg-gray-200 rounded mb-2"></div>
                             <div class="w-2/3 h-4 bg-gray-200 rounded mb-auto"></div>
-                             <div class="h-12 w-full bg-gray-300 rounded-lg mt-4"></div>
+                            <div class="h-12 w-full bg-gray-300 rounded-lg mt-4"></div>
                         </div>
                     </div>
                     <p class="mt-2 font-semibold">Learning Video</p>
@@ -727,62 +933,80 @@ It aligns with Grade Two Mathematics standards and aims to encourage students to
             </div>
         </section>
 
-        <!-- Prototype Section --><section id="prototype" class="max-w-7xl mx-auto">
+        <!-- Prototype Section -->
+        <section id="prototype" class="max-w-7xl mx-auto">
             <h2 class="section-title">Prototype Screens</h2>
             <div class="flex justify-center flex-wrap gap-8">
-                <!-- Homepage --><div class="phone-mockup">
-                     <div class="phone-screen items-center" style="background-color: #f7fef0;">
+                <!-- Homepage -->
+                <div class="phone-mockup">
+                    <div class="phone-screen items-center" style="background-color: #f7fef0;">
                         <h3 class="font-bold text-lg" style="color: var(--primary-green-dark);">TEN UP!</h3>
-                        <img src="https://placehold.co/150x150/ffffff/007042?text=Mascot" alt="Mascot" class="rounded-full w-24 h-24 my-3">
+                        <img src="https://placehold.co/150x150/ffffff/007042?text=Mascot" alt="Mascot"
+                            class="rounded-full w-24 h-24 my-3">
                         <div class="w-full space-y-3">
-                            <div class="text-white rounded-lg p-3 text-center font-bold shadow-md" style="background-color: var(--accent-orange);">CLASS</div>
-                            <div class="text-white rounded-lg p-3 text-center font-bold shadow-md" style="background-color: var(--primary-green-dark);">TRY</div>
-                            <div class="rounded-lg p-3 text-center font-bold shadow-md" style="background-color: var(--primary-green-light); color: var(--primary-green-dark);">CHALLENGE</div>
-                        </div>
-                     </div>
-                </div>
-                 <!-- Loading Page --><div class="phone-mockup">
-                    <div class="phone-screen items-center justify-center text-white text-center" style="background: var(--primary-green-dark);">
-                        <h2 class="text-5xl font-extrabold mb-4">TEN UP!</h2>
-                        <p class="mb-4 text-sm opacity-80">Can you try counting how many pens are around you?</p>
-                        <div class="w-full bg-green-800 rounded-full h-2.5">
-                          <div class="bg-white h-2.5 rounded-full" style="width: 45%"></div>
+                            <div class="text-white rounded-lg p-3 text-center font-bold shadow-md"
+                                style="background-color: var(--accent-orange);">CLASS</div>
+                            <div class="text-white rounded-lg p-3 text-center font-bold shadow-md"
+                                style="background-color: var(--primary-green-dark);">TRY</div>
+                            <div class="rounded-lg p-3 text-center font-bold shadow-md"
+                                style="background-color: var(--primary-green-light); color: var(--primary-green-dark);">
+                                CHALLENGE</div>
                         </div>
                     </div>
                 </div>
-                <!-- Mascot Unlock --><div class="phone-mockup">
-                     <div class="phone-screen items-center justify-center" style="background-color: #f7fef0;">
-                        <img src="https://placehold.co/150x150/ffffff/007042?text=Mascot" alt="Mascot with hat" class="rounded-full w-32 h-32">
-                        <p class="mt-4 font-semibold" style="color: var(--primary-green-dark);">You unlocked a new hat!</p>
-                     </div>
+                <!-- Loading Page -->
+                <div class="phone-mockup">
+                    <div class="phone-screen items-center justify-center text-white text-center"
+                        style="background: var(--primary-green-dark);">
+                        <h2 class="text-5xl font-extrabold mb-4">TEN UP!</h2>
+                        <p class="mb-4 text-sm opacity-80">Can you try counting how many pens are around you?</p>
+                        <div class="w-full bg-green-800 rounded-full h-2.5">
+                            <div class="bg-white h-2.5 rounded-full" style="width: 45%"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mascot Unlock -->
+                <div class="phone-mockup">
+                    <div class="phone-screen items-center justify-center" style="background-color: #f7fef0;">
+                        <img src="https://placehold.co/150x150/ffffff/007042?text=Mascot" alt="Mascot with hat"
+                            class="rounded-full w-32 h-32">
+                        <p class="mt-4 font-semibold" style="color: var(--primary-green-dark);">You unlocked a new hat!
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Design System Section --><section id="design-system" class="max-w-7xl mx-auto">
+        <!-- Design System Section -->
+        <section id="design-system" class="max-w-7xl mx-auto">
             <h2 class="section-title">Design System</h2>
             <div class="bg-white p-8 md:p-12 rounded-2xl shadow-lg">
-                <!-- Color Palette --><div>
+                <!-- Color Palette -->
+                <div>
                     <h3 class="text-2xl font-bold mb-6">Color Palette</h3>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
                         <div class="text-center">
-                            <div class="w-full h-24 rounded-lg shadow-inner" style="background-color: var(--primary-green-dark);"></div>
+                            <div class="w-full h-24 rounded-lg shadow-inner"
+                                style="background-color: var(--primary-green-dark);"></div>
                             <p class="mt-2 font-semibold">Primary Green</p>
                             <p class="text-sm text-slate-500">#007042</p>
                         </div>
                         <div class="text-center">
-                            <div class="w-full h-24 rounded-lg shadow-inner" style="background-color: var(--primary-green-light);"></div>
+                            <div class="w-full h-24 rounded-lg shadow-inner"
+                                style="background-color: var(--primary-green-light);"></div>
                             <p class="mt-2 font-semibold">Light Green</p>
                             <p class="text-sm text-slate-500">#daedbf</p>
                         </div>
                         <div class="text-center">
-                            <div class="w-full h-24 rounded-lg shadow-inner" style="background-color: var(--accent-orange);"></div>
+                            <div class="w-full h-24 rounded-lg shadow-inner"
+                                style="background-color: var(--accent-orange);"></div>
                             <p class="mt-2 font-semibold">Accent Orange</p>
                             <p class="text-sm text-slate-500">#ff9900</p>
                         </div>
                     </div>
                 </div>
-                <!-- Typography --><div class="mt-12">
+                <!-- Typography -->
+                <div class="mt-12">
                     <h3 class="text-2xl font-bold mb-6">Typography</h3>
                     <div class="space-y-4">
                         <div>
@@ -795,12 +1019,16 @@ It aligns with Grade Two Mathematics standards and aims to encourage students to
                         </div>
                     </div>
                 </div>
-                <!-- Buttons --><div class="mt-12">
-                     <h3 class="text-2xl font-bold mb-6">Buttons</h3>
-                     <div class="flex flex-wrap gap-4 items-center">
-                        <button class="px-6 py-3 rounded-lg text-white font-bold shadow" style="background-color: var(--primary-green-dark);">Primary Button</button>
-                        <button class="px-6 py-3 rounded-lg font-bold" style="background-color: var(--primary-green-light); color: var(--primary-green-dark);">Secondary Button</button>
-                     </div>
+                <!-- Buttons -->
+                <div class="mt-12">
+                    <h3 class="text-2xl font-bold mb-6">Buttons</h3>
+                    <div class="flex flex-wrap gap-4 items-center">
+                        <button class="px-6 py-3 rounded-lg text-white font-bold shadow"
+                            style="background-color: var(--primary-green-dark);">Primary Button</button>
+                        <button class="px-6 py-3 rounded-lg font-bold"
+                            style="background-color: var(--primary-green-light); color: var(--primary-green-dark);">Secondary
+                            Button</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -808,14 +1036,37 @@ It aligns with Grade Two Mathematics standards and aims to encourage students to
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Mobile Menu Toggle ---
-            const menuBtn = document.getElementById('menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (menuBtn && mobileMenu) {
-                menuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
+            // --- Global Menu Toggle ---
+            const globalMenuBtn = document.getElementById('global-menu-btn');
+            const globalMobileMenu = document.getElementById('global-mobile-menu');
+            if (globalMenuBtn && globalMobileMenu) {
+                globalMenuBtn.addEventListener('click', () => {
+                    globalMobileMenu.classList.toggle('hidden');
+                    // Hide project menu when global menu is toggled
+                    projectMobileMenu.classList.add('hidden');
                 });
             }
+
+            // --- Project Menu Toggle ---
+            const projectMenuBtn = document.getElementById('project-menu-btn');
+            const projectMobileMenu = document.getElementById('project-mobile-menu');
+            if (projectMenuBtn && projectMobileMenu) {
+                projectMenuBtn.addEventListener('click', () => {
+                    projectMobileMenu.classList.toggle('hidden');
+                    // Hide global menu when project menu is toggled
+                    globalMobileMenu.classList.add('hidden');
+                });
+            }
+
+            // Close menus when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('#global-menu-btn') && !e.target.closest('#global-mobile-menu')) {
+                    globalMobileMenu?.classList.add('hidden');
+                }
+                if (!e.target.closest('#project-menu-btn') && !e.target.closest('#project-mobile-menu')) {
+                    projectMobileMenu?.classList.add('hidden');
+                }
+            });
 
             // --- Nav Link Highlighting on Scroll ---
             const navLinks = document.querySelectorAll('.nav-link');
@@ -833,9 +1084,9 @@ It aligns with Grade Two Mathematics standards and aims to encourage students to
                         });
                     }
                 });
-            }, { 
+            }, {
                 rootMargin: "-40% 0px -40% 0px",
-                threshold: 0 
+                threshold: 0
             });
 
             sectionsToObserve.forEach(section => {
@@ -844,5 +1095,5 @@ It aligns with Grade Two Mathematics standards and aims to encourage students to
         });
     </script>
 </body>
-</html>
 
+</html>
