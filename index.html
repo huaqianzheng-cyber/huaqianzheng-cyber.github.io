@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenup: Math Application</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green-dark: #007042;
+            --primary-green-light: #daedbf;
+            --accent-orange: #ff9900;
+            --background: #ffffff;
+            --neutral-dark: #4A4A4A;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background);
+            color: var(--neutral-dark);
+        }
+        .hero-section {
+            background-color: var(--background);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        .section-title {
+            font-weight: 800;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--neutral-dark);
+            padding-top: 5rem;
+        }
+        .phone-mockup {
+            width: 250px;
+            height: 500px;
+            background-color: #f3f4f6;
+            border: 12px solid #1f2937;
+            border-radius: 30px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            padding: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 20px;
+            background: #1f2937;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            border-radius: 10px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .flow-step {
+            min-width: 120px;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            position: relative;
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 2px solid var(--primary-green-dark);
+        }
+
+        .flow-diamond {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(45deg);
+            border: 2px solid var(--primary-green-dark);
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            position: relative;
+        }
+        .flow-diamond-text {
+            transform: rotate(-45deg);
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-diamond-label {
+            position: absolute;
+            transform: rotate(-45deg);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #6b7280;
+            background-color: white;
+            padding: 0 4px;
+        }
+        .label-yes {
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-45deg);
+        }
+       
+        .nav-link {
+            position: relative;
+            transition: color 0.2s ease-in-out;
+            font-weight: 500;
+        }
+        .nav-link.active {
+            color: var(--primary-green-dark);
+            font-weight: 600;
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background-color: var(--primary-green-dark);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            text-align: right;
+            line-height: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--neutral-dark);
+        }
+
+        .hero-text .welcome-text {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--neutral-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-text .tenup-green {
+            color: var(--primary-green-dark);
+        }
+
+        .hero-text .tenup-orange {
+            color: var(--accent-orange);
+        }
+
+        .star {
+            position: absolute;
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        .star-1 { top: 20%; left: 10%; width: 60px; height: 60px; }
+        .star-2 { top: 15%; right: 25%; width: 40px; height: 40px; }
+        .star-3 { bottom: 20%; right: 10%; width: 30px; height: 30px; }
+        
+        .horizontal-scroll-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .horizontal-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="fixed top-0 left-0 right-0 z-50 p-4">
+        <div class="container mx-auto max-w-7xl px-4">
+            <nav class="flex justify-between items-center bg-white/70 backdrop-blur-md rounded-full py-2 px-6 shadow-md border border-gray-200/80">
+                <a href="#home" class="text-xl font-bold" style="color: var(--primary-green-dark);">TENUP</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#project-details" class="nav-link text-gray-600 hover:text-black">Overview</a>
+                    <a href="#problem" class="nav-link text-gray-600 hover:text-black">Problem</a>
+                    <a href="#personas" class="nav-link text-gray-600 hover:text-black">Personas</a>
+                    <a href="#user-flow" class="nav-link text-gray-600 hover:text-black">User Flow</a>
+                    <a href="#wireframes" class="nav-link text-gray-600 hover:text-black">Wireframes</a>
+                    <a href="#design-system" class="nav-link text-gray-600 hover:text-black">Design</a>
+                </div>
+                <button id="menu-btn" class="md:hidden p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </nav>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden mt-2 bg-white/95 backdrop-blur-md rounded-lg border border-gray-200 p-4 max-w-sm mx-auto shadow-xl">
+            <a href="#project-details" class="nav-link block text-gray-600 hover:text-black text-center py-2">Overview</a>
+            <a href="#problem" class="nav-link block text-gray-600 hover:text-black text-center py-2">Problem</a>
+            <a href="#personas" class="nav-link block text-gray-600 hover:text-black text-center py-2">Personas</a>
+            <a href="#user-flow" class="nav-link block text-gray-600 hover:text-black text-center py-2">User Flow</a>
+            <a href="#wireframes" class="nav-link block text-gray-600 hover:text-black text-center py-2">Wireframes</a>
+            <a href="#design-system" class="nav-link block text-gray-600 hover:text-black text-center py-2">Design</a>
+        </div>
+    </header>
+
+    <section id="home" class="hero-section text-slate-800">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-0 left-0 w-60 h-full bg-gradient-to-br from-yellow-400 to-orange-500 rounded-r-full blur-xl opacity-60 transform -translate-x-1.2"></div>
+            <div class="absolute bottom-0 right-0 w-80 h-full bg-gradient-to-tl from-green-500 to-green-700 rounded-l-full blur-xl opacity-60 transform translate-x-1/2"></div>
+            <img src="assets/star.gif" alt="Star" class="star star-1">
+            <img src="assets/star.gif" alt="Star" class="star star-2">
+            <img src="assets/star.gif" class="star star-3" style="bottom: 10%; right: 30%;">
+        </div>
+
+        <div class="hero-content relative z-10">
+            <div class="hero-text">
+                <p class="welcome-text">WELCOME TO</p>
+                <h1 class="text-7xl md:text-8xl font-extrabold tracking-tighter">
+                    <span class="tenup-green">TEN</span><span class="tenup-orange">UP!</span>
+                </h1>
+            </div>
+            <img src="assets/panda.png" alt="Tenup Mascot" class="w-48 h-48 md:w-64 md:h-64 object-contain">
+        </div>
+    </section>
+
+    <!-- Rest of the sections as before -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sectionsToObserve = document.querySelectorAll('section[id]');
+
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { 
+                rootMargin: "-40% 0px -40% 0px",
+                threshold: 0 
+            });
+
+            sectionsToObserve.forEach(section => {
+                navObserver.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
