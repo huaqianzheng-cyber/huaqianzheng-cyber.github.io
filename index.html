@@ -68,13 +68,13 @@
         .phone-mockup::before {
             content: '';
             position: absolute;
-            top: 0px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50%;
-            height: 20px;
+            left: 0px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 50%;
+            width: 20px;
             background: #1f2937;
-            border-bottom-left-radius: 10px;
+            border-top-right-radius: 10px;
             border-bottom-right-radius: 10px;
         }
 
@@ -130,7 +130,8 @@
         }
 
         .flow-connector {
-            height: 4rem; /* 64px */
+            height: 4rem;
+            /* 64px */
             margin-top: 1rem;
             margin-bottom: 1rem;
         }
@@ -670,7 +671,7 @@
                         <div class="flow-step">
                             <div class="font-bold">Parent's Account Introduction</div>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -728,15 +729,15 @@
 
             <!-- User Flow for Return Users -->
             <div class="mt-24">
-                <h3 class="text-center text-3xl font-bold mb-12" style="color: var(--primary-green-dark);">User task flow : Return User - Child</h3>
+                <h3 class="text-center text-3xl font-bold mb-12" style="color: var(--primary-green-dark);">User task
+                    flow : Return User - Child</h3>
                 <div class="flex flex-col items-center">
                     <!-- Main Container -->
                     <div class="max-w-6xl w-full">
                         <div class="bg-white rounded-xl shadow-lg p-8">
-                            <img src="/assets/user-flow-return-user.png" 
-                                 alt="User flow diagram for return users" 
-                                 class="w-full object-contain"
-                                 style="border: 2px dashed #daedbf; border-radius: 12px; padding: 2rem;">
+                            <img src="/assets/user-flow-return-user.png" alt="User flow diagram for return users"
+                                class="w-full object-contain"
+                                style="border: 2px dashed #daedbf; border-radius: 12px; padding: 2rem;">
                         </div>
                     </div>
                 </div>
@@ -749,105 +750,58 @@
             <div class="flex overflow-x-auto space-x-8 pb-4 px-8 horizontal-scroll-container">
                 <!-- Wireframe 1: Homepage -->
                 <div class="text-center flex-shrink-0">
-                    <div class="phone-mockup">
-                        <div class="phone-screen bg-gray-50 p-4 justify-start">
-                            <div class="h-6 w-32 bg-gray-300 rounded mx-auto mb-8"></div>
-                            <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-8"></div>
-                            <div class="space-y-4 w-full">
-                                <div class="h-12 w-full bg-gray-200 rounded-lg"></div>
-                                <div class="h-12 w-full bg-gray-200 rounded-lg"></div>
-                                <div class="h-12 w-full bg-gray-200 rounded-lg"></div>
-                            </div>
+                    <div class="phone-mockup transform origin-center"
+                        style="width: 500px; height: 250px; margin: 44px 0;">
+                        <div class="phone-screen bg-gray-50 p-4 flex items-center justify-center">
+                            <img src="/assets/wireframe-1.png" alt="Homepage wireframe"
+                                class="w-full h-full object-contain">
                         </div>
                     </div>
                     <p class="mt-2 font-semibold">Homepage</p>
                 </div>
-                <!-- Wireframe 2: Category -->
+                <!-- Wireframe 2: Sub-Category -->
                 <div class="text-center flex-shrink-0">
-                    <div class="phone-mockup">
-                        <div class="phone-screen bg-gray-50 p-3 justify-start">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="w-6 h-6 bg-gray-300 rounded-sm"></div>
-                                <div class="h-4 w-20 bg-gray-300 rounded"></div>
-                                <div class="w-4 h-4"></div>
-                            </div>
-                            <div class="space-y-3">
-                                <div class="h-20 w-full bg-gray-200 rounded-lg p-2">
-                                    <div class="flex justify-between items-center h-full">
-                                        <div class="w-1/2 h-4 bg-gray-300 rounded"></div>
-                                        <div class="w-1/3 h-8 bg-gray-300 rounded-md"></div>
-                                    </div>
-                                </div>
-                                <div class="h-20 w-full bg-gray-200 rounded-lg p-2">
-                                    <div class="flex justify-between items-center h-full">
-                                        <div class="w-1/2 h-4 bg-gray-300 rounded"></div>
-                                        <div class="w-1/3 h-8 bg-gray-300 rounded-md"></div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="phone-mockup transform origin-center"
+                        style="width: 500px; height: 250px; margin: 44px 0;">
+                        <div class="phone-screen bg-gray-50 p-4 flex items-center justify-center">
+                            <img src="/assets/wireframe-2.png" alt="Sub-Category wireframe"
+                                class="w-full h-full object-contain">
                         </div>
                     </div>
-                    <p class="mt-2 font-semibold">Category</p>
+                    <p class="mt-2 font-semibold">Sub-Category</p>
                 </div>
-                <!-- Wireframe 3: Question -->
+                <!-- Wireframe 3: Class Page -->
                 <div class="text-center flex-shrink-0">
-                    <div class="phone-mockup">
-                        <div class="phone-screen bg-gray-50 p-3">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="w-6 h-6 bg-gray-300 rounded-sm"></div>
-                                <div class="h-4 w-24 bg-gray-300 rounded"></div>
-                                <div class="w-4 h-4"></div>
-                            </div>
-                            <div class="flex-grow flex flex-col justify-start">
-                                <div class="w-full h-10 bg-gray-200 rounded-md mb-6"></div>
-                                <div class="space-y-3 flex-grow">
-                                    <div class="h-10 w-full bg-gray-200 rounded-lg"></div>
-                                    <div class="h-10 w-full bg-gray-200 rounded-lg"></div>
-                                    <div class="h-10 w-full bg-gray-200 rounded-lg"></div>
-                                    <div class="h-10 w-full bg-gray-200 rounded-lg"></div>
-                                </div>
-                            </div>
-                            <div class="h-12 w-full bg-gray-300 rounded-lg"></div>
-                        </div>
-                    </div>
-                    <p class="mt-2 font-semibold">Question</p>
-                </div>
-                <!-- Wireframe 4: Class -->
-                <div class="text-center flex-shrink-0">
-                    <div class="phone-mockup">
-                        <div class="phone-screen bg-gray-50 p-3">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="w-6 h-6 bg-gray-300 rounded-sm"></div>
-                                <div class="h-4 w-20 bg-gray-300 rounded"></div>
-                                <div class="w-4 h-4"></div>
-                            </div>
-                            <div class="flex justify-around items-center mb-4 border-b-2 border-gray-200">
-                                <div class="h-8 w-16 bg-gray-300 rounded-t-lg border-b-2 border-black"></div>
-                                <div class="h-8 w-16 bg-gray-200 rounded-t-lg"></div>
-                                <div class="h-8 w-16 bg-gray-200 rounded-t-lg"></div>
-                            </div>
-                            <div class="flex-grow bg-gray-200 rounded-lg"></div>
-                            <div class="h-12 w-full bg-gray-300 rounded-lg mt-4"></div>
+                    <div class="phone-mockup transform origin-center"
+                        style="width: 500px; height: 250px; margin: 44px 0;">
+                        <div class="phone-screen bg-gray-50 p-4 flex items-center justify-center">
+                            <img src="/assets/wireframe-3.png" alt="Class Page wireframe"
+                                class="w-full h-full object-contain">
                         </div>
                     </div>
                     <p class="mt-2 font-semibold">Class Page</p>
                 </div>
-                <!-- Wireframe 5: Video -->
+                <!-- Wireframe 4: Class-Learning Video -->
                 <div class="text-center flex-shrink-0">
-                    <div class="phone-mockup">
-                        <div class="phone-screen bg-gray-50 p-3">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="w-6 h-6 bg-gray-300 rounded-sm"></div>
-                                <div class="h-4 w-32 bg-gray-300 rounded"></div>
-                                <div class="w-4 h-4"></div>
-                            </div>
-                            <div class="w-full h-32 bg-gray-300 rounded-lg mb-4"></div>
-                            <div class="w-full h-4 bg-gray-200 rounded mb-2"></div>
-                            <div class="w-2/3 h-4 bg-gray-200 rounded mb-auto"></div>
-                            <div class="h-12 w-full bg-gray-300 rounded-lg mt-4"></div>
+                    <div class="phone-mockup transform origin-center"
+                        style="width: 500px; height: 250px; margin: 44px 0;">
+                        <div class="phone-screen bg-gray-50 p-4 flex items-center justify-center">
+                            <img src="/assets/wireframe-4.png" alt="Class-Learning Video wireframe"
+                                class="w-full h-full object-contain">
                         </div>
                     </div>
-                    <p class="mt-2 font-semibold">Learning Video</p>
+                    <p class="mt-2 font-semibold">Class-Learning Video</p>
+                </div>
+                <!-- Wireframe 5: Challenge -->
+                <div class="text-center flex-shrink-0">
+                    <div class="phone-mockup transform origin-center"
+                        style="width: 500px; height: 250px; margin: 44px 0;">
+                        <div class="phone-screen bg-gray-50 p-4 flex items-center justify-center">
+                            <img src="/assets/wireframe-5.png" alt="Challenge wireframe"
+                                class="w-full h-full object-contain">
+                        </div>
+                    </div>
+                    <p class="mt-2 font-semibold">Challenge</p>
                 </div>
             </div>
         </section>
