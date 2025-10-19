@@ -129,6 +129,19 @@
             padding: 0 4px;
         }
 
+        .flow-connector {
+            height: 4rem; /* 64px */
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .flow-connector-vertical {
+            height: 100%;
+            width: 0;
+            margin: 0 auto;
+            border-left: 2px dashed #d1d5db;
+        }
+
         .label-yes {
             bottom: -20px;
             left: 50%;
@@ -358,7 +371,6 @@
                             class="text-emerald-700 font-semibold">2nd-grade</span>
                     </p>
                     <div class="flex flex-wrap gap-3 items-center">
-                        <span class="px-6 py-2 bg-gray-100 rounded-full text-sm font-medium">Education</span>
                         <span class="px-6 py-2 bg-gray-100 rounded-full text-sm font-medium">Mobile</span>
                         <a href="https://www.figma.com/design/f9RVn9DyCdL2tXN01tRCKw/Portfolio-2025?node-id=5053-589&m=dev"
                             target="_blank" rel="noopener noreferrer"
@@ -631,39 +643,34 @@
                     <h3 class="text-2xl font-bold text-center mb-8" style="color: var(--primary-green-dark);">User:
                         Parent</h3>
                     <div class="relative flex flex-col items-center">
-                        <div class="flow-step w-64">
-                            <h4 class="font-bold">Register a New Account</h4>
+                        <div class="flow-step">
+                            <div class="font-bold">Register a New Account</div>
                         </div>
-                        <div class="h-8">
-                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                        <div class="flow-connector">
+                            <div class="flow-connector-vertical"></div>
                         </div>
                         <div class="flow-step w-64">
                             <h4 class="font-bold">Features Introduction</h4>
                         </div>
-                        <div class="h-8">
-                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                        <div class="flow-connector">
+                            <div class="flow-connector-vertical"></div>
                         </div>
-                        <div class="flow-step w-64">
-                            <h4 class="font-bold">Create an Account for Child</h4>
+                        <div class="flow-diamond">
+                            <div class="flow-diamond-text">Create an Account for Child</div>
                         </div>
-                        <div class="h-8">
-                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                        <div class="flow-connector">
+                            <div class="flow-connector-vertical"></div>
                         </div>
-                        <div class="flow-step w-64">
-                            <h4 class="font-bold">Link with a Parent's Account</h4>
+                        <div class="flow-diamond">
+                            <div class="flow-diamond-text">Link with a Parent's Account</div>
                         </div>
-                        <div class="h-8">
-                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                        <div class="flow-connector">
+                            <div class="flow-connector-vertical"></div>
                         </div>
-                        <div class="flow-step w-64">
-                            <h4 class="font-bold">Parent's Account Introduction</h4>
+                        <div class="flow-step">
+                            <div class="font-bold">Parent's Account Introduction</div>
                         </div>
-                        <div class="h-8">
-                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
-                        </div>
-                        <div class="flow-step w-64">
-                            <h4 class="font-bold">Create a Child Profile</h4>
-                        </div>
+                        
                     </div>
                 </div>
 
@@ -673,23 +680,29 @@
                     </h3>
                     <div class="relative flex flex-col items-center">
                         <div class="flow-step w-64" style="border-color: var(--accent-orange);">
+                            <h4 class="font-bold">Create a Child Profile</h4>
+                        </div>
+                        <div class="flow-connector">
+                            <div class="flow-connector-vertical"></div>
+                        </div>
+                        <div class="flow-step w-64" style="border-color: var(--accent-orange);">
                             <h4 class="font-bold">Learning Partner (Mascot) Introduction</h4>
                         </div>
-                        <div class="h-8">
-                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                        <div class="flow-connector">
+                            <div class="flow-connector-vertical"></div>
                         </div>
                         <div class="flow-step w-64" style="border-color: var(--accent-orange);">
                             <h4 class="font-bold">Practice Small Mathematics' Game</h4>
                             <p class="text-xs text-slate-500 mt-1">Note: Knowing the user's level of knowledge</p>
                         </div>
-                        <div class="h-8">
-                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                        <div class="flow-connector">
+                            <div class="flow-connector-vertical"></div>
                         </div>
                         <div class="flow-step w-64" style="border-color: var(--accent-orange);">
                             <h4 class="font-bold">Recommendation for the Next Step</h4>
                         </div>
-                        <div class="h-8">
-                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
+                        <div class="flow-connector">
+                            <div class="flow-connector-vertical"></div>
                         </div>
                         <div class="flow-step w-64 font-bold p-4 text-white"
                             style="background-color: var(--accent-orange); border-color: var(--accent-orange);">
@@ -713,115 +726,21 @@
                 </svg>
             </div>
 
-            <!-- New Section for Return Users -->
+            <!-- User Flow for Return Users -->
             <div class="mt-24">
-                <p class="text-center text-slate-600 mb-12 text-xl font-semibold">User task flow for Return Users
-                    (Child)</p>
+                <h3 class="text-center text-3xl font-bold mb-12" style="color: var(--primary-green-dark);">User task flow : Return User - Child</h3>
                 <div class="flex flex-col items-center">
-                    <div class="flow-step w-64 font-bold p-4 text-white"
-                        style="background-color: var(--primary-green-dark);">Homepage</div>
-                    <div class="h-12 w-px bg-gray-300"></div>
-
-                    <div class="w-full relative">
-                        <!-- Horizontal Line -->
-                        <div class="absolute top-0 left-1/4 w-1/2 h-px bg-gray-300"></div>
-                        <!-- Vertical lines down -->
-                        <div class="absolute top-0 left-1/4 w-px h-8 bg-gray-300"></div>
-                        <div class="absolute top-0 left-1/2 w-px h-8 bg-gray-300"></div>
-                        <div class="absolute top-0 right-1/4 w-px h-8 bg-gray-300"></div>
-                    </div>
-
-                    <div class="grid md:grid-cols-3 gap-8 justify-items-center w-full mt-8">
-                        <!-- Path 1: Start Class -->
-                        <div class="flex flex-col items-center">
-                            <div class="relative flex flex-col items-center">
-                                <div class="flow-step w-56">Start Class</div>
-                                <div class="h-8">
-                                    <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
-                                </div>
-                                <div class="flow-step w-56">Video</div>
-                                <div class="h-8">
-                                    <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
-                                </div>
-                                <div class="flow-step w-56">Instructive Animation Video</div>
-                                <div class="h-8">
-                                    <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
-                                </div>
-                                <div class="flow-diamond">
-                                    <div class="flow-diamond-text">Practice?</div>
-                                    <div class="flow-diamond-label label-yes">YES</div>
-                                </div>
-                                <div class="h-8 mt-4">
-                                    <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
-                                </div>
-                                <div class="flow-step w-56">Practice</div>
-                                <div class="h-8">
-                                    <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
-                                </div>
-                                <div class="flow-diamond">
-                                    <div class="flow-diamond-text">Review Video?</div>
-                                    <div class="flow-diamond-label label-yes">YES</div>
-                                </div>
-                                <div class="h-8 mt-4">
-                                    <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
-                                </div>
-                                <div class="flow-step w-56">Summary</div>
-                            </div>
-                        </div>
-
-                        <!-- Path 2: Today's Challenge -->
-                        <div class="flex flex-col items-center">
-                            <div class="relative flex flex-col items-center">
-                                <div class="flow-step w-56" style="border-color: var(--accent-orange);">Today's
-                                    Challenge</div>
-                                <div class="h-8">
-                                    <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
-                                </div>
-                                <!-- Branching for categories -->
-                                <div class="flex space-x-4">
-                                    <div class="flex flex-col items-center">
-                                        <div class="flow-step"
-                                            style="min-width: 100px; border-color: var(--accent-orange);">Category 1
-                                        </div>
-                                        <div class="h-4">
-                                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;">
-                                            </div>
-                                        </div>
-                                        <div class="flow-step"
-                                            style="min-width: 100px; border-color: var(--accent-orange);">Practice</div>
-                                    </div>
-                                    <div class="flex flex-col items-center">
-                                        <div class="flow-step"
-                                            style="min-width: 100px; border-color: var(--accent-orange);">Category 2
-                                        </div>
-                                        <div class="h-4">
-                                            <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;">
-                                            </div>
-                                        </div>
-                                        <div class="flow-step"
-                                            style="min-width: 100px; border-color: var(--accent-orange);">Practice</div>
-                                    </div>
-                                </div>
-                                <div class="h-8 relative">
-                                    <!-- Converging lines -->
-                                    <div class="absolute bottom-0 left-[-58px] w-[58px] h-px bg-gray-300"></div>
-                                    <div class="absolute bottom-0 right-[-58px] w-[58px] h-px bg-gray-300"></div>
-                                    <div class="h-full w-0 mx-auto" style="border-left: 2px dashed #d1d5db;"></div>
-                                </div>
-                                <div class="flow-step w-56" style="border-color: var(--accent-orange);">Summary</div>
-                            </div>
-                        </div>
-
-                        <!-- Path 3: Mascot -->
-                        <div class="flex flex-col items-center">
-                            <div class="relative flex flex-col items-center">
-                                <div class="flow-step w-56" style="border-color: #a78bfa;">Mascot</div>
-                            </div>
+                    <!-- Main Container -->
+                    <div class="max-w-6xl w-full">
+                        <div class="bg-white rounded-xl shadow-lg p-8">
+                            <img src="/assets/user-flow-return-user.png" 
+                                 alt="User flow diagram for return users" 
+                                 class="w-full object-contain"
+                                 style="border: 2px dashed #daedbf; border-radius: 12px; padding: 2rem;">
                         </div>
                     </div>
                 </div>
             </div>
-
         </section>
 
         <!-- Wireframes Section -->
