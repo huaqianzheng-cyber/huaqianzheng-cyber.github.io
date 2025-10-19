@@ -521,7 +521,7 @@
         <section id="projects-section">
             <!-- Navigation Buttons -->
             <button class="nav-button nav-button-left">
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" 
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
@@ -845,7 +845,7 @@
 
                 // Update both slider and pagination
                 const originalUpdateSlider = updateSlider;
-                updateSlider = function() {
+                updateSlider = function () {
                     originalUpdateSlider();
                     updatePagination();
                     navButtonLeft.classList.toggle('disabled', currentPanel === 0);
