@@ -311,6 +311,7 @@
                 <a href="#personas" class="nav-link text-gray-600 hover:text-black">Personas</a>
                 <a href="#user-flow" class="nav-link text-gray-600 hover:text-black">User Flow</a>
                 <a href="#wireframes" class="nav-link text-gray-600 hover:text-black">Wireframes</a>
+                <a href="#prototype" class="nav-link text-gray-600 hover:text-black">Prototype</a>
                 <a href="#design-system" class="nav-link text-gray-600 hover:text-black">Design</a>
             </div>
             <button id="project-menu-btn"
@@ -336,6 +337,8 @@
                     Flow</a>
                 <a href="#wireframes"
                     class="nav-link block text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg px-4 py-2">Wireframes</a>
+                <a href="#prototype"
+                    class="nav-link block text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg px-4 py-2">Prototype</a>
                 <a href="#design-system"
                     class="nav-link block text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg px-4 py-2">Design</a>
             </div>
@@ -807,44 +810,30 @@
         </section>
 
         <!-- Prototype Section -->
-        <section id="prototype" class="max-w-7xl mx-auto">
+        <section id="prototype" class="relative max-w-full mx-auto">
+            <!-- Title outside the wooden hand background -->
             <h2 class="section-title">Prototype Screens</h2>
-            <div class="flex justify-center flex-wrap gap-8">
-                <!-- Homepage -->
-                <div class="phone-mockup">
-                    <div class="phone-screen items-center" style="background-color: #f7fef0;">
-                        <h3 class="font-bold text-lg" style="color: var(--primary-green-dark);">TEN UP!</h3>
-                        <img src="https://placehold.co/150x150/ffffff/007042?text=Mascot" alt="Mascot"
-                            class="rounded-full w-24 h-24 my-3">
-                        <div class="w-full space-y-3">
-                            <div class="text-white rounded-lg p-3 text-center font-bold shadow-md"
-                                style="background-color: var(--accent-orange);">CLASS</div>
-                            <div class="text-white rounded-lg p-3 text-center font-bold shadow-md"
-                                style="background-color: var(--primary-green-dark);">TRY</div>
-                            <div class="rounded-lg p-3 text-center font-bold shadow-md"
-                                style="background-color: var(--primary-green-light); color: var(--primary-green-dark);">
-                                CHALLENGE</div>
+            
+            <!-- Wooden hand background container -->
+            <div class="relative mx-auto min-h-[60vh] flex flex-col items-center justify-center" 
+                style="background-size: contain;">
+                
+                <!-- Phone mockup container -->
+                <div class="relative">
+                    <!-- Phone mockup with interactive screen -->
+                    <div class="phone-mockup transform origin-center scale-150" style="width: 500px; height: 250px;">
+                        <div id="phone-screen" class="bg-transparent phone-screen p-4 flex items-center justify-center cursor-pointer relative overflow-hidden">
+                            <!-- Video element -->
+                            <video id="prototype-video" class="absolute inset-0 w-full h-full object-cover hidden"
+                                src="/assets/video-prototype.mp4"></video>
+                            <!-- Initial static content -->
+                            <div id="static-content" class="relative z-10 flex items-center justify-center w-full h-full">
+                                <div class="text-center">
+                                    <h3 class="text-xl font-bold mb-4 text-[#007042]">Click to Play Demo</h3>
+                                    <img src="/assets/panda.png" alt="Tenup Mascot" class="w-20 h-20 mx-auto mb-2">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <!-- Loading Page -->
-                <div class="phone-mockup">
-                    <div class="phone-screen items-center justify-center text-white text-center"
-                        style="background: var(--primary-green-dark);">
-                        <h2 class="text-5xl font-extrabold mb-4">TEN UP!</h2>
-                        <p class="mb-4 text-sm opacity-80">Can you try counting how many pens are around you?</p>
-                        <div class="w-full bg-green-800 rounded-full h-2.5">
-                            <div class="bg-white h-2.5 rounded-full" style="width: 45%"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Mascot Unlock -->
-                <div class="phone-mockup">
-                    <div class="phone-screen items-center justify-center" style="background-color: #f7fef0;">
-                        <img src="https://placehold.co/150x150/ffffff/007042?text=Mascot" alt="Mascot with hat"
-                            class="rounded-full w-32 h-32">
-                        <p class="mt-4 font-semibold" style="color: var(--primary-green-dark);">You unlocked a new hat!
-                        </p>
                     </div>
                 </div>
             </div>
@@ -909,6 +898,24 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Prototype Video Interaction ---
+            const phoneScreen = document.getElementById('phone-screen');
+            const prototypeVideo = document.getElementById('prototype-video');
+            const staticContent = document.getElementById('static-content');
+
+            if (phoneScreen && prototypeVideo && staticContent) {
+                phoneScreen.addEventListener('click', () => {
+                    staticContent.classList.add('hidden');
+                    prototypeVideo.classList.remove('hidden');
+                    prototypeVideo.play();
+                });
+
+                prototypeVideo.addEventListener('ended', () => {
+                    prototypeVideo.classList.add('hidden');
+                    staticContent.classList.remove('hidden');
+                });
+            }
+
             // --- Global Menu Toggle ---
             const globalMenuBtn = document.getElementById('global-menu-btn');
             const globalMobileMenu = document.getElementById('global-mobile-menu');
