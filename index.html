@@ -374,16 +374,6 @@
                         to make <span class="text-emerald-700 font-semibold">mathematics</span> exciting for <span
                             class="text-emerald-700 font-semibold">2nd-grade</span>
                     </p>
-                    <div class="flex flex-wrap gap-3 items-center">
-                        <span class="px-6 py-2 bg-gray-100 rounded-full text-sm font-medium">Mobile</span>
-                        <a href="https://www.figma.com/design/f9RVn9DyCdL2tXN01tRCKw/Portfolio-2025?node-id=5053-589&m=dev"
-                            target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-200 rounded-full text-sm font-medium">
-                            <img src="/assets/icon-figma.png" alt="Figma" class="h-6 w-6">
-                            <span>Figma</span>
-                        </a>
-                        <img src="/assets/icon-ai.png" alt="Adobe Illustrator" class="h-8 w-8">
-                    </div>
                 </div>
                 <div class="relative flex-1 flex justify-center">
                     <img src="assets/panda.png" alt="Tenup Mascot"
@@ -419,6 +409,12 @@
                     <h3 class="font-bold text-lg text-gray-600">Project Tools</h3>
                     <p class="text-gray-800">Figma, Adobe Illustrator</p>
                 </div>
+                <a href="https://www.figma.com/proto/0aUuT9EapTyQJPpCb3eokO/Tenup--Educational-App-HI-FI-(Prototype)?node-id=6080-2362&p=f&t=mazJs9gYOPFPKPsd-1&scaling=scale-down&content-scaling=fixed&page-id=1%3A3&starting-point-node-id=6080%3A2362&show-proto-sidebar=1"
+                    target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 px-4 py-2 mt-3 hover:bg-gray-200 transition-colors duration-200 rounded-full text-white font-medium bg-[#007042]">
+                    <img src="/assets/icon-figma.png" alt="Figma" class="h-5 w-5">
+                    <span>View Figma Prototype</span>
+                </a>
             </div>
             <div class="md:col-span-2">
                 <h2 class="text-5xl font-extrabold mb-4" style="color: var(--primary-green-dark);">TEN<span
@@ -813,21 +809,23 @@
         <section id="prototype" class="relative max-w-full mx-auto">
             <!-- Title outside the wooden hand background -->
             <h2 class="section-title">Prototype Screens</h2>
-            
+
             <!-- Wooden hand background container -->
-            <div class="relative mx-auto min-h-[60vh] flex flex-col items-center justify-center" 
+            <div class="relative mx-auto min-h-[60vh] flex flex-col items-center justify-center"
                 style="background-size: contain;">
-                
+
                 <!-- Phone mockup container -->
                 <div class="relative">
                     <!-- Phone mockup with interactive screen -->
                     <div class="phone-mockup transform origin-center scale-150" style="width: 500px; height: 250px;">
-                        <div id="phone-screen" class="bg-transparent phone-screen p-4 flex items-center justify-center cursor-pointer relative overflow-hidden">
+                        <div id="phone-screen"
+                            class="bg-transparent phone-screen p-4 flex items-center justify-center cursor-pointer relative overflow-hidden">
                             <!-- Video element -->
                             <video id="prototype-video" class="absolute inset-0 w-full h-full object-cover hidden"
                                 src="/assets/video-prototype.mp4"></video>
                             <!-- Initial static content -->
-                            <div id="static-content" class="relative z-10 flex items-center justify-center w-full h-full">
+                            <div id="static-content"
+                                class="relative z-10 flex items-center justify-center w-full h-full">
                                 <div class="text-center">
                                     <h3 class="text-xl font-bold mb-4 text-[#007042]">Click to Play Demo</h3>
                                     <img src="/assets/panda.png" alt="Tenup Mascot" class="w-20 h-20 mx-auto mb-2">
@@ -841,55 +839,122 @@
 
         <!-- Design System Section -->
         <section id="design-system" class="max-w-7xl mx-auto">
-            <h2 class="section-title">Design System</h2>
-            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-lg">
-                <!-- Color Palette -->
-                <div>
-                    <h3 class="text-2xl font-bold mb-6">Color Palette</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-                        <div class="text-center">
-                            <div class="w-full h-24 rounded-lg shadow-inner"
-                                style="background-color: var(--primary-green-dark);"></div>
-                            <p class="mt-2 font-semibold">Primary Green</p>
-                            <p class="text-sm text-slate-500">#007042</p>
+            <h2 class="section-title">Design Highlight</h2>
+
+            <!-- Design Pages Carousel -->
+            <div class="mb-16 relative">
+                <div class="overflow-hidden relative">
+                    <div id="slider-container" class="flex transition-transform duration-500 ease-in-out">
+                        <!-- Design Page 1 -->
+                        <div class="min-w-full">
+                            <img src="/assets/design-page-1.jpg" alt="Design System Page 1"
+                                class="w-full rounded-xl shadow-lg">
                         </div>
-                        <div class="text-center">
-                            <div class="w-full h-24 rounded-lg shadow-inner"
-                                style="background-color: var(--primary-green-light);"></div>
-                            <p class="mt-2 font-semibold">Light Green</p>
-                            <p class="text-sm text-slate-500">#daedbf</p>
+                        <!-- Design Page 2 -->
+                        <div class="min-w-full">
+                            <img src="/assets/design-page-2.jpg" alt="Design System Page 2"
+                                class="w-full rounded-xl shadow-lg">
                         </div>
-                        <div class="text-center">
-                            <div class="w-full h-24 rounded-lg shadow-inner"
-                                style="background-color: var(--accent-orange);"></div>
-                            <p class="mt-2 font-semibold">Accent Orange</p>
-                            <p class="text-sm text-slate-500">#ff9900</p>
+                        <!-- Design Page 3 -->
+                        <div class="min-w-full">
+                            <img src="/assets/design-page-3.jpg" alt="Design System Page 3"
+                                class="w-full rounded-xl shadow-lg">
                         </div>
-                    </div>
-                </div>
-                <!-- Typography -->
-                <div class="mt-12">
-                    <h3 class="text-2xl font-bold mb-6">Typography</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <p class="text-sm text-slate-500">Heading</p>
-                            <p class="text-4xl font-bold">Poppins Bold</p>
-                        </div>
-                        <div>
-                            <p class="text-sm text-slate-500">Body</p>
-                            <p class="text-base">Poppins Regular</p>
+                        <!-- Design Page 4 -->
+                        <div class="min-w-full">
+                            <img src="/assets/design-page-4.jpg" alt="Design System Page 4"
+                                class="w-full rounded-xl shadow-lg">
                         </div>
                     </div>
                 </div>
-                <!-- Buttons -->
-                <div class="mt-12">
-                    <h3 class="text-2xl font-bold mb-6">Buttons</h3>
-                    <div class="flex flex-wrap gap-4 items-center">
-                        <button class="px-6 py-3 rounded-lg text-white font-bold shadow"
-                            style="background-color: var(--primary-green-dark);">Primary Button</button>
-                        <button class="px-6 py-3 rounded-lg font-bold"
-                            style="background-color: var(--primary-green-light); color: var(--primary-green-dark);">Secondary
-                            Button</button>
+
+                <!-- Navigation Buttons -->
+                <button id="prev-slide"
+                    class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 backdrop-blur-sm text-gray-800 p-2 rounded-full shadow-lg hover:bg-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <button id="next-slide"
+                    class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 backdrop-blur-sm text-gray-800 p-2 rounded-full shadow-lg hover:bg-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+
+                <!-- Dots Navigation -->
+                <div class="flex justify-center mt-4 space-x-2">
+                    <button data-slide="0"
+                        class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors slide-dot active"></button>
+                    <button data-slide="1"
+                        class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors slide-dot"></button>
+                    <button data-slide="2"
+                        class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors slide-dot"></button>
+                    <button data-slide="3"
+                        class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors slide-dot"></button>
+                </div>
+            </div>
+
+            <div class="mt-24">
+                <h3 class="text-center text-3xl font-bold mb-12" style="color: var(--primary-green-dark);">Design System
+                </h3>
+                <!-- Main Container -->
+                 <div class="max-w-6xl mx-auto">
+                    <img src="/assets/design-system.png" alt="Design System" class="w-full rounded-xl shadow-lg">
+                </div>
+                <h3 class="text-center text-3xl font-bold mb-12" style="color: var(--primary-green-dark);"> 
+                </h3>
+                <div class="bg-white p-8 md:p-12 rounded-2xl shadow-lg">
+                    <!-- Color Palette -->
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Color Palette</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                            <div class="text-center">
+                                <div class="w-full h-24 rounded-lg shadow-inner"
+                                    style="background-color: var(--primary-green-dark);"></div>
+                                <p class="mt-2 font-semibold">Primary Green</p>
+                                <p class="text-sm text-slate-500">#007042</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-full h-24 rounded-lg shadow-inner"
+                                    style="background-color: var(--primary-green-light);"></div>
+                                <p class="mt-2 font-semibold">Light Green</p>
+                                <p class="text-sm text-slate-500">#daedbf</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-full h-24 rounded-lg shadow-inner"
+                                    style="background-color: var(--accent-orange);"></div>
+                                <p class="mt-2 font-semibold">Accent Orange</p>
+                                <p class="text-sm text-slate-500">#ff9900</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Typography -->
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-bold mb-6">Typography</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-sm text-slate-500">Heading</p>
+                                <p class="text-4xl font-bold">Poppins Bold</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-500">Body</p>
+                                <p class="text-base">Poppins Regular</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Buttons -->
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-bold mb-6">Buttons</h3>
+                        <div class="flex flex-wrap gap-4 items-center">
+                            <button class="px-6 py-3 rounded-lg text-white font-bold shadow"
+                                style="background-color: var(--primary-green-dark);">Primary Button</button>
+                            <button class="px-6 py-3 rounded-lg font-bold"
+                                style="background-color: var(--primary-green-light); color: var(--primary-green-dark);">Secondary
+                                Button</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -898,6 +963,53 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Design Pages Carousel ---
+            const sliderContainer = document.getElementById('slider-container');
+            const prevButton = document.getElementById('prev-slide');
+            const nextButton = document.getElementById('next-slide');
+            const dots = document.querySelectorAll('.slide-dot');
+            let currentSlide = 0;
+            const totalSlides = 4;
+
+            function updateSlider() {
+                sliderContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+                // Update dots
+                dots.forEach((dot, index) => {
+                    if (index === currentSlide) {
+                        dot.classList.add('bg-gray-800');
+                        dot.classList.remove('bg-gray-300');
+                    } else {
+                        dot.classList.remove('bg-gray-800');
+                        dot.classList.add('bg-gray-300');
+                    }
+                });
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlider();
+            }
+
+            // Event Listeners
+            prevButton.addEventListener('click', prevSlide);
+            nextButton.addEventListener('click', nextSlide);
+
+            // Dot navigation
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentSlide = index;
+                    updateSlider();
+                });
+            });
+
+            // Auto-advance slides every 5 seconds
+            setInterval(nextSlide, 5000);
+
             // --- Prototype Video Interaction ---
             const phoneScreen = document.getElementById('phone-screen');
             const prototypeVideo = document.getElementById('prototype-video');
