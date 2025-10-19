@@ -125,9 +125,77 @@
             scroll-snap-align: start;
         }
 
+        /* Navigation Buttons */
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 20;
+        }
+
+        .nav-button:hover {
+            background: white;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-button-left {
+            left: 2rem;
+        }
+
+        .nav-button-right {
+            right: 2rem;
+        }
+
+        .nav-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Pagination */
+        .pagination {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.75rem;
+            z-index: 20;
+        }
+
+        .pagination-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-dot:hover {
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .pagination-dot.active {
+            width: 24px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
         .scroll-hint {
             position: absolute;
-            bottom: 3rem;
+            bottom: 5rem;
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
@@ -451,6 +519,28 @@
         </section>
 
         <section id="projects-section">
+            <!-- Navigation Buttons -->
+            <button class="nav-button nav-button-left">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" 
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <button class="nav-button nav-button-right">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <div class="pagination-dot active" data-index="0"></div>
+                <div class="pagination-dot" data-index="1"></div>
+                <div class="pagination-dot" data-index="2"></div>
+                <div class="pagination-dot" data-index="3"></div>
+            </div>
+
             <div class="scroll-hint">
                 <svg class="arrow-left" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -700,8 +790,77 @@
                 projectsSection.addEventListener('touchmove', dragMove, { passive: true });
                 projectsSection.addEventListener('touchend', dragEnd);
 
+                // Auto-scroll functionality
+                let autoScrollInterval;
+                const AUTO_SCROLL_INTERVAL = 5000; // 5 seconds
+
+                function startAutoScroll() {
+                    autoScrollInterval = setInterval(() => {
+                        if (currentPanel < totalPanels - 1) {
+                            nextSlide();
+                        } else {
+                            // Reset to first panel
+                            currentPanel = -1;
+                            nextSlide();
+                        }
+                    }, AUTO_SCROLL_INTERVAL);
+                }
+
+                function stopAutoScroll() {
+                    clearInterval(autoScrollInterval);
+                }
+
+                // Update pagination dots
+                function updatePagination() {
+                    document.querySelectorAll('.pagination-dot').forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentPanel);
+                    });
+                }
+
+                // Navigation buttons
+                const navButtonLeft = document.querySelector('.nav-button-left');
+                const navButtonRight = document.querySelector('.nav-button-right');
+
+                navButtonLeft.addEventListener('click', () => {
+                    stopAutoScroll();
+                    prevSlide();
+                    startAutoScroll();
+                });
+
+                navButtonRight.addEventListener('click', () => {
+                    stopAutoScroll();
+                    nextSlide();
+                    startAutoScroll();
+                });
+
+                // Pagination dots click handlers
+                document.querySelectorAll('.pagination-dot').forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        stopAutoScroll();
+                        currentPanel = index;
+                        updateSlider();
+                        startAutoScroll();
+                    });
+                });
+
+                // Update both slider and pagination
+                const originalUpdateSlider = updateSlider;
+                updateSlider = function() {
+                    originalUpdateSlider();
+                    updatePagination();
+                    navButtonLeft.classList.toggle('disabled', currentPanel === 0);
+                    navButtonRight.classList.toggle('disabled', currentPanel === totalPanels - 1);
+                };
+
+                // Pause auto-scroll on user interaction
+                projectsSection.addEventListener('mouseenter', stopAutoScroll);
+                projectsSection.addEventListener('mouseleave', startAutoScroll);
+                projectsSection.addEventListener('touchstart', stopAutoScroll);
+                projectsSection.addEventListener('touchend', startAutoScroll);
+
                 // Initialize
                 updateSlider();
+                startAutoScroll();
             }
 
             // --- Hero Arrow Scroll ---
