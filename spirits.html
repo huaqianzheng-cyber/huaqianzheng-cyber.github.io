@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spirits - UX Presentation</title>
+    <link rel="icon" type="image/png" href="/assets/fav.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F9F9F9;
+            /* Clean Off-White */
+            color: #111827;
+            /* Dark Gray/Almost Black */
+        }
+
+        .font-heading {
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        .section-highlight {
+            background-color: #FFFFFF;
+        }
+
+        .card-hover {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+        }
+
+        /* Journey Card Mood Images */
+        .journey-card {
+            position: relative;
+            overflow: visible;
+        }
+
+        .mood-image {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            width: 60px;
+            height: 60px;
+            opacity: 0;
+            transition: all 0.3s ease-out;
+            pointer-events: none;
+        }
+
+        .journey-card:hover .mood-image {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Sticky Nav */
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            transform: translateY(-100%);
+        }
+
+        .nav-visible {
+            transform: translateY(0);
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            --webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <header class="fixed top-0 left-0 right-0 z-50 p-4">
+        <div class="container mx-auto max-w-7xl px-4">
+            <nav
+                class="flex justify-between items-center bg-white bg-opacity-50 backdrop-blur-md rounded-full py-2 px-6 border border-gray-200 shadow-sm">
+                <a href="/" class="text-xl font-bold">9thDesign</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/tenup.html" class="text-gray-600 hover:text-black transition-colors">Tenup</a>
+                    <a href="/spirits.html" class="text-amber-600 font-semibold">Spirits</a>
+                    <a href="/roblox.html" class="text-gray-600 hover:text-black transition-colors">Roblox</a>
+                    <a href="/walmart.html" class="text-gray-600 hover:text-black transition-colors">Walmart</a>
+                </div>
+                <a href="mailto:zheng9thdesign@gmail.com"
+                    class="hidden md:block bg-black text-white font-semibold px-5 py-2 rounded-full hover:bg-gray-800 transition-colors">
+                    Get in Touch
+                </a>
+                <button id="menu-btn"
+                    class="md:hidden p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </nav>
+        </div>
+        <div id="mobile-menu"
+            class="hidden md:hidden mt-2 bg-white bg-opacity-70 backdrop-blur-md rounded-lg border border-gray-200 p-4 mx-4">
+            <a href="/tenup.html"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Tenup</a>
+            <a href="/spirits.html" class="block text-amber-600 font-semibold py-2 text-center">Spirits</a>
+            <a href="/roblox.html"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Roblox</a>
+            <a href="/walmart.html"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Walmart</a>
+            <a href="mailto:zheng9thdesign@gmail.com"
+                class="block mt-4 bg-black text-white font-semibold px-4 py-2 rounded-full text-center hover:bg-gray-800 transition-colors">
+                Get in Touch
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <header class="text-center py-32 md:py-48 px-4 relative">
+        <div class="absolute inset-0 w-full h-full">
+            <img src="/assets/bg-spirits.png" alt="Spirits Background" class="w-full h-full object-cover">
+            <div class="absolute inset-0"></div>
+        </div>
+        <div class="max-w-5xl mx-auto relative z-10">
+            <h1 class="font-heading text-7xl md:text-9xl text-white text-bold">Spirits</h1>
+            <p class="mt-6 text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">Let's take our time to get to know each
+                other.</p>
+            <p class="mt-12 text-sm text-white tracking-widest uppercase backdrop-blur-sm">A UX Case Study By Huaqian
+                Zheng</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sections will be wrapped for animation targeting -->
+        <div id="sections-wrapper">
+            <!-- Overview Section -->
+            <section id="overview" class="py-32 md:py-40 reveal">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="font-heading text-5xl md:text-7xl text-black mb-20 text-center">Project Overview</h2>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-24 max-w-4xl mx-auto">
+                        <div>
+                            <h4 class="text-lg font-semibold text-black">Project Type</h4>
+                            <p class="text-gray-600 mt-1">Dating Mobile Application</p>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-black">My Role</h4>
+                            <p class="text-gray-600 mt-1">Researcher, UX/UI Designer</p>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-black">Project Timeline</h4>
+                            <p class="text-gray-600 mt-1">10 Weeks</p>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-black">Project Tools</h4>
+                            <p class="text-gray-600 mt-1">Figma, Miro</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 md:p-16 rounded-2xl mb-12 shadow-sm max-w-5xl mx-auto card-hover">
+                        <h3 class="font-heading text-4xl text-black mb-4">Background</h3>
+                        <p class="text-gray-700 leading-relaxed text-lg">
+                            Nowadays, dating apps often set high thresholds and expectations. The needs of users who
+                            genuinely require these apps to find a partner are not being met. These users are typically
+                            more introverted and may find it challenging to connect with others quickly. They may lack
+                            outstanding physical or material attributes, yet they sincerely desire to find a partner on
+                            dating apps, and their needs are not being fulfilled.
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-16 max-w-5xl mx-auto">
+                        <div>
+                            <h3 class="font-heading text-4xl text-black mb-8">The Problem</h3>
+                            <div class="space-y-8">
+                                <div>
+                                    <h4 class="font-semibold text-[#FE7800] text-xl">Appearance-Based Bias</h4>
+                                    <p class="text-gray-600 mt-2 leading-relaxed">Users with better physical appearances
+                                        receive more attention, reinforcing an overemphasis on looks over personality
+                                        and compatibility.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-[#FE7800] text-xl">Screen Fatigue</h4>
+                                    <p class="text-gray-600 mt-2 leading-relaxed">The repetitive process of swiping
+                                        through profiles leads to frustration and burnout.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-[#FE7800] text-xl">Objectification by Comparison</h4>
+                                    <p class="text-gray-600 mt-2 leading-relaxed">Instinctive comparison reduces
+                                        individuals to physical matrices, treating people as objects rather than
+                                        multifaceted individuals.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-heading text-4xl text-black mb-8">The Goal</h3>
+                            <p class="text-gray-700 leading-relaxed text-lg">
+                                To design a dating app experience that mitigates appearance-based bias and user fatigue.
+                                The goal is to create a more meaningful and less superficial platform that encourages
+                                users to connect based on personality, interests, and genuine conversation, fostering
+                                deeper connections over time.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Process Section -->
+            <section id="process" class="py-32 md:py-40 reveal">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="font-heading text-5xl md:text-7xl text-black mb-20 text-center">Process</h2>
+                    <blockquote class="text-center italic text-gray-700 text-xl max-w-3xl mx-auto mb-16">
+                        "I've completely lost faith in dating apps. I genuinely want to develop a serious relationship,
+                        but most of the people I meet don't seem sincere."
+                        <span class="block text-sm text-gray-500 mt-2 not-italic">- What inspired me to do this
+                            project</span>
+                    </blockquote>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
+                        <div class="p-4 card-hover rounded-2xl">
+                            <h4 class="font-bold text-[#FE7800] text-xl mb-2">Inspire</h4>
+                            <p class="text-gray-600">Coffee Chat</p>
+                        </div>
+                        <div class="p-4 card-hover rounded-2xl">
+                            <h4 class="font-bold text-[#FE7800] text-xl mb-2">Empathize</h4>
+                            <p class="text-gray-600">User Research<br>Competitor Analysis</p>
+                        </div>
+                        <div class="p-4 card-hover rounded-2xl">
+                            <h4 class="font-bold text-[#FE7800] text-xl mb-2">Define</h4>
+                            <p class="text-gray-600">Persona<br>User Journey</p>
+                        </div>
+                        <div class="p-4 card-hover rounded-2xl">
+                            <h4 class="font-bold text-[#FE7800] text-xl mb-2">Ideate</h4>
+                            <p class="text-gray-600">Card Sorting<br>Site Map<br>User Flow<br>Wireframe</p>
+                        </div>
+                        <div class="p-4 card-hover rounded-2xl">
+                            <h4 class="font-bold text-[#FE7800] text-xl mb-2">Prototype</h4>
+                            <p class="text-gray-600">User Testing<br>Usability Testing</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Competitor Analysis Section -->
+            <section id="competitor-analysis" class="section-highlight py-32 md:py-40 reveal">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="font-heading text-5xl md:text-7xl text-black mb-16 text-center">Competitor Analysis</h2>
+                    <div class="grid md:grid-cols-3 gap-10">
+                        <!-- Coffee Meets Bagel Card -->
+                        <div class="bg-white p-8 rounded-2xl card-hover border border-gray-100">
+                            <div class="flex items-center gap-x-3 mb-4">
+                                <img src="/assets/icon-cmb.png" alt="Coffee Meets Bagel Icon" class="h-8 w-8" />
+                                <title>Coffee Meets Bagel</title>
+                                <h3 class="font-heading text-3xl text-black">Coffee Meets Bagel</h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-semibold text-lg text-black">Strengths</h4>
+                                    <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                                        <li>Focuses on quality matches over quantity.</li>
+                                        <li>Daily curated matches reduce swiping fatigue.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg text-black">Weaknesses</h4>
+                                    <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                                        <li>Significantly smaller user base than competitors.</li>
+                                        <li>Slower pace and limited daily matches may not suit all users.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tinder Card -->
+                        <div class="bg-white p-8 rounded-2xl card-hover border border-gray-100">
+                            <div class="flex items-center gap-x-3 mb-4">
+                                <img src="/assets/icon-tinder.png" alt="Tinder Icon" class="h-8 w-8" />
+                                <title>Tinder</title>
+                                <h3 class="font-heading text-3xl text-black">Tinder</h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-semibold text-lg text-black">Strengths</h4>
+                                    <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                                        <li>Massive user base increases matching potential.</li>
+                                        <li>Simple and intuitive swipe mechanic.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg text-black">Weaknesses</h4>
+                                    <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                                        <li>Promotes superficial judgments based on looks.</li>
+                                        <li>Reputation as a "hookup app."</li>
+                                        <li>Can lead to user burnout and screen fatigue.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Bumble Card -->
+                        <div class="bg-white p-8 rounded-2xl card-hover border border-gray-100">
+                            <div class="flex items-center gap-x-3 mb-4">
+                                <img src="/assets/icon-bumble.webp" alt="Bumble Icon" class="h-8 w-8"
+                                    xmlns="http://www.w3.org/2000/svg" />
+                                <title>Bumble</title>
+                                <h3 class="font-heading text-3xl text-black">Bumble</h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-semibold text-lg text-black">Strengths</h4>
+                                    <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                                        <li>Empowers women by having them initiate conversation.</li>
+                                        <li>Expands beyond dating with BFF and Bizz modes.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg text-black">Weaknesses</h4>
+                                    <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                                        <li>24-hour time limit on matches creates pressure.</li>
+                                        <li>Men cannot initiate, which may not appeal to all users.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-16 bg-white p-8 md:p-12 rounded-2xl max-w-4xl mx-auto shadow-sm card-hover">
+                        <h3 class="font-heading text-4xl text-black mb-4 text-center">Opportunities for Spirits</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-3 text-lg">
+                            <li>Create a counter-culture to the fast-paced, superficial nature of existing apps.</li>
+                            <li>Focus on personality and shared interests as the primary matching criteria, not photos.
+                            </li>
+                            <li>Slow down the matching and conversation process to reduce user burnout and encourage
+                                more thoughtful interactions.</li>
+                            <li>Build a community for users seeking genuine, long-term connections rather than casual
+                                encounters.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Target Audience & Persona -->
+            <section id="persona" class="py-32 md:py-40 reveal">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="font-heading text-5xl md:text-7xl text-black mb-12 text-center">Target Audience</h2>
+                    <p class="text-center max-w-3xl mx-auto mb-20 text-gray-700 leading-relaxed text-lg">
+                        Our target audience consists of individuals, typically introverted, who are tired of superficial
+                        dating culture. They value personality over appearance, are patient in getting to know others,
+                        and seek genuine, long-term connections.
+                    </p>
+
+                    <div class="grid md:grid-cols-5 gap-12 md:gap-16 items-center">
+                        <div class="md:col-span-2">
+                            <img src="/assets/avatar-anna.png" alt="User Persona Anna"
+                                class="h-full w-full object-cover rounded-2xl shadow-lg">
+                        </div>
+                        <div class="md:col-span-3 space-y-8">
+                            <div>
+                                <h3 class="font-heading text-5xl text-black">Anna, 22</h3>
+                                <p class="text-[#FE7800] font-medium mt-1 text-lg">Student</p>
+                            </div>
+                            <blockquote class="border-l-4 border-[#FE7800] pl-6 text-gray-700 italic text-xl">
+                                "I want to find someone who gets my sense of humor and loves dogs as much as I do, but
+                                it feels like everyone on other apps just wants a perfect photo."
+                            </blockquote>
+                            <div>
+                                <h4 class="font-semibold text-black text-xl">About</h4>
+                                <p class="text-gray-600 mt-2 leading-relaxed">Anna is a student who has just moved to
+                                    New York to continue her Master of Fine Arts education. She finds herself lonely and
+                                    wants to find a relationship through the dating apps. Then she quickly got bored
+                                    because the dating apps all looked the same and she got tired of scrolling screen.
+                                    She got a few matches but was frustrated by them because they didn't want to hear
+                                    about her daily life and just wanted to see her face or hang out with her. If Anna
+                                    did not agree to meet them in person, they would disappear within two to three days.
+                                </p>
+                            </div>
+                            <div class="grid sm:grid-cols-2 gap-8 pt-4">
+                                <div>
+                                    <h4 class="font-semibold text-black text-xl">Pain Points</h4>
+                                    <ul class="list-disc list-inside text-gray-600 space-y-2 mt-2">
+                                        <li>Feels judged solely on her looks.</li>
+                                        <li>Overwhelmed by endless swiping.</li>
+                                        <li>Struggles with starting conversations.</li>
+                                        <li>Finds dating apps to be superficial.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-black text-xl">Goals</h4>
+                                    <ul class="list-disc list-inside text-gray-600 space-y-2 mt-2">
+                                        <li>Find a meaningful, long-term relationship.</li>
+                                        <li>Connect with someone on an intellectual level.</li>
+                                        <li>Feel comfortable and safe while dating online.</li>
+                                        <li>Spend less time swiping and more time talking.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Journey Map -->
+            <section id="journey" class="section-highlight py-32 md:py-40 reveal">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="font-heading text-5xl md:text-7xl text-black mb-16 text-center">Competitor's User
+                        Journey</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+                        <div
+                            class="text-center bg-white p-6 rounded-2xl card-hover border border-gray-100 journey-card">
+                            <span class="text-3xl font-bold text-[#FFC100]">01</span>
+                            <h3 class="font-bold text-black text-xl my-2">Search Dating apps</h3>
+                            <p class="text-gray-600">Find an appropriate dating app</p>
+                            <img src="/assets/mood-1.png" alt="Curious mood" class="mood-image backdrop-blur-sm">
+                        </div>
+                        <div
+                            class="text-center bg-white p-6 rounded-2xl card-hover border border-gray-100 journey-card">
+                            <span class="text-3xl font-bold text-[#FFC100]">02</span>
+                            <h3 class="font-bold text-black text-xl my-2">Download & Learn to use</h3>
+                            <p class="text-gray-600">Learn how to use the app</p>
+                            <img src="/assets/mood-1.png" alt="Hopeful mood" class="mood-image backdrop-blur-sm">
+                        </div>
+                        <div
+                            class="text-center bg-white p-6 rounded-2xl card-hover border border-gray-100 journey-card">
+                            <span class="text-3xl font-bold text-[#FFC100]">03</span>
+                            <h3 class="font-bold text-black text-xl my-2">Set up the Profile</h3>
+                            <p class="text-gray-600">Complete the profile, then start to match</p>
+                            <img src="/assets/mood-2.png" alt="Hopeful mood" class="mood-image backdrop-blur-sm">
+                        </div>
+                        <div
+                            class="text-center bg-white p-6 rounded-2xl card-hover border border-gray-100 journey-card">
+                            <span class="text-3xl font-bold text-[#FFC100]">04</span>
+                            <h3 class="font-bold text-black text-xl my-2">Swipe/Scroll<br />to Match</h3>
+                            <p class="text-gray-600">Find matched users to chat</p>
+                            <img src="/assets/mood-1.png" alt="Excited mood" class="mood-image backdrop-blur-sm">
+                        </div>
+                        <div
+                            class="text-center bg-white p-6 rounded-2xl card-hover border border-gray-100 journey-card">
+                            <span class="text-3xl font-bold text-[#FFC100]">05</span>
+                            <h3 class="font-bold text-black text-xl my-2">Waiting for Response</h3>
+                            <p class="text-gray-600">Hope to get into a relationship</p>
+                            <img src="/assets/mood-2.png" alt="Engaged mood" class="mood-image backdrop-blur-sm">
+                        </div>
+                        <div
+                            class="text-center bg-white p-6 rounded-2xl card-hover border border-gray-100 journey-card">
+                            <span class="text-3xl font-bold text-[#FFC100]">06</span>
+                            <h3 class="font-bold text-black text-xl my-2">No/rare Responses</h3>
+                            <p class="text-gray-600">Unable to get positive feedback from app</p>
+                            <img src="/assets/mood-3.png" alt="Happy mood" class="mood-image backdrop-blur-sm">
+                        </div>
+                        <div
+                            class="text-center bg-white p-6 rounded-2xl card-hover border border-gray-100 journey-card">
+                            <span class="text-3xl font-bold text-[#FFC100]">07</span>
+                            <h3 class="font-bold text-black text-xl my-2">Uninstall the app</h3>
+                            <p class="text-gray-600">/</p>
+                            <img src="/assets/mood-4.png" alt="Happy mood" class="mood-image backdrop-blur-sm">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sitemap -->
+            <section id="sitemap" class="py-32 md:py-40 reveal">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="font-heading text-5xl md:text-7xl text-black mb-16 text-center">Sitemap</h2>
+                    <div class="bg-white p-8 md:p-12 rounded-2xl text-gray-900 shadow-sm max-w-3xl mx-auto card-hover">
+                        <ul class="space-y-6">
+                            <li>
+                                <span class="font-semibold text-2xl">Splash & Onboarding</span>
+                                <ul class="list-disc list-inside mt-3 ml-4 space-y-2 text-gray-700">
+                                    <li>Login / Sign Up</li>
+                                    <li>Profile Creation (Name, Age, etc.)</li>
+                                    <li>Photo Upload (Blurred)</li>
+                                    <li>Interest Tag Selection</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="font-semibold text-2xl">Main App</span>
+                                <ul class="list-disc list-inside mt-3 ml-4 space-y-3 text-gray-700">
+                                    <li>
+                                        Home / Discovery
+                                        <ul class="list-['-_'] list-inside mt-2 ml-6 space-y-1 text-gray-600">
+                                            <li>Daily Matches</li>
+                                            <li>Daily Topic Cards</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        Chat
+                                        <ul class="list-['-_'] list-inside mt-2 ml-6 space-y-1 text-gray-600">
+                                            <li>Chat List</li>
+                                            <li>Conversation Screen</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        Profile
+                                        <ul class="list-['-_'] list-inside mt-2 ml-6 space-y-1 text-gray-600">
+                                            <li>View/Edit My Profile</li>
+                                            <li>Settings & Help</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Flow Section -->
+            <section id="user-flow" class="py-32 md:py-40 reveal">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="font-heading text-5xl md:text-7xl text-black mb-20 text-center">User Flow</h2>
+                    <div class="space-y-12">
+                        <!-- Matchmaking -->
+                        <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                            <h3 class="font-bold text-black text-2xl mb-6">Matchmaking</h3>
+                            <img src="/assets/user-flow-spirits-11.png" alt="Matchmaking User Flow" class="w-full h-auto rounded-xl">
+                        </div>
+                        
+                        <!-- Profile Unveil -->
+                        <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                            <h3 class="font-bold text-black text-2xl mb-6">Profile Unveil</h3>
+                            <img src="/assets/user-flow-spirits-2.png" alt="Profile Unveil User Flow" class="w-full h-auto rounded-xl">
+                        </div>
+                        
+                        <!-- Mate Mode -->
+                        <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
+                            <h3 class="font-bold text-black text-2xl mb-6">Mate Mode</h3>
+                            <img src="/assets/user-flow-spirits-3.png" alt="Mate Mode User Flow" class="w-full h-auto rounded-xl">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Features Showcase -->
+            <section id="features" class="section-highlight py-32 md:py-40 reveal">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="font-heading text-5xl md:text-7xl text-black mb-20 text-center">Core Features</h2>
+                    <div class="space-y-24">
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <div class="bg-gray-100 rounded-2xl p-4 card-hover">
+                                <img src="https://placehold.co/600x400/FFFFFF/374151?text=Match+Mechanism"
+                                    alt="Match Mechanism screen"
+                                    class="w-full h-auto object-cover rounded-xl shadow-md">
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-bold text-[#FE7800]">Match mechanism</h3>
+                                <p class="mt-3 text-gray-600 leading-relaxed">Users choose interest and personality tags
+                                    during onboarding to prioritize compatibility over photos.</p>
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <div class="md:order-last bg-gray-100 rounded-2xl p-4 card-hover">
+                                <img src="https://placehold.co/600x400/FFFFFF/374151?text=Profile+Revealing"
+                                    alt="Profile Revealing System screen"
+                                    class="w-full h-auto object-cover rounded-xl shadow-md">
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-bold text-[#FE7800]">Profile Revealing System</h3>
+                                <p class="mt-3 text-gray-600 leading-relaxed">Profile pictures are initially blurred,
+                                    with clarity increasing as users interact, making the reveal rewarding.</p>
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <div class="bg-gray-100 rounded-2xl p-4 card-hover">
+                                <img src="https://placehold.co/600x400/FFFFFF/374151?text=Conversation+Prompts"
+                                    alt="Daily conversation prompts screen"
+                                    class="w-full h-auto object-cover rounded-xl shadow-md">
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-bold text-[#FE7800]">The daily conversation prompts</h3>
+                                <p class="mt-3 text-gray-600 leading-relaxed">Daily prompts prevent conversations from
+                                    stalling, ensuring a natural and engaging chat experience.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- High Fidelity Prototype Section -->
+            <section id="high-fidelity-prototype" class="py-32 md:py-40 reveal">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="font-heading text-5xl md:text-7xl text-black mb-20 text-center">High Fidelity Prototype
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                        <div class="bg-gray-100 rounded-2xl p-4 card-hover">
+                            <img src="https://placehold.co/400x800/FFFFFF/374151?text=Onboarding"
+                                alt="Onboarding Screen" class="w-full h-auto object-cover rounded-xl shadow-md">
+                        </div>
+                        <div class="bg-gray-100 rounded-2xl p-4 card-hover">
+                            <img src="https://placehold.co/400x800/FFFFFF/374151?text=Matching" alt="Matching Screen"
+                                class="w-full h-auto object-cover rounded-xl shadow-md">
+                        </div>
+                        <div class="bg-gray-100 rounded-2xl p-4 card-hover">
+                            <img src="https://placehold.co/400x800/FFFFFF/374151?text=Chat" alt="Chat Screen"
+                                class="w-full h-auto object-cover rounded-xl shadow-md">
+                        </div>
+                        <div class="bg-gray-100 rounded-2xl p-4 card-hover">
+                            <img src="https://placehold.co/400x800/FFFFFF/374151?text=Profile+Reveal"
+                                alt="Profile Reveal Screen" class="w-full h-auto object-cover rounded-xl shadow-md">
+                        </div>
+                        <div class="bg-gray-100 rounded-2xl p-4 card-hover">
+                            <img src="https://placehold.co/400x800/FFFFFF/374151?text=Daily+Prompt"
+                                alt="Daily Prompt Screen" class="w-full h-auto object-cover rounded-xl shadow-md">
+                        </div>
+                        <div class="bg-gray-100 rounded-2xl p-4 card-hover">
+                            <img src="https://placehold.co/400x800/FFFFFF/374151?text=User+Profile"
+                                alt="User Profile Screen" class="w-full h-auto object-cover rounded-xl shadow-md">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Introspection/Conclusion -->
+            <section id="conclusion" class="py-32 md:py-40 reveal">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="font-heading text-5xl md:text-7xl text-black mb-16 text-center">Project Introspection
+                    </h2>
+                    <div class="bg-white p-8 md:p-12 rounded-2xl max-w-4xl mx-auto shadow-sm card-hover">
+                        <h3 class="font-heading text-4xl text-black mb-4">Focus on Core Problems and Goals</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+                            Even though new ideas continuously come to mind and the urge to incorporate them all is
+                            strong, it was crucial to prioritize addressing the project's main challenges and achieving
+                            its objectives first.
+                        </p>
+                        <h3 class="font-heading text-4xl text-black mb-4">Updates are Necessary</h3>
+                        <p class="text-gray-700 leading-relaxed text-lg">
+                            Trends evolve, and everything is subject to change—staying open-minded and ready to adapt is
+                            key. I adjusted the name and content presentation of this project, making some significant
+                            structural changes. I believe it was worthwhile because it better aligns with the current
+                            user habits and needs. This experience will help me adapt more quickly to large-scale
+                            content changes in the future.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Design System -->
+            <section id="design" class="section-highlight py-32 md:py-40 reveal">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="font-heading text-5xl md:text-7xl text-black mb-16 text-center">Design System</h2>
+                    <div class="grid md:grid-cols-2 gap-16">
+                        <div>
+                            <h3 class="font-heading text-4xl text-black mb-8">Color Palette</h3>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
+                                <div class="text-center">
+                                    <div class="h-28 w-full rounded-2xl bg-[#F9F9F9] border border-gray-200 card-hover">
+                                    </div>
+                                    <p class="mt-2 text-sm font-mono tracking-wider">#F9F9F9</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="h-28 w-full rounded-2xl bg-white border border-gray-200 card-hover">
+                                    </div>
+                                    <p class="mt-2 text-sm font-mono tracking-wider">#FFFFFF</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="h-28 w-full rounded-2xl bg-black border border-gray-200 card-hover">
+                                    </div>
+                                    <p class="mt-2 text-sm font-mono tracking-wider text-gray-500">#000000</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="h-28 w-full rounded-2xl bg-[#FE7800] card-hover"></div>
+                                    <p class="mt-2 text-sm font-mono tracking-wider">#FE7800</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="h-28 w-full rounded-2xl bg-[#FF8D00] card-hover"></div>
+                                    <p class="mt-2 text-sm font-mono tracking-wider">#FF8D00</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="h-28 w-full rounded-2xl bg-[#FFC100] card-hover"></div>
+                                    <p class="mt-2 text-sm font-mono tracking-wider">#FFC100</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-heading text-4xl text-black mb-8">Typography</h3>
+                            <div class="space-y-8">
+                                <div>
+                                    <p class="font-heading text-6xl text-black">Heading</p>
+                                    <p class="text-sm text-gray-600 mt-1">Inter, Extra Bold</p>
+                                </div>
+                                <div>
+                                    <p class="text-xl text-gray-700 leading-relaxed">Body copy for paragraphs.</p>
+                                    <p class="text-sm text-gray-600 mt-1">Inter, Regular</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Project Navigation -->
+    <nav class="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+        <div class="bg-white/90 backdrop-blur-md rounded-full py-3 px-6 shadow-lg border border-gray-200/80">
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#overview" class="text-gray-600 hover:text-black transition-colors">Overview</a>
+                <a href="#process" class="text-gray-600 hover:text-black transition-colors">Process</a>
+                <a href="#competitor-analysis" class="text-gray-600 hover:text-black transition-colors">Analysis</a>
+                <a href="#persona" class="text-gray-600 hover:text-black transition-colors">Persona</a>
+                <a href="#journey" class="text-gray-600 hover:text-black transition-colors">Journey</a>
+                <a href="#sitemap" class="text-gray-600 hover:text-black transition-colors">Sitemap</a>
+                <a href="#features" class="text-gray-600 hover:text-black transition-colors">Features</a>
+                <a href="#design" class="text-gray-600 hover:text-black transition-colors">Design</a>
+            </div>
+            <button id="project-menu-btn"
+                class="md:hidden p-2 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <!-- Project Mobile Menu -->
+        <div id="project-mobile-menu"
+            class="hidden md:hidden mt-2 bg-white/90 backdrop-blur-md rounded-lg border border-gray-200/80 p-4 shadow-lg">
+            <a href="#overview"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Overview</a>
+            <a href="#process"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Process</a>
+            <a href="#competitor-analysis"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Analysis</a>
+            <a href="#persona"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Persona</a>
+            <a href="#journey"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Journey</a>
+            <a href="#sitemap"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Sitemap</a>
+            <a href="#features"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Features</a>
+            <a href="#design" class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Design</a>
+        </div>
+    </nav>
+
+    <footer class="text-center py-24">
+        <p class="text-gray-600">&copy; 2024 Spirits by Huaqian Zheng. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile Menu Toggle
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (menuBtn) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Project Mobile Menu Toggle
+            const projectMenuBtn = document.getElementById('project-menu-btn');
+            const projectMobileMenu = document.getElementById('project-mobile-menu');
+
+            if (projectMenuBtn) {
+                projectMenuBtn.addEventListener('click', () => {
+                    projectMobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Close menus when clicking outside
+            document.addEventListener('click', (e) => {
+                if (menuBtn && !menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+                if (projectMenuBtn && !projectMenuBtn.contains(e.target) && !projectMobileMenu.contains(e.target)) {
+                    projectMobileMenu.classList.add('hidden');
+                }
+            });
+
+            // Scroll animations
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            // Update active section on scroll
+            const sections = document.querySelectorAll('section[id]');
+
+            function updateActiveSection() {
+                let current = '';
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.scrollY >= sectionTop - 300) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                // Update navigation links
+                document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+                    const href = link.getAttribute('href').substring(1);
+                    if (href === current) {
+                        link.classList.remove('text-gray-600');
+                        link.classList.add('text-amber-600', 'font-semibold');
+                    } else {
+                        link.classList.remove('text-amber-600', 'font-semibold');
+                        link.classList.add('text-gray-600');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveSection);
+            updateActiveSection(); // Initial call
+        });
+    </script>
+</body>
+
+</html>

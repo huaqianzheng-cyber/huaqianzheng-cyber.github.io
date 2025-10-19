@@ -4,279 +4,416 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tenup: Math Application</title>
+    <title>UX Designer Portfolio </title>
+    <link rel="icon" type="image/png" href="/assets/fav.png">
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* --- 1. General Styling & Variables --- */
         :root {
-            --primary-green-dark: #007042;
-            --primary-green-light: #daedbf;
-            --accent-orange: #ff9900;
-            --background: #ffffff;
-            --neutral-dark: #4A4A4A;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --color-text: #111;
+            --color-bg: #F3F3F3;
+            --project1-color: #007042;
+            /* TENUP */
+            --project2-color: #FE7800;
+            /* Spirits */
+            --project3-color: #222222;
+            /* ROBLOX */
+            --project4-color: #0071E7;
+            /* Walmart */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         html {
             scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--background);
-            color: var(--neutral-dark);
+            font-family: var(--font-main);
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            overflow-x: hidden;
+            /* Crucial: Hide the native horizontal scrollbar */
         }
 
-        .hero-section {
-            background-color: var(--background);
-            /* Changed to white */
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-
-        .section-title {
-            font-weight: 800;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--neutral-dark);
-            padding-top: 5rem;
-            /* Add padding for nav anchor */
-        }
-
-        .phone-mockup {
-            width: 250px;
-            height: 500px;
-            background-color: #f3f4f6;
-            border: 12px solid #1f2937;
-            border-radius: 30px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            padding: 10px;
-            overflow: hidden;
+        /* --- 2. Hero Section --- */
+        #hero {
+            height: 100vh;
+            width: 100vw;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s 0.5s forwards;
+            background-color: #ffffff;
+            scroll-snap-align: start;
+        }
+
+        #hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        #hero p {
+            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+            font-weight: 400;
+            color: #555;
+            max-width: 650px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-arrow {
+            margin-top: 3rem;
+            width: 28px;
+            height: 28px;
+            animation: bounce 2s infinite ease-in-out;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-15px);
+            }
+
+            60% {
+                transform: translateY(-7px);
+            }
+        }
+
+        /* --- 3. Horizontal Scroll Section --- */
+        #projects-section {
+            height: 100vh;
             position: relative;
-        }
-
-        .phone-mockup::before {
-            content: '';
-            position: absolute;
-            left: 0px;
-            top: 50%;
-            transform: translateY(-50%);
-            height: 50%;
-            width: 20px;
-            background: #1f2937;
-            border-top-right-radius: 10px;
-            border-bottom-right-radius: 10px;
-        }
-
-        .phone-screen {
             width: 100%;
-            height: 100%;
-            background-color: white;
-            border-radius: 10px;
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            overflow: hidden;
+            cursor: grab;
+            scroll-snap-align: start;
         }
 
-        .flow-step {
-            min-width: 120px;
-            padding: 0.75rem 1.25rem;
-            border-radius: 0.5rem;
-            text-align: center;
-            position: relative;
-            background-color: white;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            border: 2px solid var(--primary-green-dark);
-        }
-
-        .flow-diamond {
-            width: 120px;
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transform: rotate(45deg);
-            border: 2px solid var(--primary-green-dark);
-            background-color: white;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            position: relative;
-        }
-
-        .flow-diamond-text {
-            transform: rotate(-45deg);
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .flow-diamond-label {
+        .scroll-hint {
             position: absolute;
-            transform: rotate(-45deg);
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: #6b7280;
-            background-color: white;
-            padding: 0 4px;
-        }
-
-        .flow-connector {
-            height: 4rem;
-            /* 64px */
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .flow-connector-vertical {
-            height: 100%;
-            width: 0;
-            margin: 0 auto;
-            border-left: 2px dashed #d1d5db;
-        }
-
-        .label-yes {
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%) rotate(-45deg);
-        }
-
-        /* Navigation Styles */
-        .nav-link {
-            position: relative;
-            transition: color 0.2s ease-in-out;
-            font-weight: 500;
-        }
-
-        .nav-link.active {
-            color: var(--primary-green-dark);
-            font-weight: 600;
-        }
-
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            /* Position dot below the text */
+            bottom: 3rem;
             left: 50%;
             transform: translateX(-50%);
-            width: 6px;
-            height: 6px;
-            background-color: var(--primary-green-dark);
-            border-radius: 50%;
-        }
-
-        /* Specific styles for the new hero section */
-        .hero-content {
+            z-index: 10;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 2rem;
-            /* Space between text and mascot */
-            position: relative;
-            z-index: 2;
-            /* Ensure content is above any background elements */
-            flex-wrap: wrap;
-            /* Allow wrapping on smaller screens */
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 0.75rem 1.5rem;
+            border-radius: 99px;
+            color: #333;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0;
+            transition: opacity 0.4s ease-out;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+            animation: fadeInHint 0.8s 1s forwards;
         }
 
-        .hero-text {
-            text-align: right;
-            line-height: 1;
-            /* Adjust line height for the title */
+        .scroll-hint span {
+            margin: 0 0.75rem;
+            line-height: 20px;
         }
 
-        .hero-text h1 {
-            font-size: 3rem;
-            /* Adjust as needed */
-            font-weight: 800;
-            color: var(--neutral-dark);
+        .scroll-hint svg {
+            width: 20px;
+            height: 20px;
+            animation: pulse-arrows 2.5s infinite ease-in-out;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
         }
 
-        .hero-text .welcome-text {
-            font-size: 2rem;
-            /* Adjust as needed */
-            font-weight: 800;
-            color: var(--neutral-dark);
+        .scroll-hint svg:hover {
+            transform: scale(1.15);
+        }
+
+        .scroll-hint svg.disabled {
+            opacity: 0.2;
+            pointer-events: none;
+            cursor: not-allowed;
+            animation: none;
+        }
+
+        @keyframes fadeInHint {
+            from {
+                opacity: 0;
+                transform: translate(-50%, 10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes pulse-arrows {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.25);
+            }
+        }
+
+        .projects-container-horizontal {
+            display: flex;
+            flex-wrap: nowrap;
+            width: 400%;
+            height: 100%;
+            transform: translateX(0);
+            will-change: transform;
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* --- 4. Individual Project Styling --- */
+        .project-panel {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+            gap: 4rem;
+        }
+
+        .project-panel:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .project-info {
+            flex: 1;
+            max-width: 500px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s 0.2s ease-out, transform 0.6s 0.2s ease-out;
+        }
+
+        .project-panel.is-visible .project-info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-info h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
             margin-bottom: 0.5rem;
-            /* Space between "WELCOME TO" and "TENUP!" */
         }
 
-        .hero-text .tenup-green {
-            color: var(--primary-green-dark);
+        .project-info .work-type {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
         }
 
-        .hero-text .tenup-orange {
-            color: var(--accent-orange);
+        .project-info p.description {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 2rem;
         }
 
-        .star {
-            position: absolute;
-            opacity: 0.8;
-            z-index: 1;
+        .project-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
         }
 
-        .star-1 {
-            top: 20%;
-            left: 10%;
-            width: 60px;
-            height: 60px;
+        .project-keywords span {
+            background-color: #eee;
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 99px;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
-        .star-2 {
-            top: 15%;
-            right: 25%;
-            width: 40px;
-            height: 40px;
+        #project-1 .project-keywords .highlight {
+            background-color: var(--project1-color);
+            color: white;
         }
 
-        .star-3 {
-            bottom: 20%;
-            right: 10%;
-            width: 30px;
-            height: 30px;
+        #project-2 .project-keywords .highlight {
+            background-color: var(--project2-color);
+            color: white;
         }
 
-        /* Hide scrollbar for horizontal scrolling container */
-        .horizontal-scroll-container {
-            -ms-overflow-style: none;
-            /* IE and Edge */
-            scrollbar-width: none;
-            /* Firefox */
+        #project-3 .project-keywords .highlight {
+            background-color: var(--project3-color);
+            color: white;
         }
 
-        .horizontal-scroll-container::-webkit-scrollbar {
-            display: none;
-            /* Chrome, Safari and Opera */
+        #project-4 .project-keywords .highlight {
+            background-color: var(--project4-color);
+            color: white;
+        }
+
+        .project-image-container {
+            flex: 1.2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 65vh;
+            max-width: 650px;
+            border-radius: 24px;
+            padding: 2rem;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-mockup {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .project-panel.is-visible .project-image-container {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        #project-1 .project-image-container {
+            background-color: var(--project1-color);
+            color: white;
+        }
+
+        #project-2 .project-image-container {
+            background-color: var(--project2-color);
+            color: white;
+        }
+
+        #project-3 .project-image-container {
+            background-color: #000;
+            color: white;
+        }
+
+        #project-4 .project-image-container {
+            background-color: var(--project4-color);
+            color: white;
+        }
+
+        /* --- 5. Navigation & Footer --- */
+        .nav-link.active {
+            font-weight: 600;
+            color: #111;
+        }
+
+        #footer {
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: #111;
+            color: #fff;
+            scroll-snap-align: start;
+        }
+
+        #footer h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+        }
+
+        /* --- 6. Responsive Design --- */
+        @media (max-width: 768px) {
+
+            .project-panel,
+            .project-panel:nth-child(even) {
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 6rem 1rem 1rem 1rem;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .project-info {
+                max-width: 100%;
+                padding: 0 1rem;
+            }
+
+            .project-info h2 {
+                font-size: 2.5rem;
+            }
+
+            .project-keywords {
+                justify-content: center;
+            }
+
+            .project-image-container {
+                height: 40vh;
+                width: 90vw;
+                flex: none;
+            }
         }
     </style>
 </head>
 
 <body class="antialiased">
 
-    <!-- Global Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+    <header class="fixed top-0 left-0 right-0 z-50 p-4">
         <div class="container mx-auto max-w-7xl px-4">
-            <nav class="flex justify-between items-center py-4">
-                <a href="/" class="text-2xl font-bold tracking-tight text-gray-900">9thDesign</a>
+            <nav
+                class="flex justify-between items-center bg-white bg-opacity-50 backdrop-blur-md rounded-full py-2 px-6 border border-gray-200 shadow-sm">
+                <a href="/" class="text-xl font-bold">9thDesign</a>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="/spirits" class="text-gray-600 hover:text-gray-900 font-medium">Spirits</a>
-                    <a href="/tenup" class="text-emerald-600 font-semibold">Tenup</a>
-                    <a href="/roblox" class="text-gray-600 hover:text-gray-900 font-medium">Roblox</a>
-                    <a href="/walmart" class="text-gray-600 hover:text-gray-900 font-medium">Walmart</a>
-                    <a href="/about"
-                        class="ml-8 px-4 py-2 rounded-full bg-gray-900 text-white hover:bg-gray-700 transition-colors font-medium">About
-                        Me</a>
+                    <a href="/tenup.html" class="text-gray-600 hover:text-black transition-colors">Tenup</a>
+                    <a href="/spirits.html" class="text-gray-600 hover:text-black transition-colors">Spirits</a>
+                    <a href="/roblox.html" class="text-gray-600 hover:text-black transition-colors">Roblox</a>
+                    <a href="/walmart.html" class="text-gray-600 hover:text-black transition-colors">Walmart</a>
                 </div>
-                <button id="global-menu-btn" class="md:hidden p-2 rounded-full hover:bg-gray-100">
+                <a href="mailto:zheng9thdesign@gmail.com"
+                    class="hidden md:block bg-black text-white font-semibold px-5 py-2 rounded-full hover:bg-gray-800 transition-colors">
+                    Get in Touch
+                </a>
+                <button id="menu-btn"
+                    class="md:hidden p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-500">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -285,677 +422,151 @@
                 </button>
             </nav>
         </div>
-        <!-- Global Mobile Menu -->
-        <div id="global-mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
-            <div class="container mx-auto px-4 py-2 space-y-1">
-                <a href="/spirits"
-                    class="block px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg">Spirits</a>
-                <a href="/tenup"
-                    class="block px-4 py-2 text-emerald-600 font-semibold hover:bg-gray-50 rounded-lg">Tenup</a>
-                <a href="/roblox"
-                    class="block px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg">Roblox</a>
-                <a href="/walmart"
-                    class="block px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg">Walmart</a>
-                <a href="/about"
-                    class="block px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg">About Me</a>
-            </div>
+        <div id="mobile-menu"
+            class="hidden md:hidden mt-2 bg-white bg-opacity-70 backdrop-blur-md rounded-lg border border-gray-200 p-4 mx-4">
+            <a href="/spirits.html"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Spirits</a>
+            <a href="/tenup.html" class="block text-emerald-600 font-semibold py-2 text-center">Tenup</a>
+            <a href="/roblox.html"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Roblox</a>
+            <a href="/walmart.html"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Walmart</a>
+            <a href="mailto:zheng9thdesign@gmail.com"
+                class="block mt-4 bg-black text-white font-semibold px-4 py-2 rounded-full text-center hover:bg-gray-800 transition-colors">
+                Get in Touch
+            </a>
         </div>
     </header>
 
-    <!-- Project Navigation -->
-    <nav class="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
-        <div class="bg-white/90 backdrop-blur-md rounded-full py-3 px-6 shadow-lg border border-gray-200/80">
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#project-details" class="nav-link text-gray-600 hover:text-black">Overview</a>
-                <a href="#problem" class="nav-link text-gray-600 hover:text-black">Problem</a>
-                <a href="#personas" class="nav-link text-gray-600 hover:text-black">Personas</a>
-                <a href="#user-flow" class="nav-link text-gray-600 hover:text-black">User Flow</a>
-                <a href="#wireframes" class="nav-link text-gray-600 hover:text-black">Wireframes</a>
-                <a href="#prototype" class="nav-link text-gray-600 hover:text-black">Prototype</a>
-                <a href="#design-system" class="nav-link text-gray-600 hover:text-black">Design</a>
-            </div>
-            <button id="project-menu-btn"
-                class="md:hidden p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-500">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+    <main>
+        <section id="hero">
+            <h1>Hi, I'm Huaqian Zheng</h1>
+            <h1>UX Designer</h1>
+            <p>A designer passionate and eager to empathize with others and solve their problems by providing
+                intuitive and user-friendly experiences.</p>
+            <svg class="scroll-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </section>
+
+        <section id="projects-section">
+            <div class="scroll-hint">
+                <svg class="arrow-left" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
-            </button>
-        </div>
-        <!-- Project Mobile Menu -->
-        <div id="project-mobile-menu"
-            class="hidden md:hidden fixed bottom-28 left-4 right-4 bg-white/95 backdrop-blur-md rounded-2xl border border-gray-200 p-4 shadow-xl">
-            <div class="space-y-1">
-                <a href="#project-details"
-                    class="nav-link block text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg px-4 py-2">Overview</a>
-                <a href="#problem"
-                    class="nav-link block text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg px-4 py-2">Problem</a>
-                <a href="#personas"
-                    class="nav-link block text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg px-4 py-2">Personas</a>
-                <a href="#user-flow"
-                    class="nav-link block text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg px-4 py-2">User
-                    Flow</a>
-                <a href="#wireframes"
-                    class="nav-link block text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg px-4 py-2">Wireframes</a>
-                <a href="#prototype"
-                    class="nav-link block text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg px-4 py-2">Prototype</a>
-                <a href="#design-system"
-                    class="nav-link block text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg px-4 py-2">Design</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero-section text-slate-800">
-        <div class="absolute inset-0 z-0">
-            <!-- Background orange and green curved shapes -->
-            <div
-                class="absolute top-0 left-0 w-60 h-full bg-gradient-to-br from-yellow-400 to-orange-500 rounded-r-full blur-xl opacity-60 transform -translate-x-1.2">
-            </div>
-            <div
-                class="absolute bottom-0 right-0 w-80 h-full bg-gradient-to-tl from-green-500 to-green-700 rounded-l-full blur-xl opacity-60 transform translate-x-1/2">
-            </div>
-
-        </div>
-
-        <div class="hero-content relative z-10 max-w-7xl mx-auto px-4">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
-                <div class="flex-1 text-left space-y-6 relative">
-                    <img src="assets/star.gif" alt="Star"
-                        class="absolute -left-60 top-1/2 w-32 h-32 opacity-80 transform -rotate-12 animate-pulse">
-                    <h1 class="text-6xl lg:text-7xl font-extrabold tracking-tight">
-                        WELCOME TO<br />
-                        <span style="color: var(--primary-green-dark)">TEN</span><span
-                            style="color: var(--accent-orange)">UP!</span>
-                    </h1>
-                    <p class="text-lg lg:text-xl max-w-2xl">
-                        A <span class="text-orange-500 font-semibold">fun</span> and <span
-                            class="text-orange-500 font-semibold">interactive</span> application is designed
-                        to make <span class="text-emerald-700 font-semibold">mathematics</span> exciting for <span
-                            class="text-emerald-700 font-semibold">2nd-grade</span>
-                    </p>
-                </div>
-                <div class="relative flex-1 flex justify-center">
-                    <img src="assets/panda.png" alt="Tenup Mascot"
-                        class="w-[400px] h-[400px] lg:w-[500px] lg:h-[500px] object-contain">
-                    <img src="assets/star.gif" alt="Star"
-                        class="absolute bottom-80 right-80 w-74 h-74 opacity-80 transform rotate-12 animate-pulse">
-                    <img src="assets/star.gif" alt="Star"
-                        class="absolute -bottom-8 -right-8 w-48 h-48 opacity-80 transform rotate-45 animate-pulse">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <main class="py-16 md:py-24 px-4 sm:px-6 lg:px-8 space-y-24">
-
-        <!-- Project Details Section -->
-        <section id="project-details"
-            class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 items-start">
-            <div class="space-y-4">
-                <div>
-                    <h3 class="font-bold text-lg text-gray-600">Project Type</h3>
-                    <p class="text-gray-800">Educational Math Mobile Application</p>
-                </div>
-                <div>
-                    <h3 class="font-bold text-lg text-gray-600">My Role</h3>
-                    <p class="text-gray-800">Researcher, UX/UI Designer</p>
-                </div>
-                <div>
-                    <h3 class="font-bold text-lg text-gray-600">Project Timeline</h3>
-                    <p class="text-gray-800">9 Weeks</p>
-                </div>
-                <div>
-                    <h3 class="font-bold text-lg text-gray-600">Project Tools</h3>
-                    <p class="text-gray-800">Figma, Adobe Illustrator</p>
-                </div>
-                <a href="https://www.figma.com/proto/0aUuT9EapTyQJPpCb3eokO/Tenup--Educational-App-HI-FI-(Prototype)?node-id=6080-2362&p=f&t=mazJs9gYOPFPKPsd-1&scaling=scale-down&content-scaling=fixed&page-id=1%3A3&starting-point-node-id=6080%3A2362&show-proto-sidebar=1"
-                    target="_blank" rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2 px-4 py-2 mt-3 hover:bg-gray-200 transition-colors duration-200 rounded-full text-white font-medium bg-[#007042]">
-                    <img src="/assets/icon-figma.png" alt="Figma" class="h-5 w-5">
-                    <span>View Figma Prototype</span>
-                </a>
-            </div>
-            <div class="md:col-span-2">
-                <h2 class="text-5xl font-extrabold mb-4" style="color: var(--primary-green-dark);">TEN<span
-                        style="color: var(--accent-orange);">UP</span></h2>
-                <div class="text-lg text-slate-700 leading-relaxed space-y-4">
-                    <p>
-                        Mathematics can be a challenging subject for young students, often leading to frustration and
-                        disengagement.
-                    </p>
-                    <p>
-                        The TENUP project aims to transform this experience by creating an interactive and enjoyable
-                        mobile application tailored for 2nd-grade students. Our goal is to foster a love for math
-                        through engaging activities that reinforce core concepts like place value, addition, and
-                        subtraction, ensuring that learning is both effective and fun.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Problem Section -->
-        <section id="problem" class="max-w-7xl mx-auto">
-            <h2 class="section-title">The Problem</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-                    <div class="mx-auto w-20 h-20 rounded-full flex items-center justify-center mb-4"
-                        style="background-color: var(--primary-green-light);">
-                        <svg class="w-10 h-10" style="color: var(--primary-green-dark);" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Place Value</h3>
-                    <p class="text-slate-600">Struggling to grasp tens and ones, and difficulty comparing and ordering
-                        numbers.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-                    <div class="mx-auto w-20 h-20 rounded-full flex items-center justify-center mb-4"
-                        style="background-color: #FFF5E6;">
-                        <svg class="w-10 h-10" style="color: var(--accent-orange);" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Addition & Subtraction</h3>
-                    <p class="text-slate-600">Finding it hard to carry over or borrow, and misplacing digits in
-                        problems.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-                    <div class="mx-auto w-20 h-20 rounded-full flex items-center justify-center mb-4"
-                        style="background-color: var(--primary-green-light);">
-                        <svg class="w-10 h-10" style="color: var(--primary-green-dark);" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Word Problems</h3>
-                    <p class="text-slate-600">Struggling to read and comprehend problems or translate words into
-                        operations.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Overview Section -->
-        <section id="overview" class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
-            <h2 class="section-title">Overview</h2>
-            <div class="space-y-6">
-                <div>
-                    <h3 class="text-2xl font-bold mb-2" style="color: var(--accent-orange);">★ Background</h3>
-                    <div class="text-slate-700 leading-relaxed space-y-2">
-                        <p>
-                            Tenup focuses on Grade Two Mathematics education.
-                            It aligns with Grade Two Mathematics standards and aims to encourage students to:
-                        </p>
-                        <p class="pl-8">(1) develop conceptual understanding</p>
-                        <p class="pl-8">(2) use drawings instead of writing equations</p>
-                        <p class="pl-8">(3) solve word problems to aid comprehension and explanation. </p>
-                        <p>The target audience is Grade 2 students, ages 7 to 8.</p>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-bold mb-2" style="color: var(--accent-orange);">★ Goal</h3>
-                    <p class="text-slate-700 leading-relaxed">
-                        To help users understand place value & develop conceptual understanding of core math principles.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Persona Section -->
-        <section id="personas" class="max-w-7xl mx-auto">
-            <h2 class="section-title">User Personas</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Jack's Persona -->
-                <div class="bg-white p-8 rounded-xl shadow-lg flex flex-col h-full">
-                    <!-- Header Section: Fixed height -->
-                    <div class="flex flex-col items-center text-center mb-8 h-[500px]">
-                        <h3 class="text-4xl font-bold mb-2">★ Persona 1</h3>
-                        <img src="/assets/avatar-jack.png" alt="Jack" class="rounded-full w-48 h-48 mb-4">
-                        <div class="text-center mb-4">
-                            <h3 class="text-5xl font-bold mb-2">JACK</h3>
-                            <p class="text-slate-500">1st-grade Student</p>
-                        </div>
-                        <blockquote class="text-lg italic p-4 rounded-lg mb-4 w-full"
-                            style="color: var(--primary-green-dark); background-color: var(--primary-green-light);">
-                            "I want to learn math by myself, I believe I can do it!"
-                        </blockquote>
-                        <div class="text-sm text-slate-500">
-                            <p>Los Angeles, CA., USA</p>
-                            <p>7 years old</p>
-                        </div>
-                    </div>
-
-                    <!-- Content Sections: Equal height for both cards -->
-                    <div class="space-y-8 flex-grow">
-                        <!-- About Section: Fixed height -->
-                        <div class="h-[280px] top">
-                            <h4 class="text-3xl font-bold mb-4">ABOUT</h4>
-                            <ul class="space-y-2 text-slate-700">
-                                <li>Jack is a 1st-grade student and will be a new 2nd-grade student in soon who wants to
-                                    achieve excellent mathematics grades by learning mathematics himself.</li>
-                                <li>However, he has found that he is having trouble dealing with 2nd-grade mathematics
-                                    problems.</li>
-                                <li>He wants to achieve excellent grades like before and surpass his classmate Tom using
-                                    some methods.</li>
-                            </ul>
-                        </div>
-
-                        <!-- Need Section: Fixed height -->
-                        <div class="h-[120px]">
-                            <h4 class="text-3xl font-bold mb-4">NEED</h4>
-                            <ul class="space-y-2 text-slate-700">
-                                <li>• Easy to learn the 2nd-grade math</li>
-                                <li>• Can learn math by himself</li>
-                                <li>• Funny</li>
-                            </ul>
-                        </div>
-
-                        <!-- Favorite Brand Section: Fixed height -->
-                        <div class="h-[100px]">
-                            <h4 class="text-3xl font-bold mb-4">FAVORITE BRAND</h4>
-                            <div class="flex items-center gap-4">
-                                <img src="/assets/icon-roblox.png" alt="Roblox" class="w-12 h-12">
-                                <img src="/assets/icon-youtube.png" alt="YouTube" class="w-12 h-12">
-                                <img src="/assets/icon-oreo.png" alt="Oreo" class="w-12 h-12">
-                                <img src="/assets/icon-mcdonald.png" alt="McDonald's" class="w-12 h-12">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mary's Persona -->
-                <div class="bg-white p-8 rounded-xl shadow-lg flex flex-col h-full">
-                    <!-- Header Section: Fixed height -->
-                    <div class="flex flex-col items-center text-center mb-8 h-[500px]">
-                        <h3 class="text-4xl font-bold mb-2">★ Persona 2</h3>
-                        <img src="/assets/avatar-mary.png" alt="Mary" class="rounded-full w-48 h-48 mb-4">
-                        <div class="text-center mb-4">
-                            <h3 class="text-5xl font-bold mb-2">MARY</h3>
-                            <p class="text-slate-500">Account Executive</p>
-                        </div>
-                        <blockquote class="text-lg italic p-4 rounded-lg mb-4 w-full"
-                            style="background-color: #FFF5E6; color: var(--accent-orange);">
-                            "“ I'm worried about my son Sam's math performance, and I want to help him!”"
-                        </blockquote>
-                        <div class="text-sm text-slate-500">
-                            <p>Austin, TX, USA</p>
-                            <p>35 years old</p>
-                        </div>
-                    </div>
-
-                    <!-- Content Sections: Equal height for both cards -->
-                    <div class="space-y-8 flex-grow">
-                        <!-- About Section: Fixed height -->
-                        <div class="h-[280px] top">
-                            <h4 class="text-3xl font-bold mb-4">ABOUT</h4>
-                            <ul class="space-y-2 text-slate-700">
-                                <li>Mary is Sam's mom, who is worried about how to explain the concepts of 2nd-grade
-                                    mathematics to help him improve his grades.</li>
-                                <li>Sam's teacher has reminded her to assist with his mathematics out of the class.
-                                </li>
-                                <li>While she knows about place value and conceptual understanding, she realizes that it
-                                    is difficult to explain these concepts to her son.</li>
-                                <li>Since Mary heard this information from her son's teacher, she speculates that Sam
-                                    may not be truly interested in mathematics, or he may not care about his grades in
-                                    the subject.</li>
-                            </ul>
-                        </div>
-
-                        <!-- Need Section: Fixed height -->
-                        <div class="h-[120px]">
-                            <h4 class="text-3xl font-bold mb-4">NEED</h4>
-                            <ul class="space-y-2 text-slate-700">
-                                <li>• Improve her son's math performance </li>
-                                <li>• Help her to explain the 2nd-grade math concepts to her son</li>
-                            </ul>
-                        </div>
-
-                        <!-- Favorite Brand Section: Fixed height -->
-                        <div class="h-[100px]">
-                            <h4 class="text-3xl font-bold mb-4">FAVORITE BRAND</h4>
-                            <div class="flex items-center gap-4">
-                                <img src="/assets/icon-youtube.png" alt="YouTube" class="w-12 h-12">
-                                <img src="/assets/icon-instagram.png" alt="Instagram" class="w-12 h-12">
-                                <img src="/assets/icon-facebook.png" alt="Facebook" class="w-12 h-12">
-                                <img src="/assets/icon-amazon.png" alt="Amazon" class="w-12 h-12">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- User Flow Section -->
-        <section id="user-flow" class="max-w-7xl mx-auto">
-            <h2 class="section-title">User Flow</h2>
-            <p class="text-center text-slate-600 -mt-10 mb-12 text-xl font-semibold">The First Time Users:</p>
-
-            <div class="grid md:grid-cols-2 gap-x-16 relative">
-                <!-- Parent Flow -->
-                <div>
-                    <h3 class="text-2xl font-bold text-center mb-8" style="color: var(--primary-green-dark);">User:
-                        Parent</h3>
-                    <div class="relative flex flex-col items-center">
-                        <div class="flow-step">
-                            <div class="font-bold">Register a New Account</div>
-                        </div>
-                        <div class="flow-connector">
-                            <div class="flow-connector-vertical"></div>
-                        </div>
-                        <div class="flow-step w-64">
-                            <h4 class="font-bold">Features Introduction</h4>
-                        </div>
-                        <div class="flow-connector">
-                            <div class="flow-connector-vertical"></div>
-                        </div>
-                        <div class="flow-diamond">
-                            <div class="flow-diamond-text">Create an Account for Child</div>
-                        </div>
-                        <div class="flow-connector">
-                            <div class="flow-connector-vertical"></div>
-                        </div>
-                        <div class="flow-diamond">
-                            <div class="flow-diamond-text">Link with a Parent's Account</div>
-                        </div>
-                        <div class="flow-connector">
-                            <div class="flow-connector-vertical"></div>
-                        </div>
-                        <div class="flow-step">
-                            <div class="font-bold">Parent's Account Introduction</div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Child Flow -->
-                <div>
-                    <h3 class="text-2xl font-bold text-center mb-8" style="color: var(--accent-orange);">User: Child
-                    </h3>
-                    <div class="relative flex flex-col items-center">
-                        <div class="flow-step w-64" style="border-color: var(--accent-orange);">
-                            <h4 class="font-bold">Create a Child Profile</h4>
-                        </div>
-                        <div class="flow-connector">
-                            <div class="flow-connector-vertical"></div>
-                        </div>
-                        <div class="flow-step w-64" style="border-color: var(--accent-orange);">
-                            <h4 class="font-bold">Learning Partner (Mascot) Introduction</h4>
-                        </div>
-                        <div class="flow-connector">
-                            <div class="flow-connector-vertical"></div>
-                        </div>
-                        <div class="flow-step w-64" style="border-color: var(--accent-orange);">
-                            <h4 class="font-bold">Practice Small Mathematics' Game</h4>
-                            <p class="text-xs text-slate-500 mt-1">Note: Knowing the user's level of knowledge</p>
-                        </div>
-                        <div class="flow-connector">
-                            <div class="flow-connector-vertical"></div>
-                        </div>
-                        <div class="flow-step w-64" style="border-color: var(--accent-orange);">
-                            <h4 class="font-bold">Recommendation for the Next Step</h4>
-                        </div>
-                        <div class="flow-connector">
-                            <div class="flow-connector-vertical"></div>
-                        </div>
-                        <div class="flow-step w-64 font-bold p-4 text-white"
-                            style="background-color: var(--accent-orange); border-color: var(--accent-orange);">
-                            <h4>Homepage</h4>
-                            <p class="text-xs font-normal text-white/80 mt-1">Note: Using "Modal Panel" to introduce
-                                functionalities</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SVG Connector -->
-                <svg class="absolute top-0 left-0 w-full h-full pointer-events-none hidden md:block" aria-hidden="true"
-                    style="z-index: -1;">
-                    <defs>
-                        <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                            <polygon points="0 0, 8 3, 0 6" fill="#9ca3af" />
-                        </marker>
-                    </defs>
-                    <path d="M 48% 96% C 55% 96%, 55% 8%, 52% 8%" stroke="#9ca3af" stroke-width="2" fill="none"
-                        stroke-dasharray="8 4" marker-end="url(#arrowhead)" />
+                <span>Scroll</span>
+                <svg class="arrow-right" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
                 </svg>
             </div>
+            <div class="projects-container-horizontal">
 
-            <!-- User Flow for Return Users -->
-            <div class="mt-24">
-                <h3 class="text-center text-3xl font-bold mb-12" style="color: var(--primary-green-dark);">User task
-                    flow : Return User - Child</h3>
-                <div class="flex flex-col items-center">
-                    <!-- Main Container -->
-                    <div class="max-w-6xl w-full">
-                        <div class="bg-white rounded-xl shadow-lg p-8">
-                            <img src="/assets/user-flow-return-user.png" alt="User flow diagram for return users"
-                                class="w-full object-contain"
-                                style="border: 2px dashed #daedbf; border-radius: 12px; padding: 2rem;">
+                <article id="project-1" class="project-panel">
+                    <div class="project-info">
+                        <h2>TENUP</h2>
+                        <p class="work-type">Personal work</p>
+                        <p class="description">An educational app concept focused on visual design and mascot creation
+                            to make learning more engaging for young students.</p>
+                        <div class="project-keywords">
+                            <span class="highlight">Visual Design</span>
+                            <span class="highlight">Mascot</span>
+                            <span>Education</span>
                         </div>
+                        <a href="/tenup.html"
+                            class="inline-block rounded-full border-2 border-black px-6 py-3 font-semibold text-black transition hover:bg-[--project1-color] hover:border-[--project1-color] hover:text-white">
+                            View Case Study
+                        </a>
                     </div>
-                </div>
+                    <div class="project-image-container bg-[#FAF8ED]">
+                        <img src="/assets/mockup-tenup.png" alt="TENUP App Mockup" class="project-mockup">
+                    </div>
+                </article>
+
+                <article id="project-2" class="project-panel">
+                    <div class="project-info">
+                        <h2>Spirits</h2>
+                        <p class="work-type">Personal work</p>
+                        <p class="description">A dating app concept that prioritizes personality over appearance by
+                            blurring photos and guiding conversations to foster genuine connections.</p>
+                        <div class="project-keywords">
+                            <span class="highlight">Innovative</span>
+                            <span class="highlight">Design Thinking</span>
+                            <span>Dating App</span>
+                        </div>
+                        <a href="#"
+                            class="inline-block rounded-full border-2 border-black px-6 py-3 font-semibold text-black transition hover:bg-[--project2-color] hover:border-[--project2-color] hover:text-white">
+                            View Case Study
+                        </a>
+                    </div>
+                    <div class="project-image-container">
+                        <img src="/assets/mockup-spirits.png" alt="Spirits App Mockup" class="project-mockup">
+                    </div>
+                </article>
+
+                <article id="project-3" class="project-panel">
+                    <div class="project-info">
+                        <h2>ROBLOX</h2>
+                        <p class="work-type">Team work</p>
+                        <p class="description">A re-design proposal for the ROBLOX platform, focusing on improving
+                            parental controls and overall visual design for a safer user experience.</p>
+                        <div class="project-keywords">
+                            <span class="highlight">Visual Design</span>
+                            <span class="highlight">Re-Design</span>
+                            <span>Parental Control</span>
+                        </div>
+                        <a href="#"
+                            class="inline-block rounded-full border-2 border-black px-6 py-3 font-semibold text-black transition hover:bg-[--project3-color] hover:border-[--project3-color] hover:text-white">
+                            View Case Study
+                        </a>
+                    </div>
+                    <div class="project-image-container">
+                        <img src="/assets/mockup-roblox.png" alt="ROBLOX Platform Mockup" class="project-mockup">
+                    </div>
+                </article>
+
+                <article id="project-4" class="project-panel">
+                    <div class="project-info">
+                        <h2>Walmart</h2>
+                        <p class="work-type">Team work</p>
+                        <p class="description">An exploration of how Augmented Reality could be integrated into the
+                            Walmart shopping experience, empathizing with user needs for a re-designed, futuristic
+                            retail journey.</p>
+                        <div class="project-keywords">
+                            <span class="highlight">Empathize</span>
+                            <span class="highlight">Re-Design</span>
+                            <span>AR/VR</span>
+                        </div>
+                        <a href="#"
+                            class="inline-block rounded-full border-2 border-black px-6 py-3 font-semibold text-black transition hover:bg-[--project4-color] hover:border-[--project4-color] hover:text-white">
+                            View Case Study
+                        </a>
+                    </div>
+                    <div class="project-image-container">
+                        <img src="/assets/mockup-walmart.png" alt="Walmart AR App Mockup" class="project-mockup">
+                    </div>
+                </article>
+
             </div>
         </section>
 
-        <!-- Wireframes Section -->
-        <section id="wireframes" class="max-w-full mx-auto">
-            <h2 class="section-title">Wireframes</h2>
-            <div class="flex overflow-x-auto space-x-8 pb-4 px-8 horizontal-scroll-container">
-                <!-- Wireframe 1: Homepage -->
-                <div class="text-center flex-shrink-0">
-                    <div class="phone-mockup transform origin-center"
-                        style="width: 500px; height: 250px; margin: 44px 0;">
-                        <div class="phone-screen bg-gray-50 p-4 flex items-center justify-center">
-                            <img src="/assets/wireframe-1.png" alt="Homepage wireframe"
-                                class="w-full h-full object-contain">
-                        </div>
-                    </div>
-                    <p class="mt-2 font-semibold">Homepage</p>
-                </div>
-                <!-- Wireframe 2: Sub-Category -->
-                <div class="text-center flex-shrink-0">
-                    <div class="phone-mockup transform origin-center"
-                        style="width: 500px; height: 250px; margin: 44px 0;">
-                        <div class="phone-screen bg-gray-50 p-4 flex items-center justify-center">
-                            <img src="/assets/wireframe-2.png" alt="Sub-Category wireframe"
-                                class="w-full h-full object-contain">
-                        </div>
-                    </div>
-                    <p class="mt-2 font-semibold">Sub-Category</p>
-                </div>
-                <!-- Wireframe 3: Class Page -->
-                <div class="text-center flex-shrink-0">
-                    <div class="phone-mockup transform origin-center"
-                        style="width: 500px; height: 250px; margin: 44px 0;">
-                        <div class="phone-screen bg-gray-50 p-4 flex items-center justify-center">
-                            <img src="/assets/wireframe-3.png" alt="Class Page wireframe"
-                                class="w-full h-full object-contain">
-                        </div>
-                    </div>
-                    <p class="mt-2 font-semibold">Class Page</p>
-                </div>
-                <!-- Wireframe 4: Class-Learning Video -->
-                <div class="text-center flex-shrink-0">
-                    <div class="phone-mockup transform origin-center"
-                        style="width: 500px; height: 250px; margin: 44px 0;">
-                        <div class="phone-screen bg-gray-50 p-4 flex items-center justify-center">
-                            <img src="/assets/wireframe-4.png" alt="Class-Learning Video wireframe"
-                                class="w-full h-full object-contain">
-                        </div>
-                    </div>
-                    <p class="mt-2 font-semibold">Class-Learning Video</p>
-                </div>
-                <!-- Wireframe 5: Challenge -->
-                <div class="text-center flex-shrink-0">
-                    <div class="phone-mockup transform origin-center"
-                        style="width: 500px; height: 250px; margin: 44px 0;">
-                        <div class="phone-screen bg-gray-50 p-4 flex items-center justify-center">
-                            <img src="/assets/wireframe-5.png" alt="Challenge wireframe"
-                                class="w-full h-full object-contain">
-                        </div>
-                    </div>
-                    <p class="mt-2 font-semibold">Challenge</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Prototype Section -->
-        <section id="prototype" class="relative max-w-full mx-auto">
-            <!-- Title outside the wooden hand background -->
-            <h2 class="section-title">Prototype Screens</h2>
-
-            <!-- Wooden hand background container -->
-            <div class="relative mx-auto min-h-[60vh] flex flex-col items-center justify-center"
-                style="background-size: contain;">
-
-                <!-- Phone mockup container -->
-                <div class="relative">
-                    <!-- Phone mockup with interactive screen -->
-                    <div class="phone-mockup transform origin-center scale-150" style="width: 500px; height: 250px;">
-                        <div id="phone-screen"
-                            class="bg-transparent phone-screen p-4 flex items-center justify-center cursor-pointer relative overflow-hidden">
-                            <!-- Video element -->
-                            <video id="prototype-video" class="absolute inset-0 w-full h-full object-cover hidden"
-                                src="/assets/video-prototype.mp4"></video>
-                            <!-- Initial static content -->
-                            <div id="static-content"
-                                class="relative z-10 flex items-center justify-center w-full h-full">
-                                <div class="text-center">
-                                    <h3 class="text-xl font-bold mb-4 text-[#007042]">Click to Play Demo</h3>
-                                    <img src="/assets/panda.png" alt="Tenup Mascot" class="w-20 h-20 mx-auto mb-2">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Design System Section -->
-        <section id="design-system" class="max-w-7xl mx-auto">
-            <h2 class="section-title">Design Highlight</h2>
-
-            <!-- Design Pages Carousel -->
-            <div class="mb-16 relative">
-                <div class="overflow-hidden relative">
-                    <div id="slider-container" class="flex transition-transform duration-500 ease-in-out">
-                        <!-- Design Page 1 -->
-                        <div class="min-w-full">
-                            <img src="/assets/design-page-1.jpg" alt="Design System Page 1"
-                                class="w-full rounded-xl shadow-lg">
-                        </div>
-                        <!-- Design Page 2 -->
-                        <div class="min-w-full">
-                            <img src="/assets/design-page-2.jpg" alt="Design System Page 2"
-                                class="w-full rounded-xl shadow-lg">
-                        </div>
-                        <!-- Design Page 3 -->
-                        <div class="min-w-full">
-                            <img src="/assets/design-page-3.jpg" alt="Design System Page 3"
-                                class="w-full rounded-xl shadow-lg">
-                        </div>
-                        <!-- Design Page 4 -->
-                        <div class="min-w-full">
-                            <img src="/assets/design-page-4.jpg" alt="Design System Page 4"
-                                class="w-full rounded-xl shadow-lg">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Navigation Buttons -->
-                <button id="prev-slide"
-                    class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 backdrop-blur-sm text-gray-800 p-2 rounded-full shadow-lg hover:bg-white transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                    </svg>
-                </button>
-                <button id="next-slide"
-                    class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 backdrop-blur-sm text-gray-800 p-2 rounded-full shadow-lg hover:bg-white transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                </button>
-
-                <!-- Dots Navigation -->
-                <div class="flex justify-center mt-4 space-x-2">
-                    <button data-slide="0"
-                        class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors slide-dot active"></button>
-                    <button data-slide="1"
-                        class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors slide-dot"></button>
-                    <button data-slide="2"
-                        class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors slide-dot"></button>
-                    <button data-slide="3"
-                        class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors slide-dot"></button>
-                </div>
-            </div>
-
-            <div class="mt-24">
-                <h3 class="text-center text-3xl font-bold mb-12" style="color: var(--primary-green-dark);">Design System
-                </h3>
-                <!-- Main Container -->
-                 <div class="max-w-6xl mx-auto">
-                    <img src="/assets/design-system.png" alt="Design System" class="w-full rounded-xl shadow-lg">
-                </div>
-                <h3 class="text-center text-3xl font-bold mb-12" style="color: var(--primary-green-dark);"> 
-                </h3>
-                <div class="bg-white p-8 md:p-12 rounded-2xl shadow-lg">
-                    <!-- Color Palette -->
-                    <div>
-                        <h3 class="text-2xl font-bold mb-6">Color Palette</h3>
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-                            <div class="text-center">
-                                <div class="w-full h-24 rounded-lg shadow-inner"
-                                    style="background-color: var(--primary-green-dark);"></div>
-                                <p class="mt-2 font-semibold">Primary Green</p>
-                                <p class="text-sm text-slate-500">#007042</p>
-                            </div>
-                            <div class="text-center">
-                                <div class="w-full h-24 rounded-lg shadow-inner"
-                                    style="background-color: var(--primary-green-light);"></div>
-                                <p class="mt-2 font-semibold">Light Green</p>
-                                <p class="text-sm text-slate-500">#daedbf</p>
-                            </div>
-                            <div class="text-center">
-                                <div class="w-full h-24 rounded-lg shadow-inner"
-                                    style="background-color: var(--accent-orange);"></div>
-                                <p class="mt-2 font-semibold">Accent Orange</p>
-                                <p class="text-sm text-slate-500">#ff9900</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Typography -->
-                    <div class="mt-12">
-                        <h3 class="text-2xl font-bold mb-6">Typography</h3>
-                        <div class="space-y-4">
-                            <div>
-                                <p class="text-sm text-slate-500">Heading</p>
-                                <p class="text-4xl font-bold">Poppins Bold</p>
-                            </div>
-                            <div>
-                                <p class="text-sm text-slate-500">Body</p>
-                                <p class="text-base">Poppins Regular</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Buttons -->
-                    <div class="mt-12">
-                        <h3 class="text-2xl font-bold mb-6">Buttons</h3>
-                        <div class="flex flex-wrap gap-4 items-center">
-                            <button class="px-6 py-3 rounded-lg text-white font-bold shadow"
-                                style="background-color: var(--primary-green-dark);">Primary Button</button>
-                            <button class="px-6 py-3 rounded-lg font-bold"
-                                style="background-color: var(--primary-green-light); color: var(--primary-green-dark);">Secondary
-                                Button</button>
-                        </div>
-                    </div>
+        <section id="footer">
+            <div>
+                <h2 class="text-4xl md:text-5xl font-bold">Let's create something together.</h2>
+                <p class="mt-4 text-xl text-gray-400">zheng9thdesign@gmail.com</p>
+                <div class="mt-8 flex justify-center space-x-6">
+                    <a href="https://www.linkedin.com/in/huaqian-zheng-9920b330a/"
+                        class="inline-block rounded-full border-2 border-gray-400 px-6 py-3 font-semibold text-gray-400 transition hover:border-white hover:text-white"
+                        aria-label="LinkedIn">
+                        LinkedIn
+                    </a>
+                    <a href="https://www.behance.net/HQUXdesign"
+                        class="inline-block rounded-full border-2 border-gray-400 px-6 py-3 font-semibold text-gray-400 transition hover:border-white hover:text-white"
+                        aria-label="Behance">
+                        Behance
+                    </a>
                 </div>
             </div>
         </section>
@@ -963,129 +574,146 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Design Pages Carousel ---
-            const sliderContainer = document.getElementById('slider-container');
-            const prevButton = document.getElementById('prev-slide');
-            const nextButton = document.getElementById('next-slide');
-            const dots = document.querySelectorAll('.slide-dot');
-            let currentSlide = 0;
-            const totalSlides = 4;
-
-            function updateSlider() {
-                sliderContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-                // Update dots
-                dots.forEach((dot, index) => {
-                    if (index === currentSlide) {
-                        dot.classList.add('bg-gray-800');
-                        dot.classList.remove('bg-gray-300');
-                    } else {
-                        dot.classList.remove('bg-gray-800');
-                        dot.classList.add('bg-gray-300');
-                    }
-                });
+            // --- Mobile Menu Toggle ---
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
             }
 
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % totalSlides;
-                updateSlider();
-            }
-
-            function prevSlide() {
-                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-                updateSlider();
-            }
-
-            // Event Listeners
-            prevButton.addEventListener('click', prevSlide);
-            nextButton.addEventListener('click', nextSlide);
-
-            // Dot navigation
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    currentSlide = index;
-                    updateSlider();
-                });
-            });
-
-            // Auto-advance slides every 5 seconds
-            setInterval(nextSlide, 5000);
-
-            // --- Prototype Video Interaction ---
-            const phoneScreen = document.getElementById('phone-screen');
-            const prototypeVideo = document.getElementById('prototype-video');
-            const staticContent = document.getElementById('static-content');
-
-            if (phoneScreen && prototypeVideo && staticContent) {
-                phoneScreen.addEventListener('click', () => {
-                    staticContent.classList.add('hidden');
-                    prototypeVideo.classList.remove('hidden');
-                    prototypeVideo.play();
-                });
-
-                prototypeVideo.addEventListener('ended', () => {
-                    prototypeVideo.classList.add('hidden');
-                    staticContent.classList.remove('hidden');
-                });
-            }
-
-            // --- Global Menu Toggle ---
-            const globalMenuBtn = document.getElementById('global-menu-btn');
-            const globalMobileMenu = document.getElementById('global-mobile-menu');
-            if (globalMenuBtn && globalMobileMenu) {
-                globalMenuBtn.addEventListener('click', () => {
-                    globalMobileMenu.classList.toggle('hidden');
-                    // Hide project menu when global menu is toggled
-                    projectMobileMenu.classList.add('hidden');
-                });
-            }
-
-            // --- Project Menu Toggle ---
-            const projectMenuBtn = document.getElementById('project-menu-btn');
-            const projectMobileMenu = document.getElementById('project-mobile-menu');
-            if (projectMenuBtn && projectMobileMenu) {
-                projectMenuBtn.addEventListener('click', () => {
-                    projectMobileMenu.classList.toggle('hidden');
-                    // Hide global menu when project menu is toggled
-                    globalMobileMenu.classList.add('hidden');
-                });
-            }
-
-            // Close menus when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('#global-menu-btn') && !e.target.closest('#global-mobile-menu')) {
-                    globalMobileMenu?.classList.add('hidden');
-                }
-                if (!e.target.closest('#project-menu-btn') && !e.target.closest('#project-mobile-menu')) {
-                    projectMobileMenu?.classList.add('hidden');
-                }
-            });
-
-            // --- Nav Link Highlighting on Scroll ---
+            // --- Nav Link Highlighting ---
             const navLinks = document.querySelectorAll('.nav-link');
-            const sectionsToObserve = document.querySelectorAll('section[id]');
-
+            const sectionsToObserve = document.querySelectorAll('#projects-section, #footer, #hero');
             const navObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const id = entry.target.id;
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${id}`) {
-                                link.classList.add('active');
-                            }
-                        });
-                    }
-                });
-            }, {
-                rootMargin: "-40% 0px -40% 0px",
-                threshold: 0
-            });
+                const intersectingEntry = entries.find(entry => entry.isIntersecting);
+                if (!intersectingEntry) return;
 
-            sectionsToObserve.forEach(section => {
-                navObserver.observe(section);
-            });
+                const visibleSectionId = intersectingEntry.target.id;
+                let activeHref = '#';
+                if (visibleSectionId === 'hero' || visibleSectionId === 'projects-section') {
+                    activeHref = '#projects-section';
+                } else if (visibleSectionId === 'footer') {
+                    activeHref = '#footer';
+                }
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === activeHref);
+                });
+            }, { threshold: 0.6 });
+            sectionsToObserve.forEach(section => { navObserver.observe(section); });
+
+            // --- Project Pages Carousel ---
+            const projectsSection = document.getElementById('projects-section');
+            const horizontalContainer = document.querySelector('.projects-container-horizontal');
+            const leftArrow = document.querySelector('.arrow-left');
+            const rightArrow = document.querySelector('.arrow-right');
+            const projectPanels = document.querySelectorAll('.project-panel');
+
+            if (projectsSection && horizontalContainer) {
+                const totalPanels = projectPanels.length;
+                let currentPanel = 0;
+
+                function updateSlider() {
+                    horizontalContainer.style.transition = 'transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
+                    const newTransform = -currentPanel * window.innerWidth;
+                    horizontalContainer.style.transform = `translateX(${newTransform}px)`;
+                    leftArrow.classList.toggle('disabled', currentPanel === 0);
+                    rightArrow.classList.toggle('disabled', currentPanel === totalPanels - 1);
+                    projectPanels.forEach((panel, index) => {
+                        panel.classList.toggle('is-visible', index === currentPanel);
+                    });
+                }
+
+                function nextSlide() {
+                    if (currentPanel < totalPanels - 1) {
+                        currentPanel++;
+                        updateSlider();
+                    }
+                }
+
+                function prevSlide() {
+                    if (currentPanel > 0) {
+                        currentPanel--;
+                        updateSlider();
+                    }
+                }
+
+                // Event Listeners
+                leftArrow.addEventListener('click', prevSlide);
+                rightArrow.addEventListener('click', nextSlide);
+
+                let wheelTimeout;
+                projectsSection.addEventListener('wheel', (event) => {
+                    clearTimeout(wheelTimeout);
+                    wheelTimeout = setTimeout(() => {
+                        if (event.deltaY > 50) {
+                            // If we're at the last panel, don't prevent default scroll
+                            if (currentPanel < totalPanels - 1) {
+                                event.preventDefault();
+                                nextSlide();
+                            }
+                        } else if (event.deltaY < -50) {
+                            // Always prevent default when scrolling up in the projects section
+                            event.preventDefault();
+                            prevSlide();
+                        }
+                    }, 50);
+                }, { passive: false });
+
+                // Touch and mouse drag support
+                let isDragging = false, startX, currentX;
+
+                const dragStart = (e) => {
+                    isDragging = true;
+                    startX = e.pageX || e.touches[0].pageX;
+                    horizontalContainer.style.transition = 'none';
+                    projectsSection.style.cursor = 'grabbing';
+                };
+
+                const dragMove = (e) => {
+                    if (!isDragging) return;
+                    currentX = e.pageX || e.touches[0].pageX;
+                    const diff = currentX - startX;
+                    horizontalContainer.style.transform = `translateX(${-currentPanel * window.innerWidth + diff}px)`;
+                };
+
+                const dragEnd = () => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    projectsSection.style.cursor = 'grab';
+                    const diff = currentX - startX;
+                    if (Math.abs(diff) > window.innerWidth / 4) {
+                        if (diff > 0) {
+                            prevSlide();
+                        } else {
+                            nextSlide();
+                        }
+                    } else {
+                        updateSlider();
+                    }
+                };
+
+                projectsSection.addEventListener('mousedown', dragStart);
+                projectsSection.addEventListener('mousemove', dragMove);
+                projectsSection.addEventListener('mouseup', dragEnd);
+                projectsSection.addEventListener('mouseleave', dragEnd);
+                projectsSection.addEventListener('touchstart', dragStart, { passive: true });
+                projectsSection.addEventListener('touchmove', dragMove, { passive: true });
+                projectsSection.addEventListener('touchend', dragEnd);
+
+                // Initialize
+                updateSlider();
+            }
+
+            // --- Hero Arrow Scroll ---
+            const arrow = document.querySelector('.scroll-arrow');
+            if (arrow) {
+                arrow.addEventListener('click', () => {
+                    projectsSection.scrollIntoView({ behavior: 'smooth' });
+                });
+            }
         });
     </script>
+
 </body>
 
 </html>

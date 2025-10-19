@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walmart App Redesign - UX Project Presentation</title>
+    <link rel="icon" type="image/png" href="/assets/fav.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .slide {
+            background-color: white;
+            border-radius: 1.5rem;
+            padding: 3rem 4rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            min-height: 95vh;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .slide:hover {
+            transform: translateY(-5px);
+        }
+
+        .walmart-blue {
+            color: #0071ce;
+        }
+
+        .walmart-yellow {
+            color: #ffc220;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-weight: 700;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #ffc220;
+            border-radius: 2px;
+        }
+
+        .table-header {
+            background-color: #e0f2fe;
+            font-weight: 600;
+        }
+
+        .persona-card {
+            transition: all 0.3s ease;
+        }
+
+        .persona-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+    </style>
+</head>
+
+<body class="p-4 sm:p-8">
+    <header class="fixed top-0 left-0 right-0 z-50 p-4">
+        <div class="container mx-auto max-w-7xl px-4">
+            <nav
+                class="flex justify-between items-center bg-white bg-opacity-50 backdrop-blur-md rounded-full py-2 px-6 border border-gray-200 shadow-sm">
+                <a href="/" class="text-xl font-bold">9thDesign</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/tenup.html" class="text-gray-600 hover:text-black transition-colors">Tenup</a>
+                    <a href="/spirits.html" class="text-gray-600 hover:text-black transition-colors">Spirits</a>
+                    <a href="/roblox.html" class="text-gray-600 hover:text-black transition-colors">Roblox</a>
+                    <a href="/walmart.html" class="text-blue-600 font-semibold">Walmart</a>
+                </div>
+                <a href="mailto:zheng9thdesign@gmail.com"
+                    class="hidden md:block bg-black text-white font-semibold px-5 py-2 rounded-full hover:bg-gray-800 transition-colors">
+                    Get in Touch
+                </a>
+                <button id="menu-btn"
+                    class="md:hidden p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </nav>
+        </div>
+        <div id="mobile-menu"
+            class="hidden md:hidden mt-2 bg-white bg-opacity-70 backdrop-blur-md rounded-lg border border-gray-200 p-4 mx-4">
+            <a href="/tenup.html"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Tenup</a>
+            <a href="/spirits.html"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Spirits</a>
+            <a href="/roblox.html"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Roblox</a>
+            <a href="/walmart.html" class="block text-blue-600 font-semibold py-2 text-center">Walmart</a>
+            <a href="mailto:zheng9thdesign@gmail.com"
+                class="block mt-4 bg-black text-white font-semibold px-4 py-2 rounded-full text-center hover:bg-gray-800 transition-colors">
+                Get in Touch
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Slide 1: Title Page -->
+        <div id="home"
+            class="slide flex flex-col items-center justify-center text-center bg-gradient-to-br from-blue-50 to-white">
+            <svg class="w-28 h-28 text-walmart-blue mb-6" viewBox="0 0 1024 1024" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M913.9 443.3L822.4 275.2l-3.2-5.4-4.2-1.3-5.2.1-4.2 2.3-3.2 4.4-1.3 5.4 1 5.7.8 5.4-1.3 5.2-3.2 4.2-4.2 2.2-5.2.3-5.3-1-4.3-3-3.3-4.2-1.3-5.4-.2-5.7.8-5.4 2.2-4.2 4.2-3.2 5.2-1.3 5.4-1 5.7-.2 5.4.8 4.2 2.2 3.2 4.2 1.3 5.4.3 5.7-.8 4.4-2.2 3.3-4.2 1.3-5.4L512 748.8l-272-471.8-1.3 5.4-4.2-1.3-3.2-2.2-2.2-3.2-.8-4.4.3-5.7 1.3-5.4 2.2-4.2 4.2-3.2 5.4-1.3 5.7.2 4.4 1.3 3.3 3.2 1.3 4.4-.2 5.7-1.3 5.4-2.2 4.2-4.2 3.2-5.4 1.3-5.7.2-4.4-1-3.3-2.2-2.2-3.2-1-4.4.3-5.7 1.3-5.4L199 275.2 110.1 443.3c-2.4 4.5-4.2 9.2-5.3 14.1-1.1 5.1-1.6 10.3-1.6 15.6 0 28.1 7.2 54.3 21.1 77.3 13.9 23 33.9 41.5 58.7 54.2l225.9 130.4L282.2 960.3h76.7L512 748.8l153.1 211.5h76.7L615.1 734.9l225.9-130.4c24.9-12.7 44.8-31.2 58.7-54.2 13.9-23 21.1-49.2 21.1-77.3.1-5.3-.4-10.5-1.5-15.6-1.2-4.9-3-9.6-5.4-14.1z" />
+            </svg>
+            <h1 class="text-6xl font-extrabold text-walmart-blue">Walmart</h1>
+            <p class="text-3xl font-light text-gray-600 mt-2">A Shopping Mobile App Redesign</p>
+            <p class="text-xl text-gray-500 mt-2">Enhance the Walmart app with an AR/VR feature</p>
+
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-16 gap-y-10 text-left">
+                <div>
+                    <h3 class="font-bold text-gray-800 text-lg">Research</h3>
+                    <p class="text-gray-600">Huaqian Zheng<br>Natalia Agapova</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-800 text-lg">Design</h3>
+                    <p class="text-gray-600">Fatima Shahsuvarova</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-800 text-lg">Prototype</h3>
+                    <p class="text-gray-600">Aakanksha Soni<br>Luda Boss</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-800 text-lg">Testing</h3>
+                    <p class="text-gray-600">Andrew Nguyen</p>
+                </div>
+                <div class="col-span-2 md:col-span-1 lg:col-auto">
+                    <h3 class="font-bold text-gray-800 text-lg">UI/UX Project</h3>
+                    <p class="text-gray-600">Fatima Shahsuvarova</p>
+                </div>
+            </div>
+
+            <div class="mt-24 border-t-2 border-gray-200 pt-10 w-full max-w-5xl">
+                <h2 class="text-3xl font-bold text-gray-700 mb-6">Table of Contents</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-5 text-sm text-gray-600">
+                    <div
+                        class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow">
+                        <strong class="text-gray-800 block text-base mb-1">Research</strong>Company Analysis<br>User
+                        Analysis<br>Competitor Analysis<br>Persona
+                    </div>
+                    <div
+                        class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow">
+                        <strong class="text-gray-800 block text-base mb-1">Design</strong>User Task
+                        Flows<br>Wireframes<br>Style Guide
+                    </div>
+                    <div
+                        class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow">
+                        <strong class="text-gray-800 block text-base mb-1">Prototype</strong>Hi-fi Prototypes
+                    </div>
+                    <div
+                        class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow">
+                        <strong class="text-gray-800 block text-base mb-1">Test</strong>Testing Results<br>Testing
+                        Insights
+                    </div>
+                    <div
+                        class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow">
+                        <strong class="text-gray-800 block text-base mb-1">Refined Prototype</strong>Refined prototype
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Research -->
+        <div id="research" class="slide">
+            <h2 class="section-title">Research</h2>
+            <div class="grid md:grid-cols-2 gap-20 items-start">
+                <div class="bg-gray-50 p-8 rounded-2xl">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-walmart-blue pb-3">Business Goal
+                    </h3>
+                    <ul class="space-y-6 text-lg text-gray-700">
+                        <li class="flex items-start"><i data-lucide="target"
+                                class="w-8 h-8 mr-4 mt-1 text-walmart-blue flex-shrink-0"></i><span><strong
+                                    class="font-semibold text-gray-900">Expand branding influence</strong> between young
+                                users (age 18-30).</span></li>
+                        <li class="flex items-start"><i data-lucide="trending-up"
+                                class="w-8 h-8 mr-4 mt-1 text-walmart-blue flex-shrink-0"></i><span><strong
+                                    class="font-semibold text-gray-900">Generate user stickiness</strong> among young
+                                users to motivate continuous consumption.</span></li>
+                        <li class="flex items-start"><i data-lucide="users"
+                                class="w-8 h-8 mr-4 mt-1 text-walmart-blue flex-shrink-0"></i><span><strong
+                                    class="font-semibold text-gray-900">Attract more young users</strong> (age 18-30) by
+                                focusing on AR/AI/VR integration.</span></li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-2xl">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-walmart-yellow pb-3">Company
+                        Background</h3>
+                    <ul class="space-y-6 text-lg text-gray-700">
+                        <li class="flex items-start"><i data-lucide="tag"
+                                class="w-8 h-8 mr-4 mt-1 text-walmart-blue flex-shrink-0"></i><span><strong
+                                    class="font-semibold text-gray-900">Everyday Low Prices:</strong> Aimed at
+                                budget-conscious shoppers, including families and individuals.</span></li>
+                        <li class="flex items-start"><i data-lucide="shopping-cart"
+                                class="w-8 h-8 mr-4 mt-1 text-walmart-blue flex-shrink-0"></i><span><strong
+                                    class="font-semibold text-gray-900">One-Stop Shop:</strong> Customers can find a
+                                wide variety of products under one roof.</span></li>
+                        <li class="flex items-start"><i data-lucide="heart"
+                                class="w-8 h-8 mr-4 mt-1 text-walmart-blue flex-shrink-0"></i><span><strong
+                                    class="font-semibold text-gray-900">Senior Citizens:</strong> Appreciate affordable
+                                prices on fixed incomes.</span></li>
+                        <li class="flex items-start"><i data-lucide="home"
+                                class="w-8 h-8 mr-4 mt-1 text-walmart-blue flex-shrink-0"></i><span><strong
+                                    class="font-semibold text-gray-900">Rural Communities:</strong> Serves as a primary
+                                shopping destination in many rural areas.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: User Analysis -->
+        <div id="analysis" class="slide">
+            <h2 class="section-title">User Analysis</h2>
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Targeted Users Costs & Popular Apps</h3>
+                    <p class="text-gray-600 mb-6 text-lg">The target users (age 18-30) tend to spend a significant
+                        amount on social activities. Social media applications are the most popular apps among this
+                        demographic.</p>
+                    <img src="https://placehold.co/600x400/EBF8FF/1E3A8A?text=Pie+Chart:+User+Spending"
+                        alt="Pie chart of user spending habits" class="rounded-xl shadow-lg w-full">
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Popular AR/VR Functions</h3>
+                    <p class="text-gray-600 mb-6 text-lg">The target users are more interested in VR/AR features related
+                        to social interactions.</p>
+                    <div class="space-y-4 text-base">
+                        <div class="bg-gray-50 p-4 rounded-xl border"><strong
+                                class="text-gray-900 block">Gaming:</strong> Immersive VR gaming experiences (Oculus
+                            Rift, PS VR).</div>
+                        <div class="bg-gray-50 p-4 rounded-xl border"><strong class="text-gray-900 block">Social
+                                VR:</strong> Platforms for social interaction in VR (VRChat, AltspaceVR).</div>
+                        <div class="bg-gray-50 p-4 rounded-xl border"><strong class="text-gray-900 block">AR Filters on
+                                Social Media:</strong> Effects on Instagram and Snapchat.</div>
+                        <div class="bg-gray-50 p-4 rounded-xl border"><strong class="text-gray-900 block">Virtual
+                                Tours:</strong> Explore destinations, museums, and landmarks.</div>
+                    </div>
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">User Needs</h3>
+                        <div class="grid grid-cols-3 gap-4 text-lg">
+                            <span
+                                class="flex flex-col items-center justify-center text-center text-gray-700 p-6 bg-blue-50 rounded-xl"><i
+                                    data-lucide="users-2" class="w-8 h-8 mb-2 text-walmart-blue"></i>More community
+                                connections</span>
+                            <span
+                                class="flex flex-col items-center justify-center text-center text-gray-700 p-6 bg-yellow-50 rounded-xl"><i
+                                    data-lucide="dollar-sign" class="w-8 h-8 mb-2 text-walmart-yellow"></i>Save more
+                                money</span>
+                            <span
+                                class="flex flex-col items-center justify-center text-center text-gray-700 p-6 bg-green-50 rounded-xl"><i
+                                    data-lucide="clock" class="w-8 h-8 mb-2 text-green-500"></i>More convenience</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Competitor Analysis -->
+        <div id="competitor" class="slide">
+            <h2 class="section-title">Competitor Analysis</h2>
+            <div class="overflow-x-auto bg-white p-4 rounded-xl shadow-lg border">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-blue-50">
+                        <tr>
+                            <th scope="col"
+                                class="px-6 py-4 text-left text-sm font-semibold text-blue-900 uppercase tracking-wider">
+                                Platform</th>
+                            <th scope="col"
+                                class="px-6 py-4 text-left text-sm font-semibold text-blue-900 uppercase tracking-wider">
+                                AR/VR Status</th>
+                            <th scope="col"
+                                class="px-6 py-4 text-left text-sm font-semibold text-blue-900 uppercase tracking-wider">
+                                Function Category</th>
+                            <th scope="col"
+                                class="px-6 py-4 text-left text-sm font-semibold text-blue-900 uppercase tracking-wider">
+                                Notes</th>
+                            <th scope="col"
+                                class="px-6 py-4 text-left text-sm font-semibold text-blue-900 uppercase tracking-wider">
+                                Proposed Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap font-bold text-gray-800">Walmart / Amazon</td>
+                            <td class="px-6 py-4 whitespace-nowrap"><span
+                                    class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Launched</span>
+                            </td>
+                            <td class="px-6 py-4">AR / AI</td>
+                            <td class="px-6 py-4 text-gray-600">View furniture, TVs in home. Virtual shoe try-on.</td>
+                            <td class="px-6 py-4 text-gray-600" rowspan="2">Festival/Seasonal decoration AR function.
+                                Allow multiple products to be displayed.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap font-bold text-gray-800">Wish / ZARA / SHEIN</td>
+                            <td class="px-6 py-4 whitespace-nowrap"><span
+                                    class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Mixed</span>
+                            </td>
+                            <td class="px-6 py-4">AR / AI</td>
+                            <td class="px-6 py-4 text-gray-600">Virtual clothing try-on, AI for analyzing customer
+                                behavior.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap font-bold text-gray-800">IKEA</td>
+                            <td class="px-6 py-4 whitespace-nowrap"><span
+                                    class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Launched</span>
+                            </td>
+                            <td class="px-6 py-4">AR</td>
+                            <td class="px-6 py-4 text-gray-600">Digitally place products in a room, capture and share
+                                settings.</td>
+                            <td class="px-6 py-4 text-gray-600">Voting function: Share decoration plans with friends for
+                                voting.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap font-bold text-gray-800">Etsy</td>
+                            <td class="px-6 py-4 whitespace-nowrap"><span
+                                    class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Launched</span>
+                            </td>
+                            <td class="px-6 py-4">AR</td>
+                            <td class="px-6 py-4 text-gray-600">Buyers can test out artwork on their walls.</td>
+                            <td class="px-6 py-4 text-gray-600">Hold a contest periodically for users to share their
+                                decoration arrangements.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 5: Interview -->
+        <div class="slide">
+            <h2 class="section-title">Interview with Daniel</h2>
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <img src="https://placehold.co/128x128/EBF8FF/1E3A8A?text=D" alt="Daniel's avatar"
+                        class="rounded-full mx-auto shadow-lg border-4 border-white">
+                    <h3 class="text-3xl font-bold mt-4">Daniel</h3>
+                    <p class="text-gray-600 text-lg">Bookkeeper, 26 years old</p>
+                </div>
+                <div class="space-y-6">
+                    <div class="p-6 bg-gray-50 rounded-xl border border-gray-200">
+                        <p class="font-semibold text-gray-800 mb-2 text-lg">Q: What motivates you to shop online?</p>
+                        <p class="text-gray-700 text-base leading-relaxed">A: Online shopping makes my life easier...
+                            especially when it turns out that my refrigerator is empty and I urgently need to buy
+                            groceries. Sometimes I really need fast delivery.</p>
+                    </div>
+                    <div class="p-6 bg-blue-50 rounded-xl border border-blue-200">
+                        <p class="font-semibold text-gray-800 mb-2 text-lg">Q: Have you ever used virtual try-on
+                            features while shopping?</p>
+                        <p class="text-gray-700 text-base leading-relaxed">A: Yes, I have. I found out that Adidas had
+                            launched an augmented reality feature... It was a very cool experience for me and I think it
+                            would be great if more brands used this feature.</p>
+                    </div>
+                    <div class="p-6 bg-gray-50 rounded-xl border border-gray-200">
+                        <p class="font-semibold text-gray-800 mb-2 text-lg">Q: What do you usually buy at Walmart?</p>
+                        <p class="text-gray-700 text-base leading-relaxed">A: When I was a student, I would often visit
+                            Walmart to find school and dorm supplies at the best price... Now, I prefer to buy groceries
+                            online from Walmart.</p>
+                    </div>
+                    <div class="p-6 bg-blue-50 rounded-xl border border-blue-200">
+                        <p class="font-semibold text-gray-800 mb-2 text-lg">Q: What do you think of the Walmart app?</p>
+                        <p class="text-gray-700 text-base leading-relaxed">A: I think the app is fine, but sometimes it
+                            glitches and that really bothers me. In general, it is easy to select and order items. I
+                            also like that the app shows me exclusive online offers.</p>
+                    </div>
+                    <div class="p-6 bg-gray-50 rounded-xl border border-gray-200">
+                        <p class="font-semibold text-gray-800 mb-2 text-lg">Q: Could you please tell me more about your
+                            shopping experience at Walmart?</p>
+                        <p class="text-gray-700 text-base leading-relaxed">A: I don't like to visit Walmart because I
+                            don't feel comfortable... I think Walmart is mostly visited by older people rather than
+                            young adults like me.</p>
+                    </div>
+                    <div class="p-6 bg-blue-50 rounded-xl border border-blue-200">
+                        <p class="font-semibold text-gray-800 mb-2 text-lg">Q: What would attract you to buy necessary
+                            things in Walmart?</p>
+                        <p class="text-gray-700 text-base leading-relaxed">A: I think good deals and offers can increase
+                            my interest in shopping at Walmart because I don't want to spend too much money on
+                            essentials.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6, 7, 8: Personas -->
+        <div id="personas" class="slide">
+            <h2 class="section-title">Personas</h2>
+            <div class="space-y-16">
+                <!-- Persona 1: Jennifer -->
+                <div
+                    class="persona-card grid md:grid-cols-3 gap-10 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-3xl shadow-lg border">
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1888&auto=format&fit=crop"
+                            alt="Jennifer" class="w-48 h-48 object-cover rounded-full shadow-2xl border-4 border-white">
+                        <h3 class="text-3xl font-bold mt-5 text-gray-800">Jennifer</h3>
+                        <p class="text-gray-600 italic mt-1">"University life is fulfilling and busy."</p>
+                    </div>
+                    <div class="md:col-span-2">
+                        <h4 class="text-xl font-semibold mb-2">Bio</h4>
+                        <p class="text-gray-700 mb-6 text-base">Age: 19 | Occupation: College Student | Location:
+                            Washington D.C<br>Jennifer is a marketing student and head of the school's publicity
+                            department. She often organizes members to plan and decorate for festivals and events.</p>
+                        <div class="grid sm:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-xl font-semibold mb-3 text-green-700 flex items-center"><i
+                                        data-lucide="check-circle" class="w-5 h-5 mr-2"></i>Goals</h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                    <li>Low prices</li>
+                                    <li>Provide planning packages</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-3 text-red-700 flex items-center"><i
+                                        data-lucide="x-circle" class="w-5 h-5 mr-2"></i>Pain Points</h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                    <li>Limited budget</li>
+                                    <li>Needs multiple plans quickly</li>
+                                    <li>Lacks energy for design work</li>
+                                </ul>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <h4 class="text-xl font-semibold mb-3 text-blue-700 flex items-center"><i
+                                        data-lucide="rocket" class="w-5 h-5 mr-2"></i>Motivations</h4>
+                                <p class="text-gray-700">Distance, Convenience, Price</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Persona 2: Alice -->
+                <div
+                    class="persona-card grid md:grid-cols-3 gap-10 p-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-3xl shadow-lg border">
+                    <div class="flex flex-col items-center text-center md:order-last">
+                        <img src="https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?q=80&w=1887&auto=format&fit=crop"
+                            alt="Alice" class="w-48 h-48 object-cover rounded-full shadow-2xl border-4 border-white">
+                        <h3 class="text-3xl font-bold mt-5 text-gray-800">Alice</h3>
+                        <p class="text-gray-600 italic mt-1">"I really enjoy the time when the family comes together."
+                        </p>
+                    </div>
+                    <div class="md:col-span-2">
+                        <h4 class="text-xl font-semibold mb-2">Bio</h4>
+                        <p class="text-gray-700 mb-6 text-base">Age: 22 | Occupation: MD Postgraduate | Location:
+                            Boston<br>Alice is a busy medical student. Holidays are the only time her whole family can
+                            get together. Her parents live far from town.</p>
+                        <div class="grid sm:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-xl font-semibold mb-3 text-green-700 flex items-center"><i
+                                        data-lucide="check-circle" class="w-5 h-5 mr-2"></i>Goals</h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                    <li>Remote shopping</li>
+                                    <li>One-click shopping</li>
+                                    <li>Help parents decide</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-3 text-red-700 flex items-center"><i
+                                        data-lucide="x-circle" class="w-5 h-5 mr-2"></i>Pain Points</h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                    <li>Too busy to be home</li>
+                                    <li>Parents' house is far</li>
+                                </ul>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <h4 class="text-xl font-semibold mb-3 text-blue-700 flex items-center"><i
+                                        data-lucide="rocket" class="w-5 h-5 mr-2"></i>Motivations</h4>
+                                <p class="text-gray-700">Distance, Convenience, Price</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Persona 3: Jacob -->
+                <div
+                    class="persona-card grid md:grid-cols-3 gap-10 p-8 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-3xl shadow-lg border">
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1887&auto=format&fit=crop"
+                            alt="Jacob" class="w-48 h-48 object-cover rounded-full shadow-2xl border-4 border-white">
+                        <h3 class="text-3xl font-bold mt-5 text-gray-800">Jacob</h3>
+                        <p class="text-gray-600 italic mt-1">"Work hard, but also enjoy life to the fullest."</p>
+                    </div>
+                    <div class="md:col-span-2">
+                        <h4 class="text-xl font-semibold mb-2">Bio</h4>
+                        <p class="text-gray-700 mb-6 text-base">Age: 27 | Occupation: Stock Trader | Location: New
+                            York<br>Jacob enjoys hosting parties to unwind after work. He has a strong affinity for
+                            socializing and exploring new things.</p>
+                        <div class="grid sm:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-xl font-semibold mb-3 text-green-700 flex items-center"><i
+                                        data-lucide="check-circle" class="w-5 h-5 mr-2"></i>Goals</h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                    <li>Know everyone's preferences</li>
+                                    <li>Get party theme inspiration</li>
+                                    <li>Online shopping</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-3 text-red-700 flex items-center"><i
+                                        data-lucide="x-circle" class="w-5 h-5 mr-2"></i>Pain Points</h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                    <li>Too busy to shop in stores</li>
+                                    <li>Friends get bored at parties</li>
+                                </ul>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <h4 class="text-xl font-semibold mb-3 text-blue-700 flex items-center"><i
+                                        data-lucide="rocket" class="w-5 h-5 mr-2"></i>Motivations</h4>
+                                <p class="text-gray-700">Distance, Convenience, Price</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9, 10, 11: Flows & Wireframes -->
+        <div id="flows" class="slide">
+            <h2 class="section-title">User Task Flows & Wireframes</h2>
+            <div class="text-center">
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">User Task Flow</h3>
+                <p class="text-gray-600 mb-8 text-lg">Visual representation of the user journey for the new feature.</p>
+                <div class="bg-gray-50 p-6 rounded-2xl border shadow-inner">
+                    <img src="https://placehold.co/1200x300/EBF8FF/1E3A8A?text=User+Task+Flow+Diagram"
+                        alt="User Task Flow Diagram" class="rounded-lg shadow-md mx-auto mb-16">
+                </div>
+
+                <h3 class="text-3xl font-bold text-gray-800 mb-2 mt-20">Wireframes</h3>
+                <p class="text-gray-600 mb-8 text-lg">Low-fidelity sketches of the app screens, focusing on structure
+                    and functionality.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                    <img src="https://placehold.co/200x400/FAFAFA/777?text=Wireframe+1"
+                        class="rounded-lg border-2 hover:border-blue-500 transition-all">
+                    <img src="https://placehold.co/200x400/FAFAFA/777?text=Wireframe+2"
+                        class="rounded-lg border-2 hover:border-blue-500 transition-all">
+                    <img src="https://placehold.co/200x400/FAFAFA/777?text=Wireframe+3"
+                        class="rounded-lg border-2 hover:border-blue-500 transition-all">
+                    <img src="https://placehold.co/200x400/FAFAFA/777?text=Wireframe+4"
+                        class="rounded-lg border-2 hover:border-blue-500 transition-all">
+                    <img src="https://placehold.co/200x400/FAFAFA/777?text=Wireframe+5"
+                        class="rounded-lg border-2 hover:border-blue-500 transition-all">
+                    <img src="https://placehold.co/200x400/FAFAFA/777?text=Wireframe+6"
+                        class="rounded-lg border-2 hover:border-blue-500 transition-all">
+                    <img src="https://placehold.co/200x400/FAFAFA/777?text=Wireframe+7"
+                        class="rounded-lg border-2 hover:border-blue-500 transition-all">
+                    <img src="https://placehold.co/200x400/FAFAFA/777?text=Wireframe+8"
+                        class="rounded-lg border-2 hover:border-blue-500 transition-all">
+                    <img src="https://placehold.co/200x400/FAFAFA/777?text=Wireframe+9"
+                        class="rounded-lg border-2 hover:border-blue-500 transition-all">
+                    <img src="https://placehold.co/200x400/FAFAFA/777?text=Wireframe+10"
+                        class="rounded-lg border-2 hover:border-blue-500 transition-all">
+                    <img src="https://placehold.co/200x400/FAFAFA/777?text=Wireframe+11"
+                        class="rounded-lg border-2 hover:border-blue-500 transition-all">
+                    <img src="https://placehold.co/200x400/FAFAFA/777?text=Wireframe+12"
+                        class="rounded-lg border-2 hover:border-blue-500 transition-all">
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Prototype -->
+        <div id="prototype" class="slide">
+            <h2 class="section-title">High-Fidelity Prototype</h2>
+            <div class="text-center">
+                <p class="text-gray-600 mb-12 max-w-3xl mx-auto text-lg">High-fidelity mockups showing the final look
+                    and feel of the user interface, incorporating the branding, color scheme, and visual details.</p>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 items-center">
+                    <img src="https://placehold.co/200x400/0071CE/FFFFFF?text=Splash" alt="Splash Screen"
+                        class="rounded-2xl shadow-xl transform hover:scale-105 transition-transform">
+                    <img src="https://placehold.co/200x400/0071CE/FFFFFF?text=Login" alt="Login Screen"
+                        class="rounded-2xl shadow-xl transform hover:scale-105 transition-transform">
+                    <img src="https://placehold.co/200x400/FFFFFF/333333?text=Home" alt="Home Screen"
+                        class="rounded-2xl shadow-xl border transform hover:scale-105 transition-transform">
+                    <img src="https://placehold.co/200x400/FFFFFF/333333?text=Holiday" alt="Holiday Shop"
+                        class="rounded-2xl shadow-xl border transform hover:scale-105 transition-transform">
+                    <img src="https://placehold.co/200x400/FFFFFF/333333?text=Ideas" alt="Decoration Ideas"
+                        class="rounded-2xl shadow-xl border transform hover:scale-105 transition-transform">
+                    <img src="https://placehold.co/200x400/FFFFFF/333333?text=Product" alt="Product Page"
+                        class="rounded-2xl shadow-xl border transform hover:scale-105 transition-transform">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Project Navigation -->
+    <nav class="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+        <div class="bg-white/90 backdrop-blur-md rounded-full py-3 px-6 shadow-lg border border-gray-200/80">
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-gray-600 hover:text-black transition-colors">Home</a>
+                <a href="#research" class="text-gray-600 hover:text-black transition-colors">Research</a>
+                <a href="#analysis" class="text-gray-600 hover:text-black transition-colors">User Analysis</a>
+                <a href="#competitor" class="text-gray-600 hover:text-black transition-colors">Competitors</a>
+                <a href="#personas" class="text-gray-600 hover:text-black transition-colors">Personas</a>
+                <a href="#flows" class="text-gray-600 hover:text-black transition-colors">Flows</a>
+                <a href="#prototype" class="text-gray-600 hover:text-black transition-colors">Prototype</a>
+            </div>
+            <button id="project-menu-btn" class="md:hidden p-2 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Project Mobile Menu -->
+        <div id="project-mobile-menu" class="hidden md:hidden mt-2 bg-white/90 backdrop-blur-md rounded-lg border border-gray-200/80 p-4 shadow-lg">
+            <a href="#home" class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Home</a>
+            <a href="#research" class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Research</a>
+            <a href="#analysis" class="block text-gray-600 hover:text-black transition-colors py-2 text-center">User Analysis</a>
+            <a href="#competitor" class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Competitors</a>
+            <a href="#personas" class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Personas</a>
+            <a href="#flows" class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Flows</a>
+            <a href="#prototype" class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Prototype</a>
+        </div>
+    </nav>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (menuBtn) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Project Mobile Menu Toggle
+        const projectMenuBtn = document.getElementById('project-menu-btn');
+        const projectMobileMenu = document.getElementById('project-mobile-menu');
+        
+        if (projectMenuBtn) {
+            projectMenuBtn.addEventListener('click', () => {
+                projectMobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Close menus when clicking outside
+        document.addEventListener('click', (e) => {
+            if (menuBtn && !menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+            if (projectMenuBtn && !projectMenuBtn.contains(e.target) && !projectMobileMenu.contains(e.target)) {
+                projectMobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Update active section on scroll
+        const sections = document.querySelectorAll('.slide');
+        
+        function updateActiveSection() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 300) {
+                    current = section.querySelector('h2') ? section.querySelector('h2').textContent.toLowerCase() : '';
+                }
+            });
+
+            // Update navigation links
+            document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+                const href = link.getAttribute('href').substring(1);
+                if (current.includes(href)) {
+                    link.classList.remove('text-gray-600');
+                    link.classList.add('text-blue-600', 'font-semibold');
+                } else {
+                    link.classList.remove('text-blue-600', 'font-semibold');
+                    link.classList.add('text-gray-600');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveSection);
+        updateActiveSection(); // Initial call
+    </script>
+</body>
+
+</html>

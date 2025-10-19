@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox UX Project: A One-Page Summary</title>
+    <link rel="icon" type="image/png" href="/assets/fav.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            --bg-dark: #1B1B1B;
+            --bg-light: #FFFFFF;
+            --text-dark: #1B1B1B;
+            --text-light: #FAFAFA;
+            --border-light: #E5E5E5;
+            --border-dark: #2e2e2e;
+            --card-dark: #222222;
+            --primary-red: #FF4136;
+            --primary-yellow: #F2B705;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem;
+            overflow: hidden;
+        }
+
+        .section-dark {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        .section-light {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .section-title {
+            font-size: 3.75rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: -0.025em;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: #a3a3a3;
+            margin-bottom: 5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .section-light .section-subtitle {
+            color: #737373;
+        }
+
+        .animated-item {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animated-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Nav Link Styling */
+        .nav-link {
+            color: #737373;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--text-dark);
+        }
+
+        .nav-link.active {
+            color: var(--primary-red);
+            font-weight: 700;
+        }
+
+        .nav-dark .nav-link {
+            color: #a3a3a3;
+        }
+
+        .nav-dark .nav-link:hover {
+            color: var(--text-light);
+        }
+
+        .nav-dark .nav-link.active {
+            color: var(--primary-red);
+        }
+
+        .card {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 0 20px rgba(255, 65, 54, 0.15);
+        }
+
+        .card-dark {
+            background-color: var(--card-dark);
+            border: 1px solid var(--border-dark);
+        }
+
+        .card-dark:hover {
+            box-shadow: 0 0 25px rgba(255, 65, 54, 0.1);
+            border-color: #444;
+        }
+    </style>
+</head>
+
+<body class="antialiased bg-light">
+
+    <!-- Sticky Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 p-4">
+        <div class="container mx-auto max-w-7xl px-4">
+            <nav
+                class="flex justify-between items-center bg-white bg-opacity-50 backdrop-blur-md rounded-full py-2 px-6 border border-gray-200 shadow-sm">
+                <a href="/" class="text-xl font-bold">9thDesign</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/tenup.html" class="text-gray-600 hover:text-black transition-colors">Tenup</a>
+                    <a href="/spirits.html" class="text-gray-600 hover:text-black transition-colors">Spirits</a>
+                    <a href="/roblox.html" class="text-red-600 font-semibold">Roblox</a>
+                    <a href="/walmart.html" class="text-gray-600 hover:text-black transition-colors">Walmart</a>
+                </div>
+                <a href="mailto:zheng9thdesign@gmail.com"
+                    class="hidden md:block bg-black text-white font-semibold px-5 py-2 rounded-full hover:bg-gray-800 transition-colors">
+                    Get in Touch
+                </a>
+                <button id="menu-btn"
+                    class="md:hidden p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-500">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </nav>
+        </div>
+        <div id="mobile-menu"
+            class="hidden md:hidden mt-2 bg-white bg-opacity-70 backdrop-blur-md rounded-lg border border-gray-200 p-4 mx-4">
+            <a href="/tenup.html"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Tenup</a>
+            <a href="/spirits.html"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Spirits</a>
+            <a href="/roblox.html" class="block text-red-600 font-semibold py-2 text-center">Roblox</a>
+            <a href="/walmart.html"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Walmart</a>
+            <a href="mailto:zheng9thdesign@gmail.com"
+                class="block mt-4 bg-black text-white font-semibold px-4 py-2 rounded-full text-center hover:bg-gray-800 transition-colors">
+                Get in Touch
+            </a>
+        </div>
+    </header>
+
+    <!-- Project Navigation -->
+    <nav class="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+        <div class="bg-white/90 backdrop-blur-md rounded-full py-3 px-6 shadow-lg border border-gray-200/80">
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-gray-600 hover:text-black transition-colors">Home</a>
+                <a href="#role" class="text-gray-600 hover:text-black transition-colors">My Role</a>
+                <a href="#brief" class="text-gray-600 hover:text-black transition-colors">Brief</a>
+                <a href="#process" class="text-gray-600 hover:text-black transition-colors">Process</a>
+                <a href="#research" class="text-gray-600 hover:text-black transition-colors">Research</a>
+                <a href="#persona" class="text-gray-600 hover:text-black transition-colors">Persona</a>
+                <a href="#solution" class="text-gray-600 hover:text-black transition-colors">Solution</a>
+            </div>
+            <button id="project-menu-btn"
+                class="md:hidden p-2 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <!-- Project Mobile Menu -->
+        <div id="project-mobile-menu"
+            class="hidden md:hidden mt-2 bg-white/90 backdrop-blur-md rounded-lg border border-gray-200/80 p-4 shadow-lg">
+            <a href="#home" class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Home</a>
+            <a href="#role" class="block text-gray-600 hover:text-black transition-colors py-2 text-center">My Role</a>
+            <a href="#brief" class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Brief</a>
+            <a href="#process"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Process</a>
+            <a href="#research"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Research</a>
+            <a href="#persona"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Persona</a>
+            <a href="#solution"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Solution</a>
+        </div>
+    </nav>
+
+    <main>
+
+        <main>
+            <!-- Section 1: Title -->
+            <section id="home" class="section-dark flex-col text-center">
+                <div class="animated-item flex flex-col items-center">
+                    <svg class="w-24 h-24 mb-8" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M11.913 0.128906L0.128906 11.913V27.8711H27.8711V0.128906H11.913ZM10.5957 24.5225L3.47754 17.4043L17.4043 3.47754H24.5225V10.5957L10.5957 24.5225Z"
+                            fill="white" />
+                    </svg>
+                    <h1 class="text-7xl md:text-9xl font-extrabold mb-4 tracking-tighter">ROBLOX</h1>
+                    <h2 class="text-3xl md:text-4xl font-light text-gray-300 mb-8">UI/UX Project: Parental Control
+                        System
+                        Redesign</h2>
+                    <p class="text-lg text-gray-400">Designed by: Huaqian Zheng, Aakanskha Soni, Hein Tun</p>
+                </div>
+            </section>
+
+            <!-- Section 2: My Role -->
+            <section id="role" class="section-dark flex-col md:flex-row items-center">
+                <div class="w-full md:w-2/5 flex justify-center items-center mb-12 md:mb-0 animated-item">
+                    <img src="https://placehold.co/400x550/1B1B1B/FFFFFF?text=Illustration"
+                        alt="Abstract character illustration" class="rounded-xl shadow-2xl">
+                </div>
+                <div class="w-full md:w-1/2 md:pl-20 animated-item">
+                    <h2 class="text-6xl font-extrabold mb-10 text-center md:text-left">My Role</h2>
+                    <ul class="text-2xl space-y-5 text-gray-300 list-none">
+                        <li class="flex items-center"><span class="text-3xl mr-4"
+                                style="color: var(--primary-red);">»</span>User Research</li>
+                        <li class="flex items-center"><span class="text-3xl mr-4"
+                                style="color: var(--primary-red);">»</span>User Storyboard</li>
+                        <li class="flex items-center"><span class="text-3xl mr-4"
+                                style="color: var(--primary-red);">»</span>User Flow</li>
+                        <li class="flex items-center"><span class="text-3xl mr-4"
+                                style="color: var(--primary-red);">»</span>User Testing</li>
+                        <li class="flex items-center"><span class="text-3xl mr-4"
+                                style="color: var(--primary-red);">»</span>Usability Testing</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 3: Project Brief -->
+            <section id="brief" class="section-light flex-col">
+                <div class="max-w-4xl w-full text-center animated-item">
+                    <h2 class="section-title">Project Brief</h2>
+                    <p class="text-lg md:text-xl mb-12 text-gray-600 leading-relaxed">
+                        Parents are concerned about their children's excessive spending and screen time on Roblox. This
+                        affects family finances, academic performance, and can expose them to online risks. Our goal is
+                        to
+                        design a solution that empowers parents to manage their children's gaming habits effectively.
+                    </p>
+                    <div class="bg-gray-50 p-10 rounded-xl border-2 border-gray-200"
+                        style="border-top-color: var(--primary-red); border-top-width: 4px;">
+                        <h3 class="text-2xl font-bold mb-4">Goal</h3>
+                        <p class="text-xl text-gray-800 leading-relaxed">
+                            To resolve the concern that parents of children (13 and under) have about excessive time and
+                            money spent on Roblox.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Process -->
+            <section id="process" class="section-light flex-col">
+                <div class="max-w-6xl w-full text-center animated-item">
+                    <h2 class="section-title">Our Design Process</h2>
+                    <img src="https://placehold.co/1200x200/fafafa/1B1B1B?text=Empathize+%E2%86%92+Ideate+%E2%86%92+Prototype+%E2%86%92+Test"
+                        alt="Process timeline" class="rounded-lg shadow-md mb-20 border border-gray-200">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 text-xl">
+                        <div class="bg-white p-6 rounded-lg border border-gray-200 card">
+                            <h3 class="font-bold text-2xl mb-4 text-gray-800">1. Empathize</h3>
+                            <p class="text-gray-600">Empathy Map</p>
+                            <p class="text-gray-600">Persona</p>
+                            <p class="text-gray-600">User Storyboard</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg border border-gray-200 card">
+                            <h3 class="font-bold text-2xl mb-4 text-gray-800">2. Ideate</h3>
+                            <p class="text-gray-600">User Flow</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg border border-gray-200 card">
+                            <h3 class="font-bold text-2xl mb-4 text-gray-800">3. Prototype</h3>
+                            <p class="text-gray-600">Prototype Revision</p>
+                            <p class="text-gray-600">Hi-fi Prototype</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg border border-gray-200 card">
+                            <h3 class="font-bold text-2xl mb-4 text-gray-800">4. Test</h3>
+                            <p class="text-gray-600">Usability Testing</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Empathy Map -->
+            <section id="research" class="section-light flex-col">
+                <div class="max-w-6xl w-full animated-item">
+                    <h2 class="section-title">Empathy Map</h2>
+                    <p class="section-subtitle">Understanding the parent's perspective by mapping what they say, think,
+                        do,
+                        and feel about their children's Roblox usage.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-white p-8 rounded-xl card">
+                            <h3 class="text-2xl font-bold mb-4" style="color: var(--primary-red);">Says</h3>
+                            <p class="text-gray-600 italic text-lg">"I'm worried about how much money my kids are
+                                spending
+                                on this game. Their grades are slipping too."</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-xl card">
+                            <h3 class="text-2xl font-bold mb-4" style="color: var(--primary-red);">Thinks & Feels</h3>
+                            <p class="text-gray-600 text-lg">Anxious about online safety, guilty for not being able to
+                                monitor them effectively, and frustrated with the lack of control.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-xl card">
+                            <h3 class="text-2xl font-bold mb-4" style="color: var(--primary-red);">Does</h3>
+                            <p class="text-gray-600 text-lg">Checks bank statements frequently, tries to set verbal
+                                limits,
+                                and seeks advice from other parents online.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-xl card">
+                            <h3 class="text-2xl font-bold mb-4" style="color: var(--primary-red);">Sees</h3>
+                            <p class="text-gray-600 text-lg">Kids glued to screens for hours, notifications for in-game
+                                purchases, and signs of eye strain in her children.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Persona -->
+            <section id="persona" class="section-light flex-col">
+                <div
+                    class="max-w-6xl w-full bg-white rounded-2xl shadow-xl p-8 md:p-16 border border-gray-200 animated-item card">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+                        <div class="md:col-span-1 flex flex-col items-center text-center">
+                            <img src="https://placehold.co/200x200/f0f0f0/1B1B1B?text=Sarah"
+                                alt="Persona Sarah Williamson" class="rounded-full shadow-lg mb-6 border-4"
+                                style="border-color: var(--primary-red);">
+                            <h2 class="text-4xl font-bold">Sarah Williamson</h2>
+                            <p class="text-gray-500 mb-6">40, School Teacher</p>
+                            <div class="bg-gray-100 text-gray-700 p-4 rounded-lg italic">
+                                "I need a simple way to protect my kids and our wallet without being a helicopter
+                                parent."
+                            </div>
+                        </div>
+                        <div class="md:col-span-2 space-y-8">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">Bio</h3>
+                                <p class="text-gray-600 leading-relaxed">Sarah is a tech-savvy mother of two (11 & 14)
+                                    who
+                                    loves her kids but is increasingly worried about their digital habits on Roblox. She
+                                    wants tools that help her guide them responsibly.</p>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-3">Core Needs</h3>
+                                    <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                        <li>Peace of mind about finances</li>
+                                        <li>Ensure online safety</li>
+                                        <li>Balance gaming with school</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-3">Frustrations</h3>
+                                    <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                        <li>Unexpected in-game charges</li>
+                                        <li>Complex existing control apps</li>
+                                        <li>Arguments over screen time</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: User Storyboard -->
+            <section id="storyboard" class="section-light flex-col">
+                <div class="max-w-7xl w-full text-center animated-item">
+                    <h2 class="section-title">Sarah's Journey</h2>
+                    <p class="section-subtitle">A storyboard visualizing a parent's path from concern to control with
+                        the
+                        new parental control system.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-white p-6 rounded-xl card text-left"><img
+                                src="https://placehold.co/400x250/f3f4f6/1B1B1B?text=1.+Concern"
+                                class="w-full rounded-md mb-4">
+                            <h3 class="font-bold text-lg mb-1">Concern</h3>
+                            <p class="text-gray-600">Sarah worries about her kids' Roblox habits.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl card text-left"><img
+                                src="https://placehold.co/400x250/f3f4f6/1B1B1B?text=2.+Discovery"
+                                class="w-full rounded-md mb-4">
+                            <h3 class="font-bold text-lg mb-1">Discovery</h3>
+                            <p class="text-gray-600">She discovers the new, intuitive parental controls.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl card text-left"><img
+                                src="https://placehold.co/400x250/f3f4f6/1B1B1B?text=3.+Setup"
+                                class="w-full rounded-md mb-4">
+                            <h3 class="font-bold text-lg mb-1">Setup</h3>
+                            <p class="text-gray-600">She easily links her account and sets limits.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl card text-left"><img
+                                src="https://placehold.co/400x250/f3f4f6/1B1B1B?text=4.+Monitoring"
+                                class="w-full rounded-md mb-4">
+                            <h3 class="font-bold text-lg mb-1">Monitoring</h3>
+                            <p class="text-gray-600">She gets clear notifications about their activity.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl card text-left"><img
+                                src="https://placehold.co/400x250/f3f4f6/1B1B1B?text=5.+Intervention"
+                                class="w-full rounded-md mb-4">
+                            <h3 class="font-bold text-lg mb-1">Intervention</h3>
+                            <p class="text-gray-600">The app alerts her before limits are reached.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl card text-left"><img
+                                src="https://placehold.co/400x250/f3f4f6/1B1B1B?text=6.+Peace+of+Mind"
+                                class="w-full rounded-md mb-4">
+                            <h3 class="font-bold text-lg mb-1">Peace of Mind</h3>
+                            <p class="text-gray-600">Sarah feels confident and her kids play safer.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: User Flow -->
+            <section id="user-flow" class="section-light flex-col">
+                <div class="max-w-7xl w-full animated-item">
+                    <h2 class="section-title">User Flow</h2>
+                    <p class="section-subtitle">Mapping the parent's journey from downloading the companion app to
+                        successfully setting up spending and time limits for their child's account.</p>
+                    <img src="https://placehold.co/1200x400/fafafa/1B1B1B?text=User+Flow+Diagram"
+                        alt="User flow diagram" class="w-full rounded-xl shadow-xl border border-gray-200 mb-16">
+                    <div class="text-left max-w-5xl mx-auto grid md:grid-cols-2 gap-12 text-lg text-gray-700">
+                        <div class="bg-white p-8 rounded-lg border border-gray-200 card">
+                            <h3 class="font-bold text-2xl mb-4 text-black">Onboarding & Setup</h3>
+                            <ul class="list-decimal list-inside space-y-3">
+                                <li>Parent downloads the Roblox Companion app.</li>
+                                <li>Logs in using their existing Roblox parent account.</li>
+                                <li>Links their child's account via a secure code.</li>
+                                <li>Navigates to the main dashboard.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg border border-gray-200 card">
+                            <h3 class="font-bold text-2xl mb-4 text-black">Setting Limits</h3>
+                            <ul class="list-decimal list-inside space-y-3">
+                                <li>Selects "Set Spending Limit" from the dashboard.</li>
+                                <li>Sets a monthly budget and confirms with a PIN.</li>
+                                <li>Selects "Set Time Limit" and defines daily/weekly playtime.</li>
+                                <li>Receives confirmation that limits are active.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: Iteration -->
+            <section id="iteration" class="section-light flex-col">
+                <div class="max-w-7xl w-full animated-item">
+                    <h2 class="section-title">Iteration & Refinement</h2>
+                    <p class="section-subtitle">Based on usability testing, we identified key areas for improvement. The
+                        initial dashboard was functional but users found it data-heavy and slightly overwhelming.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <div class="text-center p-6 bg-white rounded-xl border border-gray-200 card">
+                            <h3 class="text-3xl font-bold mb-4">Before</h3>
+                            <img src="https://placehold.co/500x300/f3f4f6/1B1B1B?text=Initial+Dashboard+UI"
+                                alt="Initial dashboard design" class="rounded-lg border border-gray-200 mb-4 shadow-md">
+                            <p class="text-gray-600"><strong class="text-black">Feedback:</strong> "Too many numbers at
+                                once. I'm not sure where to look first."</p>
+                        </div>
+                        <div class="text-center p-6 bg-white rounded-xl border border-gray-200 card">
+                            <h3 class="text-3xl font-bold mb-4">After</h3>
+                            <img src="https://placehold.co/500x300/f3f4f6/1B1B1B?text=Redesigned+Dashboard+UI"
+                                alt="Redesigned dashboard" class="rounded-lg border border-gray-200 mb-4 shadow-md">
+                            <p class="text-gray-600"><strong class="text-black">Changes:</strong> Simplified the UI with
+                                visual charts for spending and time. Key actions are now more prominent.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 10: Project Solution -->
+            <section id="solution" class="section-dark flex-col">
+                <div class="w-full max-w-5xl text-center animated-item">
+                    <h2 class="section-title text-white">Project Solution</h2>
+                    <img src="https://placehold.co/1000x450/1B1B1B/444444?text=Dashboard+Mockup"
+                        alt="Function flow diagrams" class="w-full rounded-xl shadow-2xl border border-gray-700 mb-16">
+                    <div class="bg-gray-800/50 backdrop-blur-sm p-8 md:p-12 rounded-xl border border-gray-700">
+                        <h3 class="text-4xl font-bold mb-4 text-white">A Smart <span
+                                style="color: var(--primary-red);">Companion App</span> for Parents</h3>
+                        <p class="text-xl md:text-2xl text-gray-300 leading-relaxed">
+                            A dedicated Roblox companion app that provides parents with a simple dashboard to monitor
+                            spending, track playing time, and set intelligent limits. Proactive notifications alert
+                            parents
+                            before issues arise, fostering healthier gaming habits.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // Animation Observer
+                const animatedItems = document.querySelectorAll('.animated-item');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                animatedItems.forEach(item => {
+                    observer.observe(item);
+                });
+
+                // Mobile Menu Toggle
+                const menuBtn = document.getElementById('menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
+
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                // Project Mobile Menu Toggle
+                const projectMenuBtn = document.getElementById('project-menu-btn');
+                const projectMobileMenu = document.getElementById('project-mobile-menu');
+
+                projectMenuBtn.addEventListener('click', () => {
+                    projectMobileMenu.classList.toggle('hidden');
+                });
+
+                // Close menus when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    if (!projectMenuBtn.contains(e.target) && !projectMobileMenu.contains(e.target)) {
+                        projectMobileMenu.classList.add('hidden');
+                    }
+                });
+
+                // Update active section on scroll
+                const sections = document.querySelectorAll('section[id]');
+
+                function updateActiveSection() {
+                    let current = '';
+
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.clientHeight;
+                        if (window.scrollY >= sectionTop - 300) {
+                            current = section.getAttribute('id');
+                        }
+                    });
+
+                    // Update navigation links
+                    document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+                        const href = link.getAttribute('href').substring(1);
+                        if (href === current) {
+                            link.classList.remove('text-gray-600');
+                            link.classList.add('text-red-600', 'font-semibold');
+                        } else {
+                            link.classList.remove('text-red-600', 'font-semibold');
+                            link.classList.add('text-gray-600');
+                        }
+                    });
+                }
+
+                window.addEventListener('scroll', updateActiveSection);
+                updateActiveSection(); // Initial call
+            });
+        </script>
+</body>
+
+</html>
