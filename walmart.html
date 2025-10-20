@@ -166,8 +166,7 @@
                     </div>
                     <div
                         class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow">
-                        <strong class="text-gray-800 block text-base mb-1">Design</strong>User Task
-                        Flows<br>Wireframes<br>Style Guide
+                        <strong class="text-gray-800 block text-base mb-1">Design</strong>Design System<br>Wireframes<br>Style Guide
                     </div>
                     <div
                         class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow">
@@ -680,7 +679,11 @@
             // Update navigation links
             document.querySelectorAll('nav a[href^="#"]').forEach(link => {
                 const href = link.getAttribute('href').substring(1);
-                if (current.includes(href)) {
+                // Handle special case for "Design System & Wireframes" section
+                if (href === 'flows' && current.includes('design system')) {
+                    link.classList.remove('text-gray-600');
+                    link.classList.add('text-blue-600', 'font-semibold');
+                } else if (current.includes(href)) {
                     link.classList.remove('text-gray-600');
                     link.classList.add('text-blue-600', 'font-semibold');
                 } else {
