@@ -22,7 +22,7 @@
             /* TENUP */
             --project2-color: #FE7800;
             /* Spirits */
-            --project3-color: #222222;
+            --project3-color: #000;
             /* ROBLOX */
             --project4-color: #0071E7;
             /* Walmart */
@@ -49,7 +49,7 @@
 
         /* --- 2. Hero Section --- */
         #hero {
-            height: 100vh;
+            height: 50vh;
             width: 100vw;
             display: flex;
             flex-direction: column;
@@ -57,6 +57,7 @@
             justify-content: center;
             text-align: center;
             padding: 2rem;
+            padding-top: 6rem;
             opacity: 0;
             animation: fadeIn 1s 0.5s forwards;
             background-color: #ffffff;
@@ -90,8 +91,8 @@
 
         .scroll-arrow {
             margin-top: 3rem;
-            width: 28px;
-            height: 28px;
+            width: 48px;
+            height: 48px;
             animation: bounce 2s infinite ease-in-out;
             cursor: pointer;
         }
@@ -115,228 +116,123 @@
             }
         }
 
-        /* --- 3. Horizontal Scroll Section --- */
+        /* --- 3. Projects Grid Section --- */
         #projects-section {
-            height: 100vh;
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+            scroll-snap-align: start;
+            background-color: #ffffff;
+        }
+
+        .projects-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        /* --- 4. Individual Project Card Styling --- */
+        .project-card {
+            background: #ffffff;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image-container {
             position: relative;
             width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
             overflow: hidden;
-            cursor: grab;
-            scroll-snap-align: start;
         }
 
-        /* Navigation Buttons */
-        .nav-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            z-index: 20;
+        #project-1 .project-image-container {
+            background-color: var(--project1-color);
         }
 
-        .nav-button:hover {
-            background: white;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-            transform: translateY(-50%) scale(1.1);
+        #project-2 .project-image-container {
+            background-color: var(--project2-color);
         }
 
-        .nav-button-left {
-            left: 2rem;
+        #project-3 .project-image-container {
+            background-color: var(--project3-color);
         }
 
-        .nav-button-right {
-            right: 2rem;
+        #project-4 .project-image-container {
+            background-color: var(--project4-color);
         }
 
-        .nav-button.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+        .project-mockup {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
         }
 
-        /* Pagination */
-        .pagination {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 0.75rem;
-            z-index: 20;
-        }
-
-        .pagination-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .pagination-dot:hover {
-            background: rgba(0, 0, 0, 0.4);
-        }
-
-        .pagination-dot.active {
-            width: 24px;
-            border-radius: 12px;
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .scroll-hint {
-            position: absolute;
-            bottom: 5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 0.75rem 1.5rem;
-            border-radius: 99px;
-            color: #333;
-            font-weight: 500;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            opacity: 0;
-            transition: opacity 0.4s ease-out;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
-            animation: fadeInHint 0.8s 1s forwards;
-        }
-
-        .scroll-hint span {
-            margin: 0 0.75rem;
-            line-height: 20px;
-        }
-
-        .scroll-hint svg {
-            width: 20px;
-            height: 20px;
-            animation: pulse-arrows 2.5s infinite ease-in-out;
-            cursor: pointer;
-            transition: transform 0.2s ease, opacity 0.2s ease;
-        }
-
-        .scroll-hint svg:hover {
-            transform: scale(1.15);
-        }
-
-        .scroll-hint svg.disabled {
-            opacity: 0.2;
-            pointer-events: none;
-            cursor: not-allowed;
-            animation: none;
-        }
-
-        @keyframes fadeInHint {
-            from {
-                opacity: 0;
-                transform: translate(-50%, 10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(-50%);
-            }
-        }
-
-        @keyframes pulse-arrows {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.25);
-            }
-        }
-
-        .projects-container-horizontal {
-            display: flex;
-            flex-wrap: nowrap;
-            width: 400%;
-            height: 100%;
-            transform: translateX(0);
-            will-change: transform;
-            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        /* --- 4. Individual Project Styling --- */
-        .project-panel {
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 4rem;
-            gap: 4rem;
-        }
-
-        .project-panel:nth-child(even) {
-            flex-direction: row-reverse;
+        .project-card:hover .project-mockup {
+            transform: scale(1.05);
         }
 
         .project-info {
+            padding: 2rem;
             flex: 1;
-            max-width: 500px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s 0.2s ease-out, transform 0.6s 0.2s ease-out;
-        }
-
-        .project-panel.is-visible .project-info {
-            opacity: 1;
-            transform: translateY(0);
+            display: flex;
+            flex-direction: column;
         }
 
         .project-info h2 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-size: 2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
+            color: #111;
         }
 
         .project-info .work-type {
-            font-size: 1rem;
+            font-size: 0.875rem;
             font-weight: 600;
-            color: #777;
+            color: #999;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .project-info p.description {
-            font-size: 1.1rem;
-            color: #333;
+            font-size: 1rem;
+            color: #555;
             line-height: 1.6;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            flex: 1;
         }
 
         .project-keywords {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .project-keywords span {
-            background-color: #eee;
+            background-color: #f0f0f0;
             color: #333;
-            padding: 0.5rem 1rem;
-            border-radius: 99px;
-            font-size: 0.9rem;
+            padding: 0.4rem 0.875rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 500;
         }
 
@@ -360,52 +256,29 @@
             color: white;
         }
 
-        .project-image-container {
-            flex: 1.2;
-            display: flex;
+        .view-case-study {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            height: 65vh;
-            max-width: 650px;
-            border-radius: 24px;
-            padding: 2rem;
-            opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            position: relative;
-            overflow: hidden;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: #111;
+            transition: gap 0.3s ease;
+            align-self: flex-end;
+            margin-top: auto;
         }
 
-        .project-mockup {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 12px;
+        .project-card:hover .view-case-study {
+            gap: 0.75rem;
         }
 
-        .project-panel.is-visible .project-image-container {
-            opacity: 1;
-            transform: scale(1);
+        .view-case-study::after {
+            content: '→';
+            font-size: 1.25rem;
+            transition: transform 0.3s ease;
         }
 
-        #project-1 .project-image-container {
-            background-color: var(--project1-color);
-            color: white;
-        }
-
-        #project-2 .project-image-container {
-            background-color: var(--project2-color);
-            color: white;
-        }
-
-        #project-3 .project-image-container {
-            background-color: #000;
-            color: white;
-        }
-
-        #project-4 .project-image-container {
-            background-color: var(--project4-color);
-            color: white;
+        .project-card:hover .view-case-study::after {
+            transform: translateX(4px);
         }
 
         /* --- 5. Navigation & Footer --- */
@@ -430,34 +303,33 @@
         }
 
         /* --- 6. Responsive Design --- */
+        @media (max-width: 1024px) {
+            .projects-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
         @media (max-width: 768px) {
-
-            .project-panel,
-            .project-panel:nth-child(even) {
-                flex-direction: column;
-                justify-content: flex-start;
-                padding: 6rem 1rem 1rem 1rem;
-                gap: 1.5rem;
-                text-align: center;
-            }
-
-            .project-info {
-                max-width: 100%;
-                padding: 0 1rem;
-            }
-
-            .project-info h2 {
-                font-size: 2.5rem;
-            }
-
-            .project-keywords {
-                justify-content: center;
+            #projects-section {
+                padding: 6rem 1rem 3rem;
             }
 
             .project-image-container {
-                height: 40vh;
-                width: 90vw;
-                flex: none;
+                height: 300px;
+                padding: 2rem;
+            }
+
+            .project-info {
+                padding: 1.5rem;
+            }
+
+            .project-info h2 {
+                font-size: 1.75rem;
+            }
+
+            .project-info p.description {
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -469,12 +341,13 @@
         <div class="container mx-auto max-w-7xl px-4">
             <nav
                 class="flex justify-between items-center bg-white bg-opacity-50 backdrop-blur-md rounded-full py-2 px-6 border border-gray-200 shadow-sm">
-                <a href="/" class="text-xl font-bold">9thDesign</a>
+                <a href="/" class="flex items-center">
+                    <img src="/assets/brand.png" alt="Brand Logo" class="h-8">
+                </a>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="/tenup.html" class="text-gray-600 hover:text-black transition-colors">Tenup</a>
-                    <a href="/spirits.html" class="text-gray-600 hover:text-black transition-colors">Spirits</a>
-                    <a href="/roblox.html" class="text-gray-600 hover:text-black transition-colors">Roblox</a>
-                    <a href="/walmart.html" class="text-gray-600 hover:text-black transition-colors">Walmart</a>
+                    <a href="/#projects-section" class="text-gray-600 hover:text-black transition-colors">Work</a>
+                    <a href="/about.html" class="text-gray-600 hover:text-black transition-colors">About</a>
+                    <a href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-black transition-colors">Resume</a>
                 </div>
                 <a href="mailto:zheng9thdesign@gmail.com"
                     class="hidden md:block bg-black text-white font-semibold px-5 py-2 rounded-full hover:bg-gray-800 transition-colors">
@@ -492,13 +365,12 @@
         </div>
         <div id="mobile-menu"
             class="hidden md:hidden mt-2 bg-white bg-opacity-70 backdrop-blur-md rounded-lg border border-gray-200 p-4 mx-4">
-            <a href="/tenup.html" class="block text-emerald-600 font-semibold py-2 text-center">Tenup</a>
-            <a href="/spirits.html"
-                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Spirits</a>
-            <a href="/roblox.html"
-                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Roblox</a>
-            <a href="/walmart.html"
-                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Walmart</a>
+            <a href="/#projects-section"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Work</a>
+            <a href="/about.html"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">About</a>
+            <a href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer"
+                class="block text-gray-600 hover:text-black transition-colors py-2 text-center">Resume</a>
             <a href="mailto:zheng9thdesign@gmail.com"
                 class="block mt-4 bg-black text-white font-semibold px-4 py-2 rounded-full text-center hover:bg-gray-800 transition-colors">
                 Get in Touch
@@ -512,52 +384,17 @@
             <h1>UX Designer</h1>
             <p>A designer passionate and eager to empathize with others and solve their problems by providing
                 intuitive and user-friendly experiences.</p>
-            <svg class="scroll-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
         </section>
 
         <section id="projects-section">
-            <!-- Navigation Buttons -->
-            <button class="nav-button nav-button-left">
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
-            </button>
-            <button class="nav-button nav-button-right">
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </button>
-
-            <!-- Pagination -->
-            <div class="pagination">
-                <div class="pagination-dot active" data-index="0"></div>
-                <div class="pagination-dot" data-index="1"></div>
-                <div class="pagination-dot" data-index="2"></div>
-                <div class="pagination-dot" data-index="3"></div>
-            </div>
-
-            <div class="scroll-hint">
-                <svg class="arrow-left" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
-                <span>Scroll</span>
-                <svg class="arrow-right" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </div>
-            <div class="projects-container-horizontal">
-
-                <article id="project-1" class="project-panel">
+            <div class="projects-container">
+                <a href="/tenup.html" id="project-1" class="project-card">
+                    <div class="project-image-container">
+                        <img src="/assets/mockup-tenup.png" alt="TENUP App Mockup" class="project-mockup">
+                    </div>
                     <div class="project-info">
-                        <h2>TENUP</h2>
                         <p class="work-type">Personal work</p>
+                        <h2>TENUP</h2>
                         <p class="description">An educational app concept focused on visual design and mascot creation
                             to make learning more engaging for young students.</p>
                         <div class="project-keywords">
@@ -565,20 +402,17 @@
                             <span class="highlight">Mascot</span>
                             <span>Education</span>
                         </div>
-                        <a href="/tenup.html"
-                            class="inline-block rounded-full border-2 border-black px-6 py-3 font-semibold text-black transition hover:bg-[--project1-color] hover:border-[--project1-color] hover:text-white">
-                            View Case Study
-                        </a>
+                        <span class="view-case-study">View Case Study</span>
                     </div>
-                    <div class="project-image-container bg-[#FAF8ED]">
-                        <img src="/assets/mockup-tenup.png" alt="TENUP App Mockup" class="project-mockup">
-                    </div>
-                </article>
+                </a>
 
-                <article id="project-2" class="project-panel">
+                <a href="/spirits.html" id="project-2" class="project-card">
+                    <div class="project-image-container">
+                        <img src="/assets/mockup-spirits.png" alt="Spirits App Mockup" class="project-mockup">
+                    </div>
                     <div class="project-info">
-                        <h2>Spirits</h2>
                         <p class="work-type">Personal work</p>
+                        <h2>Spirits</h2>
                         <p class="description">A dating app concept that prioritizes personality over appearance by
                             blurring photos and guiding conversations to foster genuine connections.</p>
                         <div class="project-keywords">
@@ -586,20 +420,17 @@
                             <span class="highlight">Design Thinking</span>
                             <span>Dating App</span>
                         </div>
-                        <a href="/spirits.html"
-                            class="inline-block rounded-full border-2 border-black px-6 py-3 font-semibold text-black transition hover:bg-[--project2-color] hover:border-[--project2-color] hover:text-white">
-                            View Case Study
-                        </a>
+                        <span class="view-case-study">View Case Study</span>
                     </div>
-                    <div class="project-image-container">
-                        <img src="/assets/mockup-spirits.png" alt="Spirits App Mockup" class="project-mockup">
-                    </div>
-                </article>
+                </a>
 
-                <article id="project-3" class="project-panel">
+                <a href="/roblox.html" id="project-3" class="project-card">
+                    <div class="project-image-container">
+                        <img src="/assets/mockup-roblox.png" alt="ROBLOX Platform Mockup" class="project-mockup">
+                    </div>
                     <div class="project-info">
-                        <h2>ROBLOX</h2>
                         <p class="work-type">Team work</p>
+                        <h2>ROBLOX</h2>
                         <p class="description">A re-design proposal for the ROBLOX platform, focusing on improving
                             parental controls and overall visual design for a safer user experience.</p>
                         <div class="project-keywords">
@@ -607,20 +438,17 @@
                             <span class="highlight">Re-Design</span>
                             <span>Parental Control</span>
                         </div>
-                        <a href="/roblox.html"
-                            class="inline-block rounded-full border-2 border-black px-6 py-3 font-semibold text-black transition hover:bg-[--project3-color] hover:border-[--project3-color] hover:text-white">
-                            View Case Study
-                        </a>
+                        <span class="view-case-study">View Case Study</span>
                     </div>
-                    <div class="project-image-container">
-                        <img src="/assets/mockup-roblox.png" alt="ROBLOX Platform Mockup" class="project-mockup">
-                    </div>
-                </article>
+                </a>
 
-                <article id="project-4" class="project-panel">
+                <a href="/walmart.html" id="project-4" class="project-card">
+                    <div class="project-image-container">
+                        <img src="/assets/mockup-walmart.png" alt="Walmart AR App Mockup" class="project-mockup">
+                    </div>
                     <div class="project-info">
-                        <h2>Walmart</h2>
                         <p class="work-type">Team work</p>
+                        <h2>Walmart</h2>
                         <p class="description">An exploration of how Augmented Reality could be integrated into the
                             Walmart shopping experience, empathizing with user needs for a re-designed, futuristic
                             retail journey.</p>
@@ -629,16 +457,9 @@
                             <span class="highlight">Re-Design</span>
                             <span>AR/VR</span>
                         </div>
-                        <a href="/walmart.html"
-                            class="inline-block rounded-full border-2 border-black px-6 py-3 font-semibold text-black transition hover:bg-[--project4-color] hover:border-[--project4-color] hover:text-white">
-                            View Case Study
-                        </a>
+                        <span class="view-case-study">View Case Study</span>
                     </div>
-                    <div class="project-image-container">
-                        <img src="/assets/mockup-walmart.png" alt="Walmart AR App Mockup" class="project-mockup">
-                    </div>
-                </article>
-
+                </a>
             </div>
         </section>
 
@@ -649,12 +470,12 @@
                 <div class="mt-8 flex justify-center space-x-6">
                     <a href="https://www.linkedin.com/in/huaqian-zheng-9920b330a/"
                         class="inline-block rounded-full border-2 border-gray-400 px-6 py-3 font-semibold text-gray-400 transition hover:border-white hover:text-white"
-                        aria-label="LinkedIn">
+                        aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                         LinkedIn
                     </a>
                     <a href="https://www.behance.net/HQUXdesign"
                         class="inline-block rounded-full border-2 border-gray-400 px-6 py-3 font-semibold text-gray-400 transition hover:border-white hover:text-white"
-                        aria-label="Behance">
+                        aria-label="Behance" target="_blank" rel="noopener noreferrer">
                         Behance
                     </a>
                 </div>
@@ -672,16 +493,16 @@
             }
 
             // --- Nav Link Highlighting ---
-            const navLinks = document.querySelectorAll('.nav-link');
+            const navLinks = document.querySelectorAll('header a[href^="/"]');
             const sectionsToObserve = document.querySelectorAll('#projects-section, #footer, #hero');
             const navObserver = new IntersectionObserver((entries) => {
                 const intersectingEntry = entries.find(entry => entry.isIntersecting);
                 if (!intersectingEntry) return;
 
                 const visibleSectionId = intersectingEntry.target.id;
-                let activeHref = '#';
+                let activeHref = '';
                 if (visibleSectionId === 'hero' || visibleSectionId === 'projects-section') {
-                    activeHref = '#projects-section';
+                    activeHref = '/#projects-section';
                 } else if (visibleSectionId === 'footer') {
                     activeHref = '#footer';
                 }
@@ -691,181 +512,10 @@
             }, { threshold: 0.6 });
             sectionsToObserve.forEach(section => { navObserver.observe(section); });
 
-            // --- Project Pages Carousel ---
-            const projectsSection = document.getElementById('projects-section');
-            const horizontalContainer = document.querySelector('.projects-container-horizontal');
-            const leftArrow = document.querySelector('.arrow-left');
-            const rightArrow = document.querySelector('.arrow-right');
-            const projectPanels = document.querySelectorAll('.project-panel');
-
-            if (projectsSection && horizontalContainer) {
-                const totalPanels = projectPanels.length;
-                let currentPanel = 0;
-
-                function updateSlider() {
-                    horizontalContainer.style.transition = 'transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
-                    const newTransform = -currentPanel * window.innerWidth;
-                    horizontalContainer.style.transform = `translateX(${newTransform}px)`;
-                    leftArrow.classList.toggle('disabled', currentPanel === 0);
-                    rightArrow.classList.toggle('disabled', currentPanel === totalPanels - 1);
-                    projectPanels.forEach((panel, index) => {
-                        panel.classList.toggle('is-visible', index === currentPanel);
-                    });
-                }
-
-                function nextSlide() {
-                    if (currentPanel < totalPanels - 1) {
-                        currentPanel++;
-                        updateSlider();
-                    }
-                }
-
-                function prevSlide() {
-                    if (currentPanel > 0) {
-                        currentPanel--;
-                        updateSlider();
-                    }
-                }
-
-                // Event Listeners
-                leftArrow.addEventListener('click', prevSlide);
-                rightArrow.addEventListener('click', nextSlide);
-
-                let wheelTimeout;
-                projectsSection.addEventListener('wheel', (event) => {
-                    clearTimeout(wheelTimeout);
-                    wheelTimeout = setTimeout(() => {
-                        if (event.deltaY > 50) {
-                            // If we're at the last panel, don't prevent default scroll
-                            if (currentPanel < totalPanels - 1) {
-                                event.preventDefault();
-                                nextSlide();
-                            }
-                        } else if (event.deltaY < -50) {
-                            // Always prevent default when scrolling up in the projects section
-                            event.preventDefault();
-                            prevSlide();
-                        }
-                    }, 50);
-                }, { passive: false });
-
-                // Touch and mouse drag support
-                let isDragging = false, startX, currentX;
-
-                const dragStart = (e) => {
-                    isDragging = true;
-                    startX = e.pageX || e.touches[0].pageX;
-                    horizontalContainer.style.transition = 'none';
-                    projectsSection.style.cursor = 'grabbing';
-                };
-
-                const dragMove = (e) => {
-                    if (!isDragging) return;
-                    currentX = e.pageX || e.touches[0].pageX;
-                    const diff = currentX - startX;
-                    horizontalContainer.style.transform = `translateX(${-currentPanel * window.innerWidth + diff}px)`;
-                };
-
-                const dragEnd = () => {
-                    if (!isDragging) return;
-                    isDragging = false;
-                    projectsSection.style.cursor = 'grab';
-                    const diff = currentX - startX;
-                    if (Math.abs(diff) > window.innerWidth / 4) {
-                        if (diff > 0) {
-                            prevSlide();
-                        } else {
-                            nextSlide();
-                        }
-                    } else {
-                        updateSlider();
-                    }
-                };
-
-                projectsSection.addEventListener('mousedown', dragStart);
-                projectsSection.addEventListener('mousemove', dragMove);
-                projectsSection.addEventListener('mouseup', dragEnd);
-                projectsSection.addEventListener('mouseleave', dragEnd);
-                projectsSection.addEventListener('touchstart', dragStart, { passive: true });
-                projectsSection.addEventListener('touchmove', dragMove, { passive: true });
-                projectsSection.addEventListener('touchend', dragEnd);
-
-                // Auto-scroll functionality
-                let autoScrollInterval;
-                const AUTO_SCROLL_INTERVAL = 5000; // 5 seconds
-
-                function startAutoScroll() {
-                    autoScrollInterval = setInterval(() => {
-                        if (currentPanel < totalPanels - 1) {
-                            nextSlide();
-                        } else {
-                            // Reset to first panel
-                            currentPanel = -1;
-                            nextSlide();
-                        }
-                    }, AUTO_SCROLL_INTERVAL);
-                }
-
-                function stopAutoScroll() {
-                    clearInterval(autoScrollInterval);
-                }
-
-                // Update pagination dots
-                function updatePagination() {
-                    document.querySelectorAll('.pagination-dot').forEach((dot, index) => {
-                        dot.classList.toggle('active', index === currentPanel);
-                    });
-                }
-
-                // Navigation buttons
-                const navButtonLeft = document.querySelector('.nav-button-left');
-                const navButtonRight = document.querySelector('.nav-button-right');
-
-                navButtonLeft.addEventListener('click', () => {
-                    stopAutoScroll();
-                    prevSlide();
-                    startAutoScroll();
-                });
-
-                navButtonRight.addEventListener('click', () => {
-                    stopAutoScroll();
-                    nextSlide();
-                    startAutoScroll();
-                });
-
-                // Pagination dots click handlers
-                document.querySelectorAll('.pagination-dot').forEach((dot, index) => {
-                    dot.addEventListener('click', () => {
-                        stopAutoScroll();
-                        currentPanel = index;
-                        updateSlider();
-                        startAutoScroll();
-                    });
-                });
-
-                // Update both slider and pagination
-                const originalUpdateSlider = updateSlider;
-                updateSlider = function () {
-                    originalUpdateSlider();
-                    updatePagination();
-                    navButtonLeft.classList.toggle('disabled', currentPanel === 0);
-                    navButtonRight.classList.toggle('disabled', currentPanel === totalPanels - 1);
-                };
-
-                // Pause auto-scroll on user interaction
-                projectsSection.addEventListener('mouseenter', stopAutoScroll);
-                projectsSection.addEventListener('mouseleave', startAutoScroll);
-                projectsSection.addEventListener('touchstart', stopAutoScroll);
-                projectsSection.addEventListener('touchend', startAutoScroll);
-
-                // Initialize
-                updateSlider();
-                startAutoScroll();
-            }
-
             // --- Hero Arrow Scroll ---
             const arrow = document.querySelector('.scroll-arrow');
-            if (arrow) {
+            const projectsSection = document.getElementById('projects-section');
+            if (arrow && projectsSection) {
                 arrow.addEventListener('click', () => {
                     projectsSection.scrollIntoView({ behavior: 'smooth' });
                 });
