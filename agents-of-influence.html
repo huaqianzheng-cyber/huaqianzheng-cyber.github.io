@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Agents of Influence registration, upgrade and pricing redesign. A UI/UX case study by Huaqian (Jo) Zheng.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="alternate icon" type="image/png" href="assets/fav.png">
+<link rel="apple-touch-icon" href="assets/fav.png">
+<style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Agents of Influence · Jo Zheng</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Limelight&family=Poppins:wght@400;500;600&display=swap">
+<style>
+/* Layout: light product case study. Sticky header (name + numbered section nav + progress line), insight-led hero,
+   then numbered sections that alternate a two-column label/body grid with full-width figures.
+   One accent (the game's link blue, deepened) for labels and emphasis; navy bands hold the game's dark screens; gold only marks the chosen option.
+   Interaction system: one scroll-driven selector-card pattern (personas, pricing versions), one side-by-side pair for every before/after, one zoom for every static figure. */
+:root{
+  /* Single dark theme on the game's navy. Contrast on --bg: ink 15.4:1, ink-2 8.9:1, accent 8.9:1, gold 9.8:1 (all AAA).
+     Lowest pairing on the page: ink-2 on a selected card, 6.0:1 (AA). */
+  --bg:#0B1B2E; --surface:#13283F; --ink:#EEF2F6; --ink-2:#AEBBCB; --line:#24405D;
+  --accent:#7CC3E6; --accent-soft:#163552; --navy:#06111E; --pick:#1A3A5C; --gold:#F3BA3F; --on-navy:#EEF2F6; --on-navy-2:#AEBBCB;
+  --f:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  --r:14px; --max:1120px; --hdr:136px;
+  --brand:#E7006E; --brand-yellow:#F7D65F; --paper:#FFFFFF; --nav-ink:#1F2937; --nav-muted:#4B5563;
+  --display:"Limelight","Didot","Bodoni 72",Georgia,serif; --pop:"Poppins","Helvetica Neue",Arial,sans-serif; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+a{color:var(--accent);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{margin:0;text-wrap:balance;letter-spacing:-.02em}
+p{margin:0}
+em.k,.k{font-style:normal;color:var(--accent)}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+
+/* header */
+/* masthead: the portfolio's frosted pill nav, with the case-study section bar under it; one sticky block */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding-top:14px}
+.top .wrap{display:grid;gap:8px}
+.nav{display:flex;align-items:center;gap:30px;height:64px;padding:0 10px 0 22px;font-family:var(--pop);
+  background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.9));
+  border:1px solid rgba(255,255,255,.55);border-radius:999px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(0,0,0,.04),0 10px 30px -12px rgba(0,0,0,.55)}
+.logo{position:relative;width:88px;height:88px;flex:none;display:block;margin:-16px -10px -16px -14px}
+.logo .jo-icon{width:88px;height:88px;display:block;overflow:visible}
+.logo .ball{transform-box:fill-box;transform-origin:50% 100%}
+.logo:hover .ball,.logo:focus-visible .ball{animation:hop .7s cubic-bezier(.3,.7,.4,1)}
+@keyframes hop{0%{transform:translateY(0) scale(1,1)}12%{transform:translateY(.3px) scale(1.15,.85)}45%{transform:translateY(-7px) scale(.95,1.05)}78%{transform:translateY(0) scale(1.12,.88)}90%{transform:translateY(-1.2px) scale(1,1)}100%{transform:translateY(0)}}
+.nav-links{display:flex;gap:30px;list-style:none;margin:0;padding:0}
+.nav-links a{text-decoration:none;color:var(--nav-muted);font-size:16px}
+.nav-links a:hover,.nav-links a[aria-current]{color:var(--brand)}
+.btn-contact{margin-left:auto;background:var(--brand);color:var(--paper);text-decoration:none;font-weight:600;font-size:16px;padding:8px 18px;border-radius:999px;white-space:nowrap}
+.btn-contact:hover{filter:brightness(1.08)}
+.nav :focus-visible{outline-color:var(--brand)}
+.secnav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;min-width:0;padding-bottom:6px}
+.secnav::-webkit-scrollbar{display:none}
+.secnav a{font-size:.82rem;color:var(--ink-2);text-decoration:none;padding:7px 11px;border-radius:999px;white-space:nowrap}
+.secnav a:hover{color:var(--ink)}
+.secnav a.on{color:var(--ink);background:var(--surface);box-shadow:0 0 0 1px var(--line)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--accent);transform-origin:0 50%;transform:scaleX(0)}
+@media(max-width:760px){
+  :root{--hdr:116px}
+  .top{padding-top:10px}
+  .nav{gap:16px;height:48px;padding:0 6px 0 10px}
+  .logo,.logo .jo-icon{width:64px;height:64px}.logo{margin:-8px -8px -8px -10px}
+  .nav-links{gap:14px}.nav-links a{font-size:14px}
+  .btn-contact{font-size:13px;padding:7px 12px}
+}
+@media(max-width:460px){.nav-links li:nth-child(3){display:none}}
+
+/* type */
+.eyebrow{font-size:.76rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.h1{font-size:clamp(2.3rem,6vw,4.4rem);font-weight:700;line-height:1.04}
+.h2{font-size:clamp(1.75rem,3.6vw,2.7rem);font-weight:700;line-height:1.1}
+.h3{font-size:1.3rem;font-weight:600;line-height:1.25;letter-spacing:-.01em}
+.lead{font-size:1.15rem;color:var(--ink-2);max-width:60ch}
+.body{display:grid;gap:16px;max-width:66ch}
+.muted{color:var(--ink-2)}
+
+/* hero */
+.hero{padding-block:72px 0;display:grid;gap:26px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:.78rem;padding:4px 12px;border:1px solid var(--line);border-radius:999px;color:var(--ink-2);background:var(--surface)}
+.meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:22px;margin-top:14px}
+@media(max-width:820px){.meta{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.meta dt{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-bottom:6px}
+.meta dd{margin:0;font-weight:500;line-height:1.35}
+.meta dd span{display:block;font-weight:400;font-size:.88rem;color:var(--ink-2);margin-top:4px}
+.band{background:var(--navy);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,4vw,48px);margin-top:12px;display:grid;place-items:center}
+.band img{display:block;width:100%;max-width:880px;height:auto;border-radius:8px;box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
+.collage{position:relative;overflow:hidden;border-radius:var(--r);border:1px solid var(--line);margin-top:12px;aspect-ratio:2.3/1;
+  background:radial-gradient(120% 90% at 20% 0%,#1C4366 0%,#122C47 45%,#0B1B2E 100%)}
+@media(max-width:720px){.collage{aspect-ratio:1.25/1}}
+/* tilted three-column reel: outer columns drift up, the middle one down; each track holds its set twice so the loop is seamless */
+.collage .tilt{position:absolute;left:50%;top:50%;width:122%;height:230%;display:grid;grid-template-columns:1fr 1.12fr 1fr;gap:clamp(12px,2.2vw,32px);
+  transform:translate(-50%,-50%) rotate(-12deg)}
+@media(max-width:720px){.collage .tilt{width:170%}}
+.collage .col{overflow:visible;min-width:0}
+.collage .track{display:block;will-change:transform;animation:reel-up var(--dur,60s) linear infinite}
+.collage .c2 .track{animation-name:reel-down}
+.collage .shot{display:block;margin-bottom:clamp(12px,2.2vw,32px);border-radius:8px;overflow:hidden;box-shadow:0 28px 56px -18px rgba(0,0,0,.75),0 0 0 1px rgba(238,242,246,.1)}
+.collage .shot img{display:block;width:100%;height:auto}
+.collage .shot.crop{aspect-ratio:1280/1500}
+.collage .shot.crop img{width:100%;height:100%;object-fit:cover;object-position:50% var(--y,0%)}
+@keyframes reel-up{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+@keyframes reel-down{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+.collage:hover .track,.collage.paused .track{animation-play-state:paused}
+.reel-toggle{position:absolute;right:calc(12px + env(safe-area-inset-right,0px));bottom:12px;z-index:2;font:600 .74rem var(--f);letter-spacing:.04em;
+  color:#0B1B2E;background:rgba(238,242,246,.92);border:0;border-radius:999px;padding:7px 13px;cursor:pointer}
+.reel-toggle:hover{background:var(--gold)}
+@media(prefers-reduced-motion:reduce){.collage .track{animation:none}.reel-toggle{display:none}}
+.credit{font-size:.82rem;color:var(--ink-2)}
+
+/* sections */
+section.s{padding-block:112px 0;display:grid;gap:36px;scroll-margin-top:calc(var(--hdr) + 8px)}
+.s-head{display:grid;gap:14px;max-width:820px}
+.split{display:grid;gap:20px 56px}
+@media(min-width:880px){.split{grid-template-columns:minmax(0,4fr) minmax(0,7fr)}}
+.split > h3{font-size:1.35rem;font-weight:600;line-height:1.3}
+.rule{border-top:1px solid var(--line);padding-top:32px}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:hidden}
+@media(max-width:820px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stat{padding:24px 22px;display:grid;gap:8px;align-content:start;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+@media(max-width:820px){.stat:nth-child(2n){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+.stat .n{font-size:clamp(1.7rem,3.4vw,2.35rem);font-weight:700;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.up{color:var(--gold)}
+.legend{display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--ink-2);margin-top:-20px}
+.legend .dot{width:10px;height:10px;border-radius:50%;background:var(--gold);flex:none}
+.stat .n s,.stat p s{text-decoration:line-through;text-decoration-color:var(--ink-2);color:var(--ink-2)}
+.stat p s{font-weight:500}
+.stat .n small{font-size:1em;font-weight:inherit;color:inherit;letter-spacing:inherit}
+.stat p{font-size:.9rem;color:var(--ink-2);line-height:1.4}
+
+/* statement callout */
+.statement{background:var(--accent-soft);border-radius:var(--r);padding:clamp(28px,5vw,56px)}
+.statement p{font-size:clamp(1.5rem,3.2vw,2.3rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;max-width:24ch;text-wrap:balance}
+.note{border-left:3px solid var(--accent);background:var(--surface);border-radius:0 10px 10px 0;padding:16px 20px;display:grid;grid-template-columns:auto 1fr;gap:6px 18px;align-items:baseline;max-width:820px}
+.note b{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+@media(max-width:560px){.note{grid-template-columns:1fr}}
+
+/* two problems / goals */
+.duo{display:grid;gap:16px}
+@media(min-width:760px){.duo{grid-template-columns:1fr 1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;display:grid;gap:8px;align-content:start}
+.card .lbl{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.card ul{margin:0;padding-left:1.1em;display:grid;gap:4px;font-size:.95rem}
+.card.dashed{background:transparent;border-style:dashed}
+.card.dashed ul{color:var(--ink-2)}
+
+/* selector cards — shared by personas and pricing versions */
+.picker{display:grid;gap:18px}
+.picks{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.pick{all:unset;box-sizing:border-box;cursor:pointer;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 18px 20px;display:grid;gap:6px;align-content:start;transition:border-color .15s,background .15s,transform .15s}
+.pick:hover{border-color:var(--ink-2)}
+.pick:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.pick .lbl{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.pick .t{font-weight:600;font-size:1.05rem;line-height:1.3;color:var(--ink)}
+.pick .d{font-size:.88rem;color:var(--ink-2);line-height:1.45}
+.pick[aria-selected="true"]{background:var(--pick);border-color:var(--gold)}
+.pick[aria-selected="true"] .t{color:var(--on-navy)}
+.pick[aria-selected="true"] .d{color:var(--on-navy-2)}
+.pick[aria-selected="true"] .lbl{color:var(--gold)}
+.panel{display:grid;gap:14px}
+@media(prefers-reduced-motion:no-preference){.panel:not([hidden]){animation:fade .25s ease}}
+@keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* scroll-driven selector: the card row and its panel stay pinned while the page scrolls through each step */
+.scrolly{height:calc(100vh + (var(--steps) - 1) * 62vh);position:relative}
+.scrolly .stick{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hdr) + 8px);height:calc(100vh - var(--hdr) - 24px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));
+  display:grid;grid-template-rows:auto auto minmax(0,1fr);gap:14px;padding-bottom:8px}
+.scrolly .panel{min-height:0;height:100%}
+.scrolly .panel .fig{height:100%;display:grid;place-items:center}
+.scrolly .panel .fig img{width:100%;height:100%;object-fit:contain}
+.scrolly .panel .fig.top img{object-fit:cover;object-position:top center;border-radius:6px}
+.scrolly .panel .fig.top{place-items:stretch}
+.stepbar{display:flex;align-items:center;gap:14px;font-size:.8rem;color:var(--ink-2)}
+.stepbar .count{font-weight:600;color:var(--gold);font-variant-numeric:tabular-nums;min-width:3.2em}
+.stepbar .track{flex:1;max-width:220px;height:3px;border-radius:3px;background:var(--line);overflow:hidden}
+.stepbar .track i{display:block;height:100%;width:100%;background:var(--gold);transform-origin:0 50%;transform:scaleX(0)}
+@media(max-width:760px){
+  .scrolly .picks{display:flex;overflow-x:auto;scrollbar-width:none;gap:8px}
+  .scrolly .picks::-webkit-scrollbar{display:none}
+  .scrolly .pick{flex:0 0 auto;padding:10px 14px}
+  .scrolly .pick .d{display:none}
+  .scrolly .pick .t{font-size:.92rem;white-space:nowrap}
+  .stepbar .hint-s{display:none}
+}
+dialog.tallimg{overflow:auto}
+dialog.tallimg img{max-height:none;width:min(720px,92vw)}
+/* figures + zoom */
+figure{margin:0;display:grid;gap:12px;min-width:0}
+figcaption{font-size:.88rem;color:var(--ink-2);line-height:1.45}
+.fig{all:unset;box-sizing:border-box;display:block;cursor:zoom-in;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:var(--surface);position:relative}
+.fig img{display:block;width:100%;height:auto}
+.fig.dark{background:var(--navy);border-color:var(--line);padding:clamp(10px,2vw,22px)}
+.fig.dark img{border-radius:6px}
+.fig::after{content:"Click to view";position:absolute;right:12px;bottom:12px;font-size:.72rem;font-weight:600;padding:5px 10px;border-radius:999px;background:var(--ink);color:var(--bg);opacity:0;transition:opacity .15s}
+.fig:hover::after,.fig:focus-visible::after{opacity:1}
+@media(hover:none){.fig::after{display:none}}
+.fig:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.scroller{max-height:min(760px,82vh);overflow:auto;border-radius:var(--r);background:var(--navy);border:1px solid var(--line);padding:clamp(10px,2vw,22px)}
+.scroller img{display:block;width:100%;max-width:640px;height:auto;margin:0 auto;border-radius:6px}
+.grid2{display:grid;gap:20px}
+@media(min-width:760px){.grid2{grid-template-columns:1fr 1fr}}
+
+/* before/after pair — every comparison */
+/* pairs share one height: each figure grows in proportion to its screen's aspect ratio */
+.pair{display:flex;gap:16px;align-items:flex-start}
+.pair figure{gap:10px;flex:var(--r,1) 1 0%;min-width:0}
+.pair .fig.dark{padding:0;border-color:var(--line)}
+.pair .fig.dark img{width:100%;height:auto;border-radius:0}
+@media(max-width:719px){.pair{flex-direction:column}.pair figure{flex:none;width:100%}}
+.chip{justify-self:start;font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.chip.b{background:var(--surface);color:var(--ink-2);box-shadow:inset 0 0 0 1px var(--line)}
+.chip.a{background:var(--gold);color:#0B1B2E}
+.hint{font-size:.82rem;color:var(--ink-2);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* screen blocks */
+.screen{display:grid;gap:22px;padding-top:44px;border-top:1px solid var(--line)}
+.screen-h{display:grid;gap:8px;max-width:760px}
+.screen-h .num{font-size:.76rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+
+/* change table */
+.changes{width:100%;border-collapse:collapse;font-size:.95rem;line-height:1.45}
+.changes th{font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);text-align:left;padding:0 18px 10px 0;border-bottom:1px solid var(--ink-2)}
+.changes td{padding:14px 18px 14px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.changes td:first-child{color:var(--ink-2);width:31%}
+.changes td:nth-child(2){font-weight:500;width:34%;color:var(--gold)}
+.changes th:nth-child(2){color:var(--gold)}
+.changes td:nth-child(2)::before{color:var(--gold)}
+.changes.plain td:nth-child(2),.changes.plain th:nth-child(2),.changes.plain td:nth-child(2)::before{color:inherit}
+.changes.plain th:nth-child(2){color:var(--ink-2)}
+.changes.plain td:nth-child(3){color:var(--gold)}
+.changes td:last-child{color:var(--ink-2)}
+.changes td:last-child strong{color:var(--accent);font-weight:600}
+@media(max-width:680px){
+  .changes thead{display:none}
+  .changes,.changes tbody,.changes tr,.changes td{display:block;width:auto!important}
+  .changes tr{padding:14px 0;border-bottom:1px solid var(--line);display:grid;gap:8px}
+  .changes td{border:0;padding:0}
+  .changes td::before{content:attr(data-l);display:block;font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-bottom:2px}
+}
+
+/* tokens */
+.tokens{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.tok{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface)}
+.tok .sw{height:84px;display:flex;align-items:flex-end;padding:12px 14px;font-weight:600;font-size:.95rem}
+.tok .info{padding:12px 14px 14px;display:grid;gap:3px;font-size:.86rem}
+.tok code{font-family:ui-monospace,"SFMono-Regular",Menlo,monospace;font-size:.8rem;color:var(--ink-2)}
+
+/* outcome table */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.outcome{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;min-width:560px}
+.outcome th,.outcome td{text-align:left;padding:15px 20px;border-bottom:1px solid var(--line);font-size:.95rem;vertical-align:top}
+.outcome tr:last-child td{border-bottom:0}
+.outcome th{font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.outcome td:first-child{font-weight:600}
+.outcome td:nth-child(2){color:var(--ink-2)}
+.outcome td:nth-child(3){color:var(--gold);font-weight:600}
+.outcome th:nth-child(3){color:var(--gold)}
+
+.lessons{display:grid;gap:16px}
+@media(min-width:860px){.lessons{grid-template-columns:repeat(3,1fr)}}
+.lessons .card p{font-size:.95rem;color:var(--ink-2)}
+.lessons .card .h3{color:var(--gold);font-weight:700}
+.lessons .card .n{font-size:.76rem;font-weight:600;letter-spacing:.14em;color:var(--accent)}
+
+/* footer: the portfolio's magenta band with stepped top */
+.footer{position:relative;margin-top:140px;font-family:var(--pop);--u:calc(min(100vw,1440px)/1440)}
+@media(max-width:760px){.footer{--u:calc(100vw/760)}}
+.foot-steps{position:relative;height:calc(var(--u)*110)}
+.foot-steps span{position:absolute;bottom:0;background:var(--brand)}
+.foot-band{background:var(--brand);color:var(--paper);padding-block:64px 28px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.foot-inner{max-width:1256px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px 48px;align-items:end}
+.foot-main{min-width:0;display:flex;flex-direction:column;gap:20px}
+.foot-kicker{margin:0;font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.9}
+.foot-cta{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(34px,5vw,64px);line-height:1.08;color:var(--paper);letter-spacing:0}
+.foot-cta span{color:var(--brand-yellow)}
+.foot-links{position:relative;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:10px;min-height:42px;padding:0 20px;border:1.5px solid var(--paper);border-radius:16px;color:var(--paper);text-decoration:none;font-size:16px;font-weight:500;transition:background-color .2s,color .2s}
+a.pill:hover{background:var(--paper);color:var(--brand)}
+.pill-email{padding-right:6px;max-width:100%}
+.pill .email{user-select:all;overflow-wrap:anywhere}
+.copy{font:inherit;font-size:13px;font-weight:600;border:0;background:var(--paper);color:var(--brand);border-radius:12px;padding:6px 14px;cursor:pointer}
+.copy:hover{background:var(--brand-yellow);color:#000}
+.email-group{display:inline-flex;align-items:center;gap:14px;flex-wrap:nowrap;max-width:100%}
+.foot-doodle{position:relative;display:block;flex:none;width:64px;height:46px}
+.foot-doodle img{position:absolute;left:50%;top:50%;width:21px;filter:brightness(0) invert(1);--rr:translate(-50%,-50%) scaleX(-1) rotate(-120deg);transform:var(--rr);animation:boil .9s steps(1) infinite}
+@keyframes boil{0%{transform:var(--rr) translate(0,0) rotate(0)}25%{transform:var(--rr) translate(1px,-1px) rotate(3deg)}50%{transform:var(--rr) translate(-1px,1px) rotate(-2deg)}75%{transform:var(--rr) translate(1px,1px) rotate(2deg)}}
+.foot-id{display:flex;flex-direction:column;gap:6px;text-align:right}
+.foot-id p{margin:0}
+.foot-name{font-family:var(--display);font-size:30px;color:var(--paper)}
+.foot-name span{color:var(--brand-yellow)}
+.foot-role{font-size:15px;opacity:.92}
+.foot-legal{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding-top:22px;border-top:1px solid rgba(255,255,255,.35);font-size:13px;opacity:.92}
+.to-top{color:var(--paper);text-decoration:none}
+.to-top:hover{text-decoration:underline}
+.footer :focus-visible{outline-color:var(--paper)}
+@media(max-width:760px){.foot-inner{grid-template-columns:1fr}.foot-id{text-align:left}.email-group{flex-wrap:wrap}.foot-doodle{display:none}}
+@media(prefers-reduced-motion:reduce){.foot-doodle img{animation:none}.logo:hover .ball{animation:none}}
+
+dialog{border:0;padding:0;background:transparent;max-width:min(1200px,94vw);max-height:94vh}
+dialog::backdrop{background:rgba(5,10,18,.88)}
+dialog img{display:block;max-width:100%;max-height:84vh;width:auto;height:auto;margin:0 auto;border-radius:8px}
+dialog form{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;color:#E8ECF1;font-size:.86rem}
+dialog button{font:600 .82rem var(--f);background:#F2F5F8;color:#0B1B2E;border:0;padding:9px 16px;border-radius:999px;cursor:pointer}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <nav class="nav" aria-label="Main">
+      <a class="logo" href="index.html" aria-label="Jo Zheng, home">
+      <svg class="jo-icon" viewBox="0 0 29 29" fill="none" aria-hidden="true">
+<g id="jo-petal"><path d="M13.9957 19.0898C14.1291 19.0898 14.2244 19.0358 14.2816 18.9278L15.4727 16.9173C15.5425 16.8029 15.5552 16.6918 15.5108 16.5838L12.2806 8.98949L12.3664 9.30394V8.75128L12.2711 8.92279H15.1392C15.298 8.92279 15.3774 8.84339 15.3774 8.68458V6.62641C15.3774 6.4676 15.298 6.38819 15.1392 6.38819H10.5178C10.3908 6.38819 10.2955 6.43584 10.232 6.53112L8.86937 8.44636C8.79314 8.54165 8.78361 8.65282 8.84078 8.77986L12.1091 16.4408L12.0329 15.8977V16.8029L12.1853 16.5456H9.18381C9.025 16.5456 8.9456 16.6251 8.9456 16.7839V18.8516C8.9456 19.0104 9.025 19.0898 9.18381 19.0898H13.9957Z" fill="#000"/></g>
+<use href="#jo-petal" transform="translate(-5.30736 19.8074) rotate(-60)"/>
+<use href="#jo-petal" transform="translate(9.19264 34.3074) rotate(-120)"/>
+<use href="#jo-petal" transform="translate(29 29) rotate(180)"/>
+<use href="#jo-petal" transform="translate(34.3074 9.19262) rotate(120)"/>
+<use href="#jo-petal" transform="translate(19.8074 -5.30737) rotate(60)"/>
+<circle class="ball" cx="17" cy="18" r="2.5" fill="#F5F5F5" stroke="#000"/>
+<defs><path id="jo-j" d="M10.4821 20.2046C10.3621 20.204 10.3024 20.1437 10.303 20.0237L10.3088 18.8789C10.3092 18.7877 10.3336 18.7158 10.3819 18.6632L11.4528 17.603C11.5107 17.5505 11.5399 17.4739 11.5404 17.3731L11.5796 9.58996C11.5802 9.46997 11.6405 9.41027 11.7605 9.41087L13.7981 9.42115C13.9181 9.42175 13.9778 9.48205 13.9772 9.60205L13.9329 18.3931C13.9327 18.4363 13.9277 18.4771 13.9179 18.5155C13.9129 18.549 13.8911 18.5849 13.8525 18.6231L12.3546 20.106C12.2823 20.1776 12.2101 20.2133 12.1381 20.2129L10.4821 20.2046Z"/>
+<mask id="jo-mask" maskUnits="userSpaceOnUse" x="9.00506" y="7.99492" width="6.07051" height="14.0301"><rect fill="#fff" x="9.00506" y="7.99492" width="6.07051" height="14.0301"/><use href="#jo-j" fill="#000"/></mask></defs>
+<use href="#jo-j" fill="#F5F5F5"/>
+<use href="#jo-j" stroke-width="2" stroke="#000" mask="url(#jo-mask)"/>
+</svg>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#work" aria-current="page">Work</a></li>
+        <li><a href="index.html#about">About me</a></li>
+        <li><a href="assets/resume.pdf" target="_blank" rel="noopener">Resume</a></li>
+      </ul>
+      <a class="btn-contact" href="#contact">Contact me</a>
+    </nav>
+    <nav class="secnav" aria-label="Case study sections">
+      <a href="#overview">Overview</a>
+      <a href="#research">Research</a>
+      <a href="#model">CM</a>
+      <a href="#system">Design system</a>
+      <a href="#final">Final</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#outcome">Outcome</a>
+      <a href="#lesson">Lesson</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+
+    <!-- HERO -->
+    <div class="hero">
+      <span class="eyebrow">EdTech · Registration &amp; pricing</span>
+      <h1 class="h1"><span class="up">Clearer choices</span> from sign-up to upgrade. <span class="up">Show the value</span> before asking for payment.</h1>
+      <p class="lead">A redesign of the sign-up, upgrade and pricing experience for Agents of Influence, an educational spy game for students aged 10–16.</p>
+      <div class="tags"><span class="tag">Registration</span><span class="tag">Pricing</span><span class="tag">Design tokens</span><span class="tag">Heuristic redesign</span></div>
+      <dl class="meta">
+        <div><dt>Client</dt><dd>Alterea Inc.<span>Agents of Influence</span></dd></div>
+        <div><dt>Role</dt><dd>UI/UX designer<span>Payment Portal workstream</span></dd></div>
+        <div><dt>Review</dt><dd>UI/UX team lead<span>Feedback each round</span></dd></div>
+        <div><dt>Timeline</dt><dd>Jun – Aug 2026<span>2 months</span></dd></div>
+      </dl>
+      <div class="collage" id="reel" role="img" aria-label="Redesigned screens scrolling past: sign-in, role selection, one-page teacher sign-up, upgrade screen comparing Free and Pro, and the goal-based pricing page with its comparison chart.">
+        <div class="tilt" aria-hidden="true">
+          <div class="col c1"><div class="track" style="--dur:70s"><span class="shot"><img src="assets/aoi-signup-after.webp" width="1280" height="1341" alt=""></span><span class="shot"><img src="assets/aoi-login-after.webp" width="1280" height="720" alt=""></span><span class="shot crop" style="--y:62%"><img src="assets/aoi-pricing-v2.webp" width="1280" height="3772" alt=""></span><span class="shot"><img src="assets/aoi-signup-after.webp" width="1280" height="1341" alt=""></span><span class="shot"><img src="assets/aoi-login-after.webp" width="1280" height="720" alt=""></span><span class="shot crop" style="--y:62%"><img src="assets/aoi-pricing-v2.webp" width="1280" height="3772" alt=""></span></div></div>
+          <div class="col c2"><div class="track" style="--dur:80s"><span class="shot"><img src="assets/aoi-role-after.webp" width="1280" height="720" alt=""></span><span class="shot crop" style="--y:0%"><img src="assets/aoi-pricing-v2.webp" width="1280" height="3772" alt=""></span><span class="shot"><img src="assets/aoi-upgrade-after.webp" width="1280" height="1024" alt=""></span><span class="shot"><img src="assets/aoi-role-after.webp" width="1280" height="720" alt=""></span><span class="shot crop" style="--y:0%"><img src="assets/aoi-pricing-v2.webp" width="1280" height="3772" alt=""></span><span class="shot"><img src="assets/aoi-upgrade-after.webp" width="1280" height="1024" alt=""></span></div></div>
+          <div class="col c3"><div class="track" style="--dur:66s"><span class="shot crop" style="--y:62%"><img src="assets/aoi-pricing-v2.webp" width="1280" height="3772" alt=""></span><span class="shot"><img src="assets/aoi-role-after.webp" width="1280" height="720" alt=""></span><span class="shot"><img src="assets/aoi-signup-after.webp" width="1280" height="1341" alt=""></span><span class="shot crop" style="--y:62%"><img src="assets/aoi-pricing-v2.webp" width="1280" height="3772" alt=""></span><span class="shot"><img src="assets/aoi-role-after.webp" width="1280" height="720" alt=""></span><span class="shot"><img src="assets/aoi-signup-after.webp" width="1280" height="1341" alt=""></span></div></div>
+        </div>
+        <button class="reel-toggle" type="button" id="reel-toggle" aria-pressed="false">Pause</button>
+      </div>
+      <p class="credit">Agents of Influence and all screens shown are owned by Alterea Inc. <a href="https://www.agentsofinfluencegame.com/" target="_blank" rel="noopener">Explore the game ↗</a></p>
+    </div>
+
+    <!-- 01 OVERVIEW -->
+    <section class="s" id="overview">
+      <div class="s-head"><span class="eyebrow">01 · Overview</span><h2 class="h2">The flow changed. <span class="k">The screens didn't.</span></h2></div>
+      <div class="split rule">
+        <h3>Project overview</h3>
+        <div class="body">
+          <p>A new registration flow changed which screens each account type sees, but the interface hadn't caught up. It was also stiff and text-heavy, with almost no graphics to help people compare plans.</p>
+          <p>I redesigned the path from landing on the site to paying, so students, parents and teachers can pick the right account, register with less effort, and see what a paid plan adds before they pay.</p>
+        </div>
+      </div>
+      <div class="split rule">
+        <h3>My role</h3>
+        <div class="body">
+          <p>This was an assignment, not a problem I picked, so I started by framing it: what I owned, who I could ask, and where my responsibility ended. I worked through personas, journey maps, a conceptual model, user flows and a heuristic redesign, and took every round to the UI/UX team lead.</p>
+        </div>
+      </div>
+      <div class="stats" role="list">
+        <div class="stat" role="listitem"><div class="n"><s>17</s> → <span class="up">12</span></div><p>Teacher sign-up fields, now on one page</p></div>
+        <div class="stat" role="listitem"><div class="n"><s>3</s> → <span class="up">1</span></div><p>Forward actions on the upgrade screen</p></div>
+        <div class="stat" role="listitem"><div class="n"><span class="up">12.28<small>:1</small></span></div><p>Text contrast, up from <s>8.61:1</s></p></div>
+        <div class="stat" role="listitem"><div class="n"><span class="up">2</span></div><p>Pricing page iterations after review</p></div>
+      </div>
+      <p class="legend"><span class="dot"></span>Gold marks what improved, in figures and in every before/after table.</p>
+      <div class="duo">
+        <div class="card"><span class="lbl">In my scope</span><ul><li>Registration and account selection</li><li>Pricing page layouts</li><li>Upgrade and subscription workflows</li><li>Locked-content experiences</li><li>Responsiveness, accessibility, CTA hierarchy</li></ul></div>
+        <div class="card dashed"><span class="lbl">Owned by other teams</span><ul><li>Setting prices and creating tiers</li><li>Billing policies and permissions</li><li>Legal and compliance</li><li>Payment processor and feature gating</li></ul></div>
+      </div>
+      <div class="statement"><p>I couldn't change what a plan included or cost, so the design had to make <span class="k">the existing tiers easier to choose between.</span></p></div>
+    </section>
+
+    <!-- 02 RESEARCH -->
+    <section class="s" id="research">
+      <div class="s-head"><span class="eyebrow">02 · Research</span><h2 class="h2">Players and payers are <span class="k">different people.</span></h2>
+        <p class="lead">Players are students aged 10–16. Payers are parents, teachers and schools. I wrote a persona for each, covering what they want from an educational game, what they want to avoid, and what they need but weren't getting.</p></div>
+
+      <div class="picker scrolly" data-picker style="--steps:4">
+       <div class="stick">
+        <div class="stepbar"><span class="count">1 / 4</span><span class="track"><i></i></span><span class="hint-s">Scroll to step through</span></div>
+        <div class="picks" role="tablist" aria-label="Personas">
+          <button class="pick" role="tab" id="t-p1" aria-controls="p-p1" aria-selected="true"><span class="lbl">Player</span><span class="t">Maya, 13 · Student</span><span class="d">Wants fun and pride in progress, without feeling graded.</span></button>
+          <button class="pick" role="tab" id="t-p2" aria-controls="p-p2" aria-selected="false" tabindex="-1"><span class="lbl">Payer</span><span class="t">Carlos, 34 · Teacher</span><span class="d">Needs school approval to buy and parents' permission to play.</span></button>
+          <button class="pick" role="tab" id="t-p3" aria-controls="p-p3" aria-selected="false" tabindex="-1"><span class="lbl">Payer · future</span><span class="t">Sarah, 38 · Parent</span><span class="d">Wants safe learning and control over playtime.</span></button>
+          <button class="pick" role="tab" id="t-p4" aria-controls="p-p4" aria-selected="false" tabindex="-1"><span class="lbl">Payer</span><span class="t">Lisa, 49 · District admin</span><span class="d">Starts with a pilot and uses data to justify purchases.</span></button>
+        </div>
+        <div class="panel" role="tabpanel" id="p-p1" aria-labelledby="t-p1"><button class="fig" type="button" data-zoom aria-label="Enlarge student persona"><img src="assets/aoi-persona-student.webp" width="1303" height="987" loading="lazy" alt="Student persona card for Maya Chen, 13: needs journey, goals with the game, and potential behaviour."></button></div>
+        <div class="panel" role="tabpanel" id="p-p2" aria-labelledby="t-p2" hidden><button class="fig" type="button" data-zoom aria-label="Enlarge teacher persona"><img src="assets/aoi-persona-teacher.webp" width="1303" height="987" loading="lazy" alt="Teacher persona card for Carlos Rodriguez, 34: needs journey, goals and potential behaviour."></button></div>
+        <div class="panel" role="tabpanel" id="p-p3" aria-labelledby="t-p3" hidden><button class="fig" type="button" data-zoom aria-label="Enlarge parent persona"><img src="assets/aoi-persona-parent.webp" width="1303" height="987" loading="lazy" alt="Parent persona card for Sarah Johnson, 38, marked as a possible future persona."></button></div>
+        <div class="panel" role="tabpanel" id="p-p4" aria-labelledby="t-p4" hidden><button class="fig" type="button" data-zoom aria-label="Enlarge district admin persona"><img src="assets/aoi-persona-admin.webp" width="1303" height="987" loading="lazy" alt="District admin persona card for Lisa Thompson, 49: goals and potential behaviour."></button></div>
+       </div>
+      </div>
+
+      <div class="split rule">
+        <h3>Journey mapping</h3>
+        <div class="body"><p>Journey maps followed each account from discovery to renewal. Registration, the free plan and the upgrade are where every path overlaps, and where the low moments cluster.</p></div>
+      </div>
+      <figure>
+        <button class="fig" type="button" data-zoom aria-label="Enlarge journey stages diagram"><img src="assets/aoi-journey.webp" width="1344" height="960" loading="lazy" alt="Journey stages for Student, Personal, Teacher and District Admin accounts, with Register, Try the free plan and Upgrade highlighted."></button>
+        <figcaption>Highlighted stages are the ones this redesign covers.</figcaption>
+      </figure>
+      <table class="changes plain">
+        <thead><tr><th>Pain point</th><th>Opportunity</th><th>Where the redesign responds</th></tr></thead>
+        <tbody>
+          <tr><td data-l="Pain point">"What's the difference between Admin and Teacher? Can I change my role later?"</td><td data-l="Opportunity">Explain the two account types clearly</td><td data-l="Response">Admin moved to a "Contact us" path; a Confirm step on role selection</td></tr>
+          <tr><td data-l="Pain point">"Some content is locked. Is it worth it?"</td><td data-l="Opportunity">Show a feature comparison at the paywall</td><td data-l="Response">Free vs. Pro on the upgrade screen; a ✓/✕ chart on the pricing page</td></tr>
+          <tr><td data-l="Pain point">"I need to sign up first."</td><td data-l="Opportunity">Shorten the path from "Play Now" to an account</td><td data-l="Response">Teacher sign-up cut to one page and 12 fields</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><b>Backlog</b><p>Three opportunities went to future work: a free plan for students without a class code, notifying a parent or teacher when free content runs out, and a "Play the Game" prompt on a teacher's first login.</p></div>
+    </section>
+
+    <!-- 03 MODEL -->
+    <section class="s" id="model">
+      <div class="s-head"><span class="eyebrow">03 · Model &amp; flows</span><h2 class="h2">Fewer objects to learn, <span class="k">one flow per account.</span></h2></div>
+      <div class="split rule">
+        <h3>Conceptual model</h3>
+        <div class="body"><p>I mapped everything a user can do into an object–action matrix. Consolidating overlaps gave users less to learn and the team one vocabulary: six objects (organization, district, school, teachers, students, analytics) and a small set of actions (manage, export, approve or reject).</p></div>
+      </div>
+      <div class="grid2">
+        <figure><button class="fig" type="button" data-zoom aria-label="Enlarge object–action matrix"><img src="assets/aoi-object-action.webp" width="1155" height="1257" loading="lazy" alt="Sticky-note object–action matrix: actions, objects and attributes."></button><figcaption>Object–action matrix</figcaption></figure>
+        <figure><button class="fig" type="button" data-zoom aria-label="Enlarge admin prioritization matrix"><img src="assets/aoi-admin-matrix.webp" width="1113" height="1130" loading="lazy" alt="Admin prioritization matrix grouping tasks into frequent, moderate and rare."></button><figcaption>Admin tasks ranked by frequency</figcaption></figure>
+      </div>
+      <div class="note"><b>Reframe</b><p>For district admins, managing schools and monitoring adoption are frequent, while payment and renewal are rare. So procurement didn't belong in self-serve sign-up. Admin accounts now go to a sales-assisted "Contact us" path, leaving three self-serve flows: Student, Personal and Teacher.</p></div>
+    </section>
+
+    <!-- 04 DESIGN SYSTEM -->
+    <section class="s" id="system">
+      <div class="s-head"><span class="eyebrow">04 · Design system</span><h2 class="h2">Each color <span class="k">has one job.</span></h2>
+        <p class="lead">Colors were one-off hex values. I captured them as tokens with a clear action hierarchy, and applied them first to sign-in, the screen every account sees.</p></div>
+      <div class="tokens">
+        <div class="tok"><div class="sw" style="background:#F3BA3F;color:#0B1B2E">Do this</div><div class="info"><strong>Accent · primary CTA</strong><code>#F3BA3F · 9.8:1 with #0B1B2E label · AAA</code></div></div>
+        <div class="tok"><div class="sw" style="background:#5097BB;color:#0B1B2E">Go here</div><div class="info"><strong>Secondary · text links</strong><code>#5097BB · ~5:1 on navy · AA</code></div></div>
+        <div class="tok"><div class="sw" style="background:#D9DCE0;color:#0B1B2E">Leave</div><div class="info"><strong>Neutral · Back</strong><code>Grey, so exits never compete</code></div></div>
+        <div class="tok"><div class="sw" style="background:#0B1B2E;color:#F2F5F8">Ground</div><div class="info"><strong>Background · ink</strong><code>#0B1B2E · 12.28:1 text contrast</code></div></div>
+      </div>
+      <div class="pair">
+  <figure style="--r:1.5610"><span class="chip b">Before</span><button class="fig dark" type="button" data-zoom aria-label="Enlarge: Before"><img src="assets/aoi-login-before.webp" width="1280" height="820" loading="lazy" alt="Original log-in: busy teal background, centered heading, light-blue Back button."></button></figure>
+  <figure style="--r:1.7778"><span class="chip a">After</span><button class="fig dark" type="button" data-zoom aria-label="Enlarge: After"><img src="assets/aoi-login-after.webp" width="1280" height="720" loading="lazy" alt="Redesigned sign-in: darker navy background, left-aligned form, yellow Sign in button, grey Back button."></button></figure>
+</div>
+            <table class="changes">
+        <thead><tr><th>Before</th><th>After</th><th>Why it works</th></tr></thead>
+        <tbody>
+          <tr><td data-l="Before">A busy navy background (8.61:1) competed with the form.</td><td data-l="After">A darker, desaturated background at 12.28:1; the watermark recedes.</td><td data-l="Why"><strong>Figure–ground.</strong> Readable for low-vision students and on low-quality displays.</td></tr>
+          <tr><td data-l="Before">The light-blue "Back" looked as heavy as the real actions.</td><td data-l="After">"Back" is neutral grey.</td><td data-l="Why"><strong>User control.</strong> An exit that doesn't compete with the primary CTA.</td></tr>
+          <tr><td data-l="Before">A centered heading over left-aligned fields made the eye hunt.</td><td data-l="After">Heading, labels, links and CTA share one left edge.</td><td data-l="Why"><strong>F-pattern.</strong> A predictable scan lowers cognitive load.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 05 FINAL -->
+    <section class="s" id="final">
+      <div class="s-head"><span class="eyebrow">05 · Final design</span><h2 class="h2">Every change grounded in <span class="k">a usability principle.</span></h2>
+        <p class="lead">Each screen sits beside its original. Click either one to view it full size.</p></div>
+
+      <article class="screen">
+        <div class="screen-h"><span class="num">Screen 01</span><h3 class="h3">Role selection: fewer, better-ordered choices</h3></div>
+        <div class="pair">
+  <figure style="--r:1.5859"><span class="chip b">Before</span><button class="fig dark" type="button" data-zoom aria-label="Enlarge: Before"><img src="assets/aoi-role-before.webp" width="1191" height="751" loading="lazy" alt="Original role selection with four cards: Teacher, Student, Individual and Administrator."></button></figure>
+  <figure style="--r:1.7778"><span class="chip a">After</span><button class="fig dark" type="button" data-zoom aria-label="Enlarge: After"><img src="assets/aoi-role-after.webp" width="1280" height="720" loading="lazy" alt="Redesigned role selection with three cards, a Confirm button and a contact link for Admin accounts."></button></figure>
+</div>
+        <table class="changes">
+          <thead><tr><th>Before</th><th>After</th><th>Why it works</th></tr></thead>
+          <tbody>
+            <tr><td data-l="Before">Admin sat beside the self-serve roles, though it needs custom pricing.</td><td data-l="After">Admin moves to a "Contact us" path.</td><td data-l="Why"><strong>Hick's Law.</strong> A smaller choice set shortens decision time; Admin stays reachable.</td></tr>
+            <tr><td data-l="Before">Roles weren't ordered by use.</td><td data-l="After">Student first, Teacher last.</td><td data-l="Why"><strong>Serial position.</strong> People remember first and last items.</td></tr>
+            <tr><td data-l="Before">A mis-tap went straight into the wrong flow.</td><td data-l="After">A "Confirm" step to review the choice.</td><td data-l="Why"><strong>Error prevention.</strong> A mistake costs one click, not two pages.</td></tr>
+            <tr><td data-l="Before">No route to plan details.</td><td data-l="After">A "Pricing page" link below the CTA.</td><td data-l="Why"><strong>Information scent</strong> at the moment of decision.</td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="screen">
+        <div class="screen-h"><span class="num">Screen 02</span><h3 class="h3">Teacher sign-up: 17 fields on two pages became 12 on one</h3>
+          <p class="muted">The original split credentials (page 1) from a "Tell us more about yourself" questionnaire (page 2). Below, page 2 sits beside the new single page.</p></div>
+        <div class="pair">
+  <figure style="--r:0.8964"><span class="chip b">Before · page 2</span><button class="fig dark" type="button" data-zoom aria-label="Enlarge: Before · page 2"><img src="assets/aoi-signup-before-2.webp" width="1280" height="1428" loading="lazy" alt="Original sign-up page 2: a long 'Tell us more about yourself' questionnaire."></button></figure>
+  <figure style="--r:0.9545"><span class="chip a">After</span><button class="fig dark" type="button" data-zoom aria-label="Enlarge: After"><img src="assets/aoi-signup-after.webp" width="1280" height="1341" loading="lazy" alt="Redesigned one-page teacher sign-up with paired name and location fields, confirm-email, and terms notice."></button></figure>
+</div>
+        <table class="changes">
+          <thead><tr><th>Before</th><th>After</th><th>Why it works</th></tr></thead>
+          <tbody>
+            <tr><td data-l="Before">Credentials, then a separate questionnaire.</td><td data-l="After">One page with the full form.</td><td data-l="Why"><strong>Visibility of status.</strong> On a PC-first product, users see the whole task and a mid-flow exit disappears.</td></tr>
+            <tr><td data-l="Before">17 fields, incl. grades taught, student count, demographics.</td><td data-l="After">12 fields, about 30% fewer.</td><td data-l="Why"><strong>Interaction cost.</strong> Expedia credited removing one optional field with $12M a year.</td></tr>
+            <tr><td data-l="Before">Identical full-width fields.</td><td data-l="After">Widths match input; short pairs share a row.</td><td data-l="Why"><strong>Proximity.</strong> Width signals how much to type, in line with Baymard's form research.</td></tr>
+            <tr><td data-l="Before">Password typed twice.</td><td data-l="After">Confirm-email instead.</td><td data-l="Why"><strong>Error prevention.</strong> A wrong email locks users out; a wrong password is easy to reset.</td></tr>
+            <tr><td data-l="Before">No Terms or Privacy notice.</td><td data-l="After">Notice under the CTA, plus "Log in here."</td><td data-l="Why"><strong>Transparency.</strong> Meets a requirement and gives a way out.</td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="screen">
+        <div class="screen-h"><span class="num">Screen 03</span><h3 class="h3">Upgrade: show the value before asking for payment</h3></div>
+        <div class="pair">
+  <figure style="--r:1.7778"><span class="chip b">Before</span><button class="fig dark" type="button" data-zoom aria-label="Enlarge: Before"><img src="assets/aoi-upgrade-before.webp" width="1280" height="720" loading="lazy" alt="Original 'Pay with Stripe' screen with a plan card, a 'Continue without paying' link and a Next button."></button></figure>
+  <figure style="--r:1.2500"><span class="chip a">After</span><button class="fig dark" type="button" data-zoom aria-label="Enlarge: After"><img src="assets/aoi-upgrade-after.webp" width="1280" height="1024" loading="lazy" alt="Redesigned 'Upgrade your account' comparing Personal Free with Personal Pro at $60 a year, with one Confirm Pay with Stripe button."></button></figure>
+</div>
+        <table class="changes">
+          <thead><tr><th>Before</th><th>After</th><th>Why it works</th></tr></thead>
+          <tbody>
+            <tr><td data-l="Before">"Pay with Stripe" named the vendor, centered unlike other screens.</td><td data-l="After">"Upgrade your account," left-aligned, account type as subheading.</td><td data-l="Why"><strong>Jakob's Law.</strong> Same pattern as every onboarding screen.</td></tr>
+            <tr><td data-l="Before">The plan card showed no price or features.</td><td data-l="After">Free and Pro ($60/year) side by side.</td><td data-l="Why"><strong>Recognition over recall.</strong> The upgrade is weighed on the page.</td></tr>
+            <tr><td data-l="Before">Three competing forward actions.</td><td data-l="After">One primary CTA; free plan as a text link.</td><td data-l="Why"><strong>Predictability.</strong> The CTA names its destination; skipping stays free.</td></tr>
+          </tbody>
+        </table>
+      </article>
+    </section>
+
+    <!-- 06 PRICING -->
+    <section class="s" id="pricing">
+      <div class="s-head"><span class="eyebrow">06 · Pricing iterations</span><h2 class="h2">People choose by the job, <span class="k">not the plan name.</span></h2>
+        <p class="lead">The pricing page went through two full iterations with the team lead. Scroll through the three versions in order.</p></div>
+      <div class="picker scrolly" data-picker style="--steps:3">
+       <div class="stick">
+        <div class="stepbar"><span class="count">1 / 3</span><span class="track"><i></i></span><span class="hint-s">Scroll to step through · click a page to view it in full</span></div>
+        <div class="picks" role="tablist" aria-label="Pricing page versions">
+          <button class="pick" role="tab" id="t-v0" aria-controls="p-v0" aria-selected="true"><span class="lbl">Original</span><span class="t">Decorative cards</span><span class="d">Four cards packed with small text, info icons and an overlapping tooltip.</span></button>
+          <button class="pick" role="tab" id="t-v1" aria-controls="p-v1" aria-selected="false" tabindex="-1"><span class="lbl">Version 01</span><span class="t">Comparison table only</span><span class="d">Fixed the clutter, but lost the quick summary. Empty cells implied absence.</span></button>
+          <button class="pick" role="tab" id="t-v2" aria-controls="p-v2" aria-selected="false" tabindex="-1"><span class="lbl">Version 02 · Final</span><span class="t">Goal-based cards + ✓/✕ chart</span><span class="d">"Play on my own" vs. "Create a class," each with a free and a paid tier.</span></button>
+        </div>
+        <div class="panel" role="tabpanel" id="p-v0" aria-labelledby="t-v0"><button class="fig dark top" type="button" data-zoom aria-label="View the original pricing page in full"><img src="assets/aoi-pricing-original.webp" width="1202" height="1592" loading="lazy" alt="Original pricing page with four ornate plan cards and a dense comparison chart."></button></div>
+        <div class="panel" role="tabpanel" id="p-v1" aria-labelledby="t-v1" hidden><button class="fig dark top" type="button" data-zoom aria-label="View pricing V1 in full"><img src="assets/aoi-pricing-v1.webp" width="1280" height="2923" loading="lazy" alt="Pricing V1: a single comparison table across Student, Personal, Teacher and District Admin."></button></div>
+        <div class="panel" role="tabpanel" id="p-v2" aria-labelledby="t-v2" hidden><button class="fig dark top" type="button" data-zoom aria-label="View pricing V2 in full"><img src="assets/aoi-pricing-v2.webp" width="1280" height="3772" loading="lazy" alt="Pricing V2: goal-grouped plan cards with free and paid tiers, a full check and cross comparison chart, and an FAQ."></button></div>
+       </div>
+      </div>
+      <table class="changes">
+        <thead><tr><th>Element</th><th>Version 02</th><th>Principle</th></tr></thead>
+        <tbody>
+          <tr><td data-l="Element">Plan overview</td><td data-l="Version 02">Cards return, grouped by goal, each split into free and paid tiers; Teacher tagged "Popular."</td><td data-l="Principle"><strong>Goal-based grouping.</strong> The summary V1 lost, organized around intent.</td></tr>
+          <tr><td data-l="Element">Comparison chart</td><td data-l="Version 02">Every cell shows ✓ or ✕; tinted columns group each plan.</td><td data-l="Principle"><strong>Common region.</strong> Absence is stated, not implied.</td></tr>
+          <tr><td data-l="Element">CTAs</td><td data-l="Version 02">Color-coded per plan, repeated in cards, chart header and footer.</td><td data-l="Principle"><strong>Consistency.</strong> One plan, one color, everywhere.</td></tr>
+          <tr><td data-l="Element">Notes</td><td data-l="Version 02">USD and sales-assisted notes sit under the cards they qualify.</td><td data-l="Principle"><strong>Proximity.</strong></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 07 OUTCOME -->
+    <section class="s" id="outcome">
+      <div class="s-head"><span class="eyebrow">07 · Outcome</span><h2 class="h2">Less friction between <span class="k">landing and paying.</span></h2></div>
+      <div class="tbl-wrap">
+        <table class="outcome">
+          <thead><tr><th>Measure</th><th>Before</th><th>After</th></tr></thead>
+          <tbody>
+            <tr><td>Teacher sign-up fields</td><td>17, across 2 pages</td><td>12, on 1 page</td></tr>
+            <tr><td>Role selection</td><td>Admin beside self-serve roles, no confirm</td><td>Self-serve roles only, plus Confirm</td></tr>
+            <tr><td>Forward actions on upgrade</td><td>3 competing</td><td>1 primary CTA + 1 skip link</td></tr>
+            <tr><td>Background text contrast</td><td>8.61:1</td><td>12.28:1</td></tr>
+            <tr><td>Pricing plan cards</td><td>Full feature lists in small text</td><td>Free and paid tier on each self-serve card</td></tr>
+            <tr><td>Color handoff</td><td>One-off hex values</td><td>Documented tokens</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 08 LESSON -->
+    <section class="s" id="lesson">
+      <div class="s-head"><span class="eyebrow">08 · Lesson learned</span><h2 class="h2">A tight scope is <span class="k">a design constraint.</span></h2>
+        <p class="lead">I couldn't change prices or tiers, so every improvement had to come from clarity: what people see, in what order, and how few decisions they make.</p></div>
+      <div class="lessons">
+        <div class="card"><span class="n">01</span><h3 class="h3">Protect the foundation</h3><p>Two months was tight, but I kept the empathize phase. It kept the design on real needs and gave the wider team shared context.</p></div>
+        <div class="card"><span class="n">02</span><h3 class="h3">Communicate proactively</h3><p>My team lead taught me UX skills and how to work with others in a way that makes everyone more productive.</p></div>
+        <div class="card"><span class="n">03</span><h3 class="h3">Iteration isn't failure</h3><p>In school, another round means the work wasn't good enough. In a product it's expected. V2 came from reviewing V1 critically.</p></div>
+      </div>
+      <div class="note"><b>Next time</b><p>Run usability tests with students and teachers on the new flows, and set up sign-up and upgrade analytics before launch so the impact can be measured.</p></div>
+    </section>
+  </div>
+</main>
+
+<footer class="footer" id="contact">
+  <div class="foot-steps" aria-hidden="true">
+    <span style="left:0;width:calc(var(--u)*108);height:calc(var(--u)*55)"></span>
+    <span style="left:calc(var(--u)*108);width:calc(var(--u)*108);height:calc(var(--u)*35)"></span>
+    <span style="right:calc(var(--u)*216);width:calc(var(--u)*108);height:calc(var(--u)*35)"></span>
+    <span style="right:calc(var(--u)*108);width:calc(var(--u)*108);height:calc(var(--u)*55)"></span>
+    <span style="right:0;width:calc(var(--u)*108);height:calc(var(--u)*110)"></span>
+  </div>
+  <div class="foot-band">
+    <div class="foot-inner">
+      <div class="foot-main">
+        <p class="foot-kicker">Contact</p>
+        <h2 class="foot-cta">Let’s create something <span>together.</span></h2>
+        <div class="foot-links">
+          <div class="email-group"><div class="pill pill-email"><span class="email" id="email">zheng9thdesign@gmail.com</span><button class="copy" id="copyBtn" type="button">Copy</button></div><span class="foot-doodle" aria-hidden="true"><img src="data:image/webp;base64,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" alt=""></span></div>
+          <a class="pill" href="https://www.linkedin.com/in/huaqian-zheng-9920b330a" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+          <a class="pill" href="https://www.behance.net/HQUXdesign" target="_blank" rel="noopener">Behance <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <div class="foot-id">
+        <p class="foot-name">Huaqian (<span>Jo</span>) Zheng</p>
+        <p class="foot-role">UX/Product Designer · San Jose, CA</p>
+      </div>
+      <div class="foot-legal">
+        <span>© 2026 Huaqian (Jo) Zheng. All rights reserved. Agents of Influence and all screens © Alterea Inc.</span>
+        <a href="#top" class="to-top">Back to top <span aria-hidden="true">↑</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<dialog id="lb" aria-label="Enlarged figure">
+  <img id="lb-img" src="" alt="">
+  <form method="dialog"><span id="lb-cap"></span><button>Close</button></form>
+</dialog>
+
+<script>
+// Scroll-driven selector cards: scrolling down selects the next card in order, scrolling up the previous one.
+var pickers=[].slice.call(document.querySelectorAll('[data-picker]')).map(function(g){
+  var tabs=[].slice.call(g.querySelectorAll('[role="tab"]')),stick=g.querySelector('.stick'),
+      count=g.querySelector('.count'),bar=g.querySelector('.track i'),cur=-1;
+  function sel(i){
+    if(i===cur)return;cur=i;
+    tabs.forEach(function(x,j){var on=j===i;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});
+    if(count)count.textContent=(i+1)+' / '+tabs.length;
+    var row=tabs[i].parentNode;if(row.scrollWidth>row.clientWidth)row.scrollTo({left:tabs[i].offsetLeft-16,behavior:'smooth'});
+  }
+  function range(){var r=g.getBoundingClientRect();return {top:r.top+scrollY,len:Math.max(1,g.offsetHeight-stick.offsetHeight)};}
+  function update(){
+    var r=range(),p=Math.min(1,Math.max(0,(scrollY-(r.top-stick.offsetTop))/r.len));
+    p=Math.min(1,Math.max(0,(scrollY+parseFloat(getComputedStyle(stick).top)-r.top)/r.len));
+    if(bar)bar.style.transform='scaleX('+p+')';
+    sel(Math.min(tabs.length-1,Math.floor(p*tabs.length)));
+  }
+  function go(i){var r=range(),y=r.top-parseFloat(getComputedStyle(stick).top)+r.len*(i+.5)/tabs.length;
+    window.scrollTo({top:y,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});sel(i);}
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){go(i)});
+    t.addEventListener('keydown',function(e){var d=(e.key==='ArrowRight'||e.key==='ArrowDown')?1:(e.key==='ArrowLeft'||e.key==='ArrowUp')?-1:0;
+      if(d){e.preventDefault();var n=Math.min(tabs.length-1,Math.max(0,i+d));go(n);tabs[n].focus({preventScroll:true});}});
+  });
+  sel(0);return update;
+});
+function updatePickers(){pickers.forEach(function(u){u()})}
+addEventListener('scroll',updatePickers,{passive:true});addEventListener('resize',updatePickers);updatePickers();
+// Hero reel pause/play
+(function(){var r=document.getElementById('reel'),t=document.getElementById('reel-toggle');if(!r||!t)return;
+  t.addEventListener('click',function(){var p=r.classList.toggle('paused');t.textContent=p?'Play':'Pause';t.setAttribute('aria-pressed',p);});})();
+// Copy email
+(function(){var btn=document.getElementById('copyBtn'),em=document.getElementById('email');if(!btn)return;
+  btn.addEventListener('click',function(){
+    function done(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},1600)}
+    function fb(){var r=document.createRange();r.selectNodeContents(em);var sel=getSelection();sel.removeAllRanges();sel.addRange(r);btn.textContent='Selected, press Copy';setTimeout(function(){btn.textContent='Copy'},2200)}
+    try{navigator.clipboard.writeText(em.textContent).then(done,fb)}catch(e){fb()}});})();
+// Zoom
+var lb=document.getElementById('lb'),li=document.getElementById('lb-img'),lc=document.getElementById('lb-cap');
+document.querySelectorAll('[data-zoom]').forEach(function(b){
+  b.addEventListener('click',function(){var im=b.querySelector('img');li.src=im.currentSrc||im.src;li.alt=im.alt;lc.textContent=im.alt;
+    lb.classList.toggle('tallimg',im.naturalHeight>im.naturalWidth*1.4);
+    try{lb.showModal()}catch(e){lb.setAttribute('open','')}});
+});
+lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});
+// Section nav + progress
+var links=[].slice.call(document.querySelectorAll('.secnav a')),bar=document.getElementById('progress');
+function onScroll(){
+  var h=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(h>0?Math.min(1,scrollY/h):0)+')';
+  var cur=null;links.forEach(function(a){var s=document.querySelector(a.getAttribute('href'));if(s&&s.getBoundingClientRect().top<innerHeight*.35)cur=a;});
+  links.forEach(function(a){var on=a===cur;a.classList.toggle('on',on);if(on)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current');});
+  if(cur&&cur!==onScroll.last){onScroll.last=cur;var n=cur.parentNode;n.scrollTo({left:cur.offsetLeft-n.clientWidth/2+cur.clientWidth/2,behavior:'smooth'});}
+}
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
+</script>
+
+</body>
+</html>
