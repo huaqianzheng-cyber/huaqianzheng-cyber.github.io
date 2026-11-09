@@ -337,8 +337,7 @@ a.pill:hover { background: var(--paper); color: var(--accent); }
   position: relative; width: calc(var(--P) * 2); height: var(--H);
   transform-style: preserve-3d;
   transform: translateX(calc(var(--P) * -0.5 * (1 - var(--open))))
-             rotateX(calc(16deg * (1 - var(--open)) + 6deg + var(--ty) * 1deg))
-             rotateY(calc(var(--tx) * 1deg));
+             rotateX(calc(16deg * (1 - var(--open)) + 6deg));
 }
 .book-shadow {
   position: absolute; left: calc(var(--P) * (1 - var(--open))); right: 0; top: 100%; height: 34px; margin-top: -10px;
@@ -354,7 +353,7 @@ a.pill:hover { background: var(--paper); color: var(--accent); }
 .pg { position: absolute; top: 0; width: var(--P); height: 100%; background: var(--paper); transform-style: preserve-3d; }
 .pg.right { left: var(--P); border-radius: 3px 14px 14px 3px; box-shadow: inset 14px 0 18px -14px rgba(0,0,0,.22); outline: 1px solid var(--line); }
 .pg.base { transform: translateZ(0); }
-.book .lift { transform: translateZ(calc(var(--pop, 0) * 24px)); }
+.book .lift { transform: translateY(calc(var(--pop, 0) * -3px)); }
 .leaf { position: absolute; top: 0; left: var(--P); width: var(--P); height: 100%; transform-origin: 0 50%; transform-style: preserve-3d; --f: 0; --z: 0; }
 .leaf .pg.right { left: 0; }
 .face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
@@ -362,24 +361,24 @@ a.pill:hover { background: var(--paper); color: var(--accent); }
 /* soft shading while a leaf is mid-turn */
 .leaf .face::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: linear-gradient(90deg, rgba(60,0,30,.18), transparent 60%); opacity: calc(var(--bend, 0)); }
 
-.pg-in { position: absolute; inset: 0; padding: calc(var(--P) * .085) calc(var(--P) * .09) calc(var(--P) * .11); display: flex; flex-direction: column; gap: calc(var(--P) * .03); transform-style: preserve-3d; }
-.kicker { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
-.pg h3 { padding-right: calc(var(--P) * .14); font-family: var(--display); font-weight: 400; font-size: clamp(26px, calc(var(--P) * .095), 44px); line-height: 1.05; color: var(--ink); margin: 0; text-wrap: balance; }
-.pg p { margin: 0; font-size: clamp(13px, calc(var(--P) * .033), 16px); line-height: 1.68; color: var(--text); }
-.lift { transform: translateZ(calc(1px + var(--pop, 0) * 24px)); }
+.pg-in { position: absolute; inset: 0; overflow: hidden; padding: calc(var(--P) * .085) calc(var(--P) * .09) calc(var(--P) * .11); display: flex; flex-direction: column; gap: calc(var(--P) * .03); transform-style: preserve-3d; }
+.kicker { font-size: calc(12px * var(--k, 1)); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.pg h3 { padding-right: calc(var(--P) * .14); font-family: var(--display); font-weight: 400; font-size: calc(clamp(26px, calc(var(--P) * .095), 44px) * var(--k, 1)); line-height: 1.05; color: var(--ink); margin: 0; text-wrap: balance; }
+.pg p { margin: 0; font-size: calc(clamp(13px, calc(var(--P) * .033), 16px) * var(--k, 1)); line-height: 1.68; color: var(--text); }
+.lift { transform: translateY(calc(var(--pop, 0) * -3px)); }
 .folio { position: absolute; bottom: calc(var(--P) * .045); font-size: 11px; letter-spacing: .08em; color: var(--muted); font-variant-numeric: tabular-nums; }
 .pg.right .folio { right: calc(var(--P) * .09); }
 .pg.left .folio { left: calc(var(--P) * .09); }
 
 .roles { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: calc(var(--P) * .03); }
 .roles li { border-left: 3px solid var(--accent); padding-left: 12px; }
-.roles .t { font-weight: 600; font-size: clamp(13px, calc(var(--P) * .035), 16.5px); color: var(--ink); }
-.roles .m { font-size: clamp(11.5px, calc(var(--P) * .027), 13.5px); color: var(--muted); }
-.roles .d { font-size: clamp(12px, calc(var(--P) * .029), 14px); color: var(--text); margin-top: 2px; line-height: 1.5; }
+.roles .t { font-weight: 600; font-size: calc(clamp(13px, calc(var(--P) * .035), 16.5px) * var(--k, 1)); color: var(--ink); }
+.roles .m { font-size: calc(clamp(11.5px, calc(var(--P) * .027), 13.5px) * var(--k, 1)); color: var(--muted); }
+.roles .d { font-size: calc(clamp(12px, calc(var(--P) * .029), 14px) * var(--k, 1)); color: var(--text); margin-top: 2px; line-height: 1.5; }
 .roles .yr { font-variant-numeric: tabular-nums; }
 .hobbies { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0; }
-.hobbies li { border: 1px solid var(--ink); border-radius: 16px; padding: 3px 12px; font-size: 13px; color: var(--ink); }
-.art-link { align-self: flex-start; margin-top: auto; white-space: nowrap; gap: 12px; padding: 0 20px; font-size: clamp(13px, calc(var(--P) * .032), 16px); max-width: 100%; }
+.hobbies li { border: 1px solid var(--ink); border-radius: 16px; padding: 3px 12px; font-size: calc(13px * var(--k, 1)); color: var(--ink); }
+.art-link { flex: none; align-self: flex-start; margin-top: auto; white-space: nowrap; gap: 12px; padding: 0 20px; font-size: calc(clamp(13px, calc(var(--P) * .032), 16px) * var(--k, 1)); max-width: 100%; }
 .art-link .tip { display: none; }
 /* link preview window: same card as the hover tips, with a scrolling snapshot of the page */
 .float-tip:has(.pv) { padding: 10px; }
@@ -398,13 +397,13 @@ a.pill:hover { background: var(--paper); color: var(--accent); }
 .pv-cap { font-size: 13px; color: var(--ink); padding: 0 2px 2px; }
 
 /* paper pop-up that stands up off a right page once its chapter is open */
-.popup { position: absolute; right: calc(var(--P) * .08); bottom: calc(var(--P) * .1); transform-origin: 50% 100%; transform: translateZ(1px) rotateX(calc(88deg * (1 - var(--pop, 0)))); pointer-events: none; }
-.popup img { display: block; width: 100%; }
+.popup { position: absolute; right: calc(var(--P) * .08); bottom: calc(var(--P) * .1); transform-origin: 50% 100%; transform: translateY(calc((1 - var(--pop, 0)) * 10px)) scale(calc(.4 + var(--pop, 0) * .6)); opacity: var(--pop, 0); pointer-events: none; }
+.popup img { display: block; width: 100%; height: auto; max-width: 100%; }
 /* pop-ups stand in the page's top-right corner, clear of the running text */
-.book .popup { top: calc(var(--P) * .05); bottom: auto !important; right: calc(var(--P) * .07) !important; max-width: calc(var(--P) * .12); }
+.book .popup { top: calc(var(--P) * .05); bottom: auto !important; right: calc(var(--P) * .07) !important; width: clamp(24px, calc(var(--P) * .1), 52px) !important; max-width: 52px; }
 
 /* left-page layers rise to different depths */
-.layer { position: absolute; inset: 0; transform-style: preserve-3d; transform: translateZ(calc(1px + var(--pop, 0) * var(--d, 10) * 1px)); }
+.layer { position: absolute; inset: 0; transform: translate(calc(var(--pop, 0) * var(--d, 10) * -0.08px), calc(var(--pop, 0) * var(--d, 10) * -0.12px)); }
 .slot-photo {
   position: absolute; border-radius: 10px; overflow: hidden;
   background: repeating-linear-gradient(-45deg, #F7F2F4 0 10px, #EFE6EA 10px 20px);
@@ -972,6 +971,16 @@ a.pill:hover { background: var(--paper); color: var(--accent); }
     render();
 
     // keep exactly 60px between the bottom of the book and the footer, whatever the screen height
+    // if a page's text is taller than the page (short windows), shrink that page's type until it fits
+    function fitText() {
+      book.querySelectorAll('.pg-in').forEach(pin => {
+        let k = 1; pin.style.setProperty('--k', 1);
+        while (pin.scrollHeight > pin.clientHeight + 1 && k > 0.72) { k -= 0.04; pin.style.setProperty('--k', k.toFixed(2)); }
+      });
+    }
+    fitText();
+    addEventListener('resize', fitText);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitText);
     const footer = document.querySelector('.footer');
     function fitGap() {
       track.style.marginBottom = '0px';
@@ -997,15 +1006,6 @@ a.pill:hover { background: var(--paper); color: var(--accent); }
       });
     });
 
-    // gentle tilt toward the mouse so the layers show their depth
-    if (fine) {
-      stage.addEventListener('mousemove', e => {
-        const r = stage.getBoundingClientRect();
-        book.style.setProperty('--tx', (((e.clientX - r.left) / r.width - 0.5) * 12).toFixed(2));
-        book.style.setProperty('--ty', (-((e.clientY - r.top) / r.height - 0.5) * 6).toFixed(2));
-      });
-      stage.addEventListener('mouseleave', () => { book.style.setProperty('--tx', 0); book.style.setProperty('--ty', 0); });
-    }
   })();
 
 })();
