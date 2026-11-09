@@ -274,7 +274,7 @@ section { scroll-margin-top: 90px; }
 
 /* ---------- about / footer ---------- */
 .foot-inner { max-width: 1256px; margin: 0 auto; }
-.footer { position: relative; margin-top: 40px; }
+.footer { position: relative; margin-top: 0; }
 .foot-steps { position: relative; height: calc(var(--u) * 110); }
 .foot-steps span { position: absolute; bottom: 0; top: auto !important; background: var(--accent); }
 .foot-band { background: var(--accent); color: var(--paper); padding-block: 64px 28px; }
@@ -968,6 +968,20 @@ a.pill:hover { background: var(--paper); color: var(--accent); }
     addEventListener('scroll', req, { passive: true });
     addEventListener('resize', req);
     render();
+
+    // keep exactly 60px between the bottom of the book and the footer, whatever the screen height
+    const footer = document.querySelector('.footer');
+    function fitGap() {
+      track.style.marginBottom = '0px';
+      const scene = book.parentElement;
+      const bookBottom = scene.getBoundingClientRect().top + book.offsetHeight;
+      const free = stage.getBoundingClientRect().bottom - bookBottom;
+      const between = footer.getBoundingClientRect().top - track.getBoundingClientRect().bottom;
+      track.style.marginBottom = Math.round(60 - free - between + 3) + 'px'; // +3 offsets the open book's slight tilt
+    }
+    fitGap();
+    addEventListener('resize', fitGap);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitGap);
 
     tabs.forEach((t, k) => {
       t.addEventListener('click', () => {
