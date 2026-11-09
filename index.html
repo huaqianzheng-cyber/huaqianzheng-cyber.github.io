@@ -251,8 +251,7 @@ section { scroll-margin-top: 90px; }
 .prev .sec-head { max-width: var(--container); margin-inline: auto; }
 /* marquee: two identical sets slide left-to-right forever; hover pauses */
 .rail { --gap: clamp(40px, 4.4vw, 72px); overflow: hidden; margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-block: 10px; }
-.rail-track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
-.rail:hover .rail-track { animation-play-state: paused; }
+.rail-track { display: flex; width: max-content; will-change: transform; }
 .rail-set { display: flex; gap: var(--gap); padding-right: var(--gap); }
 @keyframes marquee { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 .rail .slot { position: relative; flex: 0 0 min(220px, 56vw); aspect-ratio: 4 / 5; border-radius: 16px; overflow: hidden; display: block; text-decoration: none; background: var(--placeholder); transition: transform .3s; }
@@ -1006,24 +1005,43 @@ a.pill:hover { background: var(--paper); color: var(--accent); }
     }
   })();
 
-  /* ---- Earlier Work rail: repeat cards until each set is wider than the screen, so the loop never shows a gap ---- */
-  (function railFill() {
-    const track = document.querySelector('.rail-track'); if (!track) return;
+  /* ---- Earlier Work rail: one set of four projects, followed by enough copies to cover the screen.
+     The row slides left-to-right one set width at a time and wraps, so the screen is always full. ---- */
+  (function railLoop() {
+    const rail = document.querySelector('.rail'), track = document.querySelector('.rail-track'); if (!track) return;
     const sets = track.querySelectorAll('.rail-set');
     const base = [...sets[0].querySelectorAll('.slot')].slice(0, 4).map(n => n.cloneNode(true));
     const hidden = n => { const c = n.cloneNode(true); c.tabIndex = -1; c.setAttribute('aria-hidden', 'true'); const im = c.querySelector('img'); if (im) im.alt = ''; return c; };
+    let unit = 0, x = 0, paused = false, last = 0;
+    const SPEED = 55; // px per second
     function build() {
-      const w = Math.max(innerWidth, 800);
       sets[0].replaceChildren(...base.map(n => n.cloneNode(true)));
-      let guard = 0;
-      while (sets[0].scrollWidth < w + 400 && guard++ < 20) base.forEach(n => sets[0].appendChild(hidden(n)));
-      sets[1].replaceChildren(...[...sets[0].children].map(hidden));
-      const px = sets[0].scrollWidth;
-      track.style.animationDuration = Math.round(px / 55) + 's';
+      unit = sets[0].getBoundingClientRect().width;
+      const copies = Math.max(2, Math.ceil((rail.clientWidth + unit) / unit) + 1);
+      const fill = [];
+      for (let k = 0; k < copies; k++) base.forEach(n => fill.push(hidden(n)));
+      sets[1].replaceChildren(...fill);
+      x = -unit + ((x % unit) + unit) % unit;
+    }
+    function frame(t) {
+      const dt = last ? Math.min(0.05, (t - last) / 1000) : 0; last = t;
+      if (!paused && !reduce && unit) {
+        x += SPEED * dt;
+        if (x >= 0) x -= unit;
+        track.style.transform = `translate3d(${x.toFixed(2)}px,0,0)`;
+      }
+      requestAnimationFrame(frame);
     }
     build();
-    let last = innerWidth, t = 0;
-    addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => { if (Math.abs(innerWidth - last) > 40) { last = innerWidth; build(); } }, 200); });
+    track.style.transform = `translate3d(${x}px,0,0)`;
+    rail.addEventListener('mouseenter', () => paused = true);
+    rail.addEventListener('mouseleave', () => paused = false);
+    rail.addEventListener('focusin', () => paused = true);
+    rail.addEventListener('focusout', () => paused = false);
+    let lastW = innerWidth, to = 0;
+    addEventListener('resize', () => { clearTimeout(to); to = setTimeout(() => { if (Math.abs(innerWidth - lastW) > 20) { lastW = innerWidth; build(); } }, 150); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
+    requestAnimationFrame(frame);
   })();
 })();
 </script>
