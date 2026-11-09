@@ -221,11 +221,12 @@ section { scroll-margin-top: 90px; }
 .prev .sec-head { color: var(--paper); }
 .prev .sec-head::before { background: var(--doodle-yellow); }
 .work { padding-block: clamp(24px, 3vw, 40px) var(--sec-pad); }
-.work-inner { max-width: min(var(--container), calc(560px + 500px + clamp(32px, 4vw, 64px))); margin: 0 auto; display: flex; flex-direction: column; gap: clamp(48px, 6vw, 80px); }
-.work-inner > .sec-head { margin-bottom: calc(var(--head-gap) - clamp(48px, 6vw, 80px)); }
-.case { display: grid; grid-template-columns: minmax(0, 560px) minmax(0, 500px); justify-content: center; gap: 24px clamp(32px, 4vw, 64px); align-items: center; }
-.case-media { width: 100%; max-width: 560px; justify-self: start; aspect-ratio: 1164 / 562; border-radius: 16px; overflow: hidden; background: var(--peach); display: block; }
-.case-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+.work-inner { max-width: min(var(--container), calc(560px + 500px + clamp(32px, 4vw, 64px))); margin: 0 auto; display: block; }
+.work-inner > .case + .case { margin-top: clamp(48px, 6vw, 80px); }
+.work-inner > .sec-head { margin-bottom: var(--head-gap); }
+.case { display: grid; grid-template-columns: minmax(0, 560px) minmax(0, 500px); justify-content: center; align-items: start; gap: 24px clamp(32px, 4vw, 64px); align-items: center; }
+.case-media { position: relative; display: block; width: 100%; max-width: 560px; height: 0; padding-top: 48.28%; border-radius: 16px; overflow: hidden; background: var(--peach); align-self: start; }
+.case-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
 .case:hover .case-media img { transform: scale(1.03); }
 .case-body { min-width: 0; display: flex; flex-direction: column; gap: 14px; }
 .case-body .tags { order: 1; } .case-body h3 { order: 2; } .case-body .date { order: 3; } .case-body p { order: 4; } .case-body .cta { order: 5; }
@@ -237,7 +238,7 @@ section { scroll-margin-top: 90px; }
 .case .cta { align-self: flex-start; white-space: nowrap; max-width: 100%; }
 .case-media-blue { background: #B1E5E6; }
 .cta.cta-soon { background: transparent; color: var(--accent); border: 1.5px dashed var(--accent); cursor: default; }
-@media (max-width: 960px) { .work-inner { max-width: 600px; } .case { grid-template-columns: minmax(0, 1fr); } .case p { max-width: 60ch; } .case-media { max-width: none; } }
+@media (max-width: 960px) { .work-inner { max-width: 600px; } .case { grid-template-columns: minmax(0, 1fr); } .case p { max-width: 60ch; } .case-media { max-width: none; padding-top: 48.28%; } }
 .cta {
   display: flex; align-items: center; gap: 18px; height: 40px; padding: 0 26px; border-radius: 16px;
   background: var(--accent); color: var(--paper); font-weight: 600; font-size: 16px; text-decoration: none; overflow: hidden;
@@ -977,6 +978,26 @@ a.pill:hover { background: var(--paper); color: var(--accent); }
       });
       stage.addEventListener('mouseleave', () => { book.style.setProperty('--tx', 0); book.style.setProperty('--ty', 0); });
     }
+  })();
+
+  /* ---- Earlier Work rail: repeat cards until each set is wider than the screen, so the loop never shows a gap ---- */
+  (function railFill() {
+    const track = document.querySelector('.rail-track'); if (!track) return;
+    const sets = track.querySelectorAll('.rail-set');
+    const base = [...sets[0].querySelectorAll('.slot')].slice(0, 4).map(n => n.cloneNode(true));
+    const hidden = n => { const c = n.cloneNode(true); c.tabIndex = -1; c.setAttribute('aria-hidden', 'true'); const im = c.querySelector('img'); if (im) im.alt = ''; return c; };
+    function build() {
+      const w = Math.max(innerWidth, 800);
+      sets[0].replaceChildren(...base.map(n => n.cloneNode(true)));
+      let guard = 0;
+      while (sets[0].scrollWidth < w + 400 && guard++ < 20) base.forEach(n => sets[0].appendChild(hidden(n)));
+      sets[1].replaceChildren(...[...sets[0].children].map(hidden));
+      const px = sets[0].scrollWidth;
+      track.style.animationDuration = Math.round(px / 55) + 's';
+    }
+    build();
+    let last = innerWidth, t = 0;
+    addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => { if (Math.abs(innerWidth - last) > 40) { last = innerWidth; build(); } }, 200); });
   })();
 })();
 </script>
