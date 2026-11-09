@@ -476,8 +476,6 @@ a.pill:hover { background: var(--paper); color: var(--accent); }
 @media (max-width: 460px) { .nav-links li:nth-child(3) { display: none; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .rail { overflow-x: auto; }
-  .rail-set[aria-hidden="true"] { display: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
 }
@@ -1015,7 +1013,7 @@ a.pill:hover { background: var(--paper); color: var(--accent); }
     const measure = () => { unit = first.getBoundingClientRect().width; x = -unit + ((x % unit) + unit) % unit; };
     function frame(t) {
       const dt = last ? Math.min(0.05, (t - last) / 1000) : 0; last = t;
-      if (!paused && !reduce && unit) {
+      if (!paused && unit) {
         x += SPEED * dt;
         if (x >= 0) x -= unit;
         track.style.transform = `translate3d(${x.toFixed(2)}px,0,0)`;
